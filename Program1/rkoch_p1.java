@@ -12,7 +12,7 @@ public class rkoch_p1 {
 		rowMajorOrder(Mat1, 1, 1);
 		printIntegerMatrixToFile(Mat1, "rkoch_mat1.txt");
 
-		int[][] Mat2 = new int [LASTNAME][FIRSTNAME];
+		int[][] Mat2 = new int[LASTNAME][FIRSTNAME];
 		rowMajorOrder(Mat2, 4, 2);
 		printIntegerMatrixToFile(Mat2, "rkoch_mat2.txt");
 
