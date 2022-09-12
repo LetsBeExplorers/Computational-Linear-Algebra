@@ -1,0 +1,1 @@
+Mat2 does not have the same number of rows as the number of columns in Mat3, they cannot be multiplied.
