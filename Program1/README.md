@@ -151,7 +151,7 @@ same size, so they cannot be added.</p>
       close the results file
 
 <h4>Part 3</h4>
-<p>The third part of the assignment also reads the output files containing 2D arrays from part one, but this program multiplies each unique 
+<p>The third part of this assignment also reads the output files containing 2D arrays from part one, but this program multiplies each unique 
 combination of arrays, writing the results to an output file. If the number of rows in the first array does not equal the number of columns
 in the second array, then they are unable to be multiplied. In this case, the program will write an error message to the output file instead 
 of a new array. The error message will say that the first array does not have the same number of rows as the number of columns in the second
@@ -230,4 +230,4 @@ array, so they cannot be multiplied.</p>
       close the results file
 
 <h3>The Github Repository</h3>
-The link suitable for cloning the github repository containing the executable code and the output files is []().
+The link suitable for cloning the github repository containing the executable code and the output files is https://github.com/LetsBeExplorers/cs2300-coursework.git.
