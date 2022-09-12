@@ -67,7 +67,6 @@ public class rkoch_p1 {
 	}
 
 	// This will print each integer matrix to a file
-	// It will display each row of the matrix with values separated by 8 spaces
 	public static void printIntegerMatrixToFile (int[][] mat, String name) throws IOException {
 		
 		// setup the file reference variable to refer to a text file
@@ -87,7 +86,6 @@ public class rkoch_p1 {
 	}
 
 	// This will print each double matrix to a file
-	// It will display each row of the matrix with values separated by 8 spaces
 	public static void printDoubleMatrixToFile (double[][] mat, String name) throws IOException {
 		
 		// setup the file reference variable to refer to a text file
