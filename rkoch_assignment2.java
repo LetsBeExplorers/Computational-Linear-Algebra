@@ -5,14 +5,20 @@ import java.lang.*;
 public class rkoch_assignment2 {
 	public static void main(String[] args) throws IOException {
 
-		// prompt the user to enter an input file and assign it to a variable
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an input file: ");
-		File inputFile = new File(userInput.nextLine());
+		// get the input file
+		File inputFile = setupTheInputFile();
 
 		// initiate game play
 		playTheGame(inputFile);
 		
+	}
+
+	// prompts the user for an input file and returns it
+	public static File setupTheInputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an input file: ");
+		File inputFile = new File(userInput.nextLine());
+		return inputFile;
 	}
 
 	// controls game play and displays the board after each turn
