@@ -7,9 +7,10 @@ public class rkoch_assignment2 {
 
 		// get the input file
 		File inputFile = setupTheInputFile();
+		inputReader(inputFile);
 
 		// initiate game play
-		playTheGame(inputFile);
+		playTheGame();
 		
 	}
 
@@ -22,10 +23,7 @@ public class rkoch_assignment2 {
 	}
 
 	// controls game play and displays the board after each turn
-	public static void playTheGame(File inputFile) throws IOException {
-
-		// put the information from the input file into an array list
-		ArrayList<int[]> gameValues = inputReader(inputFile);
+	public static void playTheGame() throws IOException {
 
 		// generate the game board
 		String [][] gameBoard = generateGameBoard(gameValues.get(0));
@@ -61,40 +59,32 @@ public class rkoch_assignment2 {
 	}
 
 	// reads the play input from a file and creates an array list with the information from that file
-	public static ArrayList<int[]> inputReader(File inputFile) throws IOException {
+	public static void inputReader(File inputFile) throws IOException {
 
 		// open the file for reading
 		Scanner readableFile = new Scanner(inputFile);
 
-		// create a new array list to store the game information
-		ArrayList<int[]> gameValues = new ArrayList<int[]>();
+		// read the first line and pass it into a method for extraction
+		String firstLine = readableFile.nextLine();
+		extractSizeAndRecentTurns(firstLine);
 
-		// get the board size and number of turns to check from the input file
-		int[] boardSize = {readableFile.nextInt()};
-		int[] checkPreviousTurns = {readableFile.nextInt()};
-
-		// add the board size and number of turns to the array list
-		gameValues.add(boardSize);
-		gameValues.add(checkPreviousTurns);
-
-		// fill an array with each set of 4 play cell values
-		while (readableFile.hasNextInt()) {
-			int[] playCellValues = new int[4];
-			for (int i = 0; i < playCellValues.length; i++) {
-				playCellValues[i] = readableFile.nextInt();
-			}
-
-			// put each set into the array list
-			gameValues.add(playCellValues);
+		// read the next lines and pass them into a method for extraction
+		while (readableFile.hasNextLine()) {
+			String linePoints = readableFile.nextLine()
+			extractLinePoints(linePoints);
 		}
-
-		// testing
-		for ( int[] i : gameValues) {
-			System.out.println(Arrays.toString(i));
-		}
-		
-		return gameValues;
 	}
+
+	// extracts size and recent turns from a string
+	public static void extractSizeAndRecentTurns(String input) {
+
+	}
+
+	// extracts points on a line from a string
+	public static void extractLinePoints(String input) {
+		
+	}
+
 
 	// generates a square game board from a given size
 	public static String[][] generateGameBoard(int[] size) {
