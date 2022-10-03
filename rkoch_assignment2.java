@@ -235,10 +235,16 @@ public class rkoch_assignment2 {
 				if (Arrays.equals(lineStart, pLineStart) || Arrays.equals(lineEnd, pLineEnd)) {
 					validPlay = false;
 				}
+
+				// calculate changes in x and y for both lines
+				int dx_l = lineEnd[0] - lineStart[0];
+				int dy_l = lineEnd[1] - lineStart[1];
+				int dx_pl = pLineEnd[0] - pLineStart[0];
+				int dy_pl = pLineEnd[1] - pLineStart[1];
+
+
+
 			}
-
-			int dxLine = 
-
 		}
 
 		return validPlay;
