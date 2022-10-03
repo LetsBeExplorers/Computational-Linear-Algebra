@@ -237,6 +237,8 @@ public class rkoch_assignment2 {
 				int dx_pl = pLineEnd[0] - pLineStart[0];
 				int dy_pl = pLineEnd[1] - pLineStart[1];
 
+				// if the lines are perpendicular (i.e. slopes are negative inverses of each other)
+				// then the play is not valid
 				if (dy_pl*dy_l == -dx_pl*dx_l) {
 					validPlay = false;
 				}
