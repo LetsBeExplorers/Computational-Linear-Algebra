@@ -12,8 +12,7 @@ public class rkoch_assignment2 {
 
 	public static int recentTurns;
 	public static String[][] gameBoard;
-	public static ArrayList<int[][]> allLines = new ArrayList<int[][]>();
-	public static ArrayList<int[][]> playedLines = new ArrayList<int[][]>();
+	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
 
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
@@ -25,11 +24,11 @@ public class rkoch_assignment2 {
 		// initializing turn number and begin main game loop
 		int turnNumber = 0;
 
-		for (int i = 0; i < allLines.size(); i++) {
+		for (int i = 0; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line and print the game board
-			if (checkPlayValidity(allLines.get(i), turnNumber)) { 
-				drawLine(allLines.get(i), turnNumber); 
+			if (checkPlayValidity(lines.get(i), turnNumber)) { 
+				drawLine(lines.get(i), turnNumber); 
 				printGameBoardToFile(resultsFile);
 			}
 			else { resultsFile.println("Not a valid play"); }
@@ -88,7 +87,7 @@ public class rkoch_assignment2 {
 				endPoint[j] = readableFile.nextInt();
 			}
 
-			allLines.add(buildLine(startPoint, endPoint));
+			lines.add(buildLine(startPoint, endPoint));
 
 		}
 	}
@@ -187,9 +186,6 @@ public class rkoch_assignment2 {
 		
 		for (int i = 0; i < line[0].length; i++) {
 
-			// add the line being drawn to the played lines array list
-			playedLines.add(line);
-
 			// assign x and y values of the points on the line to variables
 			int rowValue = line[0][i];
 			int columnValue = line[1][i];
@@ -222,7 +218,7 @@ public class rkoch_assignment2 {
 			if ((turn - i) >= 0) { 
 				// then set the line to compare against some line in the previous recentTurns
 				// this will start with the last line and work back to a line recentTurns ago
-				int[][] prevLine = allLines.get(turn-i);
+				int[][] prevLine = lines.get(turn-i);
 
 				// fill the start and end points
 				for (int j = 0; j < 2; j++) {
