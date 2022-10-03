@@ -78,14 +78,12 @@ public class rkoch_assignment2 {
 		while (readableFile.hasNextInt()) {
 
 			// fill the start point array
-			for (int i = 0; i < startPoint.length; i++) {
-				startPoint[i] = readableFile.nextInt();
-			}
+			startPoint[0] = readableFile.nextInt();
+			startPoint[1] = readableFile.nextInt();
 
 			// fill the end point array
-			for (int j = 0; j < endPoint.length; j++) {
-				endPoint[j] = readableFile.nextInt();
-			}
+			endPoint[0] = readableFile.nextInt();
+			endPoint[1] = readableFile.nextInt();
 
 			lines.add(buildLine(startPoint, endPoint));
 
