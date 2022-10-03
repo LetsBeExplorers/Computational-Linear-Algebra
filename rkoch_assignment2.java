@@ -112,13 +112,13 @@ public class rkoch_assignment2 {
 
 	// extracts x and y coordinates from the input file array 
 	// passes the coordinate information to the line computation method
-	public static int[][] buildLine(int[] coordinates) {
+	public static int[][] buildLine(int[] start, int[] end) {
 
 		// extract coordinates from the array
-		int x1 = coordinates[0];
-		int y1 = coordinates[1];
-		int x2 = coordinates[2];
-		int y2 = coordinates[3];
+		int x1 = start[0];
+		int y1 = start[1];
+		int x2 = end[0];
+		int y2 = end[1];
 
 		// compute change in x and y
 		int dx = Math.abs(x2 - x1);
