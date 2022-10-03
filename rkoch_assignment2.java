@@ -144,7 +144,8 @@ public class rkoch_assignment2 {
 
 		// create a new 2D array to hold the line points
 		// format: row one is x's and row 2 is y's
-        int[][] line = new int[2][dx+1];
+		// # of columns is +2 to include the end point and dx/dy
+        int[][] line = new int[2][dx+2];
 
         // error for comparison
         // multiply by 2 to avoid comparing with 1/2
@@ -241,6 +242,8 @@ public class rkoch_assignment2 {
 				int dy_l = lineEnd[1] - lineStart[1];
 				int dx_pl = pLineEnd[0] - pLineStart[0];
 				int dy_pl = pLineEnd[1] - pLineStart[1];
+
+
 
 
 
