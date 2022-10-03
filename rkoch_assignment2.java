@@ -211,18 +211,18 @@ public class rkoch_assignment2 {
 		boolean validPlay = true;
 		for (int i = 1; i <= recentTurns; i++) {
 
+			// create start and end point arrays for both lines
+			// pLine is previous line
+			int[] lineStart = new int[2];
+			int[] lineEnd = new int[2];
+			int[] pLineStart = new int[2];
+			int[] pLineEnd = new int[2];
+
 			// if the index will not be negative
 			if ((turn - i) >= 0) { 
 				// then set the line to compare against some line in the previous recentTurns
 				// this will start with the last line and work back to a line recentTurns ago
 				int[][] prevLine = allLines.get(turn-i);
-
-				// create start and end point arrays for both lines
-				// pLine is previous line
-				int[] lineStart = new int[2];
-				int[] lineEnd = new int[2];
-				int[] pLineStart = new int[2];
-				int[] pLineEnd = new int[2];
 
 				// fill the start and end points
 				for (int j = 0; j < 2; j++) {
@@ -241,7 +241,7 @@ public class rkoch_assignment2 {
 				}
 			}
 
-
+			int dxLine = 
 
 		}
 
