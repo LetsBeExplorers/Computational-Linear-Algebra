@@ -55,7 +55,7 @@ public class rkoch_assignment2 {
 		return inputFile;
 	}
 
-	// create and sets up the output file for writing
+	// creates and sets up the output file for writing
 	// prints a header in the file
 	public static PrintWriter setupTheOutputFile() throws IOException {
 		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
@@ -63,13 +63,14 @@ public class rkoch_assignment2 {
 		return resultsFile;
 	}
 
-	// reads the play input from a file and creates an array list with the information from that file
+	// reads the play input from a file and sets boardsize and recentTurns
+	// returns a 2d array of points from the input file
 	public static void inputReader(File input) throws IOException {
 
 		// open the file for reading
 		Scanner readableFile = new Scanner(input);
 
-		// read the first line and split it into boardsize and recentTurns
+		// read the first line of the file and split it into boardsize and recentTurns
 		String firstLine = readableFile.nextLine();
 		boardsize = Character.getNumericValue(firstline.charAt(0));
 		recentTurns = Character.getNumericValue(firstline.charAt(1));
