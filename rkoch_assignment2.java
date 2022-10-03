@@ -30,8 +30,8 @@ public class rkoch_assignment2 {
 
 			// if the play is valid, then draw the line and print the game board
 			if (checkPlayValidity(allLines.get(i), turnNumber)) { 
-				drawLine(allLines.get(i), gameBoard, turnNumber); 
-				printGameBoardToFile(gameBoard, resultsFile);
+				drawLine(allLines.get(i), turnNumber); 
+				printGameBoardToFile(resultsFile);
 			}
 			else { resultsFile.println("Not a valid play"); }
 
@@ -184,7 +184,7 @@ public class rkoch_assignment2 {
 	}
 
 	// prints either X's or O's on a board according to a given line
-	public static void drawLine(int[][] line, String[][] board, int turn) {
+	public static void drawLine(int[][] line, int turn) {
 		
 		for (int i = 0; i < line[0].length; i++) {
 
@@ -196,9 +196,9 @@ public class rkoch_assignment2 {
 			// fill the board cell with the x and y values from the line
 			// subtract one from the indices because the cell values start at one
 			if (turn%2 == 0) {
-				board[rowValue-1][columnValue-1] = "X";
+				gameBoard[rowValue-1][columnValue-1] = "X";
 			} else {
-				board[rowValue-1][columnValue-1] = "O";
+				gameBoard[rowValue-1][columnValue-1] = "O";
 			}
 		}
 	}
@@ -243,12 +243,12 @@ public class rkoch_assignment2 {
 	}
 
 	// prints the game board to a given file
-	public static void printGameBoardToFile(String[][] board, PrintWriter file) throws IOException {
+	public static void printGameBoardToFile(PrintWriter file) throws IOException {
 
 		// print the contents of each cell to a file
-		for (int row = 0; row < board.length; row++) {
-			for (int column = 0; column < board[row].length; column++) {
-				file.printf("%s", board[row][column]);
+		for (int row = 0; row < gameBoard.length; row++) {
+			for (int column = 0; column < gameBoard[row].length; column++) {
+				file.printf("%s", gameBoard[row][column]);
 			}
 			file.println();
 		}
