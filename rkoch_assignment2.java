@@ -10,17 +10,14 @@ public class rkoch_assignment2 {
 		
 	}
 
-	public static int boardsize;
 	public static int recentTurns;
+	public static String[][] gameBoard;
 
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
 		// get the list of lines from the input file
 		ArrayList<int[][]> lines = inputReader(setupTheInputFile());
-
-		// generate the game board
-		String [][] gameBoard = generateGameBoard(boardsize);
 
 		// setup the input and output files
 		PrintWriter resultsFile = setupTheOutputFile();
@@ -56,7 +53,7 @@ public class rkoch_assignment2 {
 	// prints a header in the file
 	public static PrintWriter setupTheOutputFile() throws IOException {
 		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
-		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", boardsize, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
+		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", gameBoard.length, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
 		return resultsFile;
 	}
 
@@ -68,8 +65,11 @@ public class rkoch_assignment2 {
 		Scanner readableFile = new Scanner(input);
 
 		// take the first two integers and assign them to boardsize and recentTurns
-		boardsize = readableFile.nextInt();
+		int boardSize = readableFile.nextInt();
 		recentTurns = readableFile.nextInt();
+
+		// generate the game board
+		generateGameBoard(boardSize);
 
 		// create arrays to store start and end points
 		int[] startPoint = new int[2];
@@ -99,10 +99,10 @@ public class rkoch_assignment2 {
 	}
 
 	// generates a square game board from a given size
-	public static String[][] generateGameBoard(int size) {
+	public static void generateGameBoard(int size) {
 
 		// create a new game board array
-		String[][] gameBoard = new String[boardsize][boardsize];
+		gameBoard = new String[size][size];
 
 		// fill the game board with periods as the starting value of each cell
 		for (int row = 0; row < gameBoard.length; row++) {
@@ -110,8 +110,6 @@ public class rkoch_assignment2 {
 				gameBoard[row][column] = ".";
 			}
 		}
-
-		return gameBoard;
 	}
 
 	// extracts x and y coordinates from the input file array 
