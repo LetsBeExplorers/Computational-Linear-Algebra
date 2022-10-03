@@ -203,6 +203,7 @@ public class rkoch_assignment2 {
 		}
 	}
 
+	// flips a cell from one given value to another
 	public static String flipTheCell (String cell, String value) {
 		cell = value;
 		return cell;
