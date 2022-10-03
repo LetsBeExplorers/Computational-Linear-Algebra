@@ -5,12 +5,6 @@ import java.lang.*;
 public class rkoch_assignment2 {
 	public static void main(String[] args) throws IOException {
 
-		// get the input file
-		File inputFile = setupTheInputFile();
-		inputReader(inputFile);
-
-		PrintWriter resultsFile = setupTheOutputFile();
-
 		// initiate game play
 		playTheGame(resultsFile);
 		
@@ -36,7 +30,11 @@ public class rkoch_assignment2 {
 	}
 
 	// controls game play and displays the board after each turn
-	public static void playTheGame(PrintWriter file) throws IOException {
+	public static void playTheGame() throws IOException {
+
+		// setup the input and output files
+		inputReader(setupTheInputFile());
+		PrintWriter resultsFile = setupTheOutputFile();
 
 		// generate the game board
 		String [][] gameBoard = generateGameBoard(boardsize);
@@ -57,7 +55,7 @@ public class rkoch_assignment2 {
 			if (checkPlayValidity(gameTurn)) { drawLine(gameTurn, gameBoard, turnNumber); }
 
 			// print the game board to a file and increment the turn number
-			printGameBoardToFile(gameBoard, file);
+			printGameBoardToFile(gameBoard, resultsFile);
 			turnNumber++;
 		}
 
@@ -71,11 +69,10 @@ public class rkoch_assignment2 {
 		// open the file for reading
 		Scanner readableFile = new Scanner(input);
 
-		// read the first line and pass it into a parsing method
+		// read the first line and split it into boardsize and recentTurns
 		String firstLine = readableFile.nextLine();
 		boardsize = Character.getNumericValue(firstline.charAt(0));
 		recentTurns = Character.getNumericValue(firstline.charAt(1));
-
 
 		// read the next lines and pass them into a parsing method
 		while (readableFile.hasNextLine()) {
