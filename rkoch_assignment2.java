@@ -37,7 +37,6 @@ public class rkoch_assignment2 {
 			}
 			else { resultsFile.println("Not a valid play"); }
 
-
 			turnNumber++;
 		}
 
@@ -222,12 +221,25 @@ public class rkoch_assignment2 {
 				// this will start with the last line and work back to a line recentTurns ago
 				int[][] prevLine = lines.get(turn-i);
 
+				// create start and end point arrays for both lines
+				int[] lineStart = new int[2];
+				int[] lineEnd = new int[2];
+				int[] pLineStart = new int[2];
+				int[] pLineEnd = new int[2];
+
+				// fill the start and end points
+				for (int j = 0; j < 2; j++) {
+					lineStart[j] = line[j][0];
+					lineEnd[j] = line[j][line[j].length-1];
+
+					pLineStart[j] = prevLine[j][0];
+					pLineEnd[j] = prevLine[j][prevLine[j].length-1];
+				}
+
 				// if the start point of the current line matches the start point of the previous line
 				// or if the end point of the current line matches the end point of the previous line
 				// then the play is not valid
-				if ((line[0][0] == prevLine[0][0] && line[1][0] == prevLine[1][0]) || 
-					(line[0][line.length-1] == prevLine[0][prevLine.length-1] && 
-					line[1][line.length-1] == prevLine[1][prevLine.length-1])) {
+				if (Arrays.equals(lineStart, pLineStart) || Arrays.equals(lineEnd, pLineEnd)) {
 					validPlay = false;
 				}
 			}
