@@ -70,27 +70,25 @@ public class rkoch_assignment2 {
 		// open the file for reading
 		Scanner readableFile = new Scanner(input);
 
-		// read the first line of the file and split it into boardsize and recentTurns
-		String firstLine = readableFile.nextLine();
-		boardsize = Character.getNumericValue(firstline.charAt(0));
-		recentTurns = Character.getNumericValue(firstline.charAt(1));
+		// take the first two integers and assign them to boardsize and recentTurns
+		boardsize = readableFile.nextInt();
+		recentTurns = readableFile.nextInt();
 
 		// create arrays to store start and end points
 		int[] startPoint = new int[2];
 		int[] endPoint = new int[2];
 
 		// read the next lines and fill the point arrays
-		while (readableFile.hasNextLine()) {
-			String linePoints = readableFile.nextLine();
+		while (readableFile.hasNextInt()) {
 
 			// fill the start point array
 			for (int i = 0; i < startPoint.length; i++) {
-				startPoint[i] = Character.getNumericValue(linePoints.charAt(i));
+				startPoint[i] = readableFile.nextInt();
 			}
 
 			// fill the end point array
-			for (int j = 2; j < endPoint.length; j++) {
-				endPoint[j-2] = Character.getNumericValue(linePoints.charAt(j));
+			for (int j = 0; j < endPoint.length; j++) {
+				endPoint[j] = readableFile.nextInt();
 			}
 
 		}
