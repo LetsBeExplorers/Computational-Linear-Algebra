@@ -6,7 +6,7 @@ public class rkoch_assignment2 {
 	public static void main(String[] args) throws IOException {
 
 		// initiate game play
-		playTheGame(resultsFile);
+		playTheGame();
 		
 	}
 
@@ -43,7 +43,7 @@ public class rkoch_assignment2 {
 			turnNumber++;
 		}
 
-		file.close();
+		resultsFile.close();
 
 	}
 
