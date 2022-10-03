@@ -75,10 +75,24 @@ public class rkoch_assignment2 {
 		boardsize = Character.getNumericValue(firstline.charAt(0));
 		recentTurns = Character.getNumericValue(firstline.charAt(1));
 
-		// read the next lines and pass them into a parsing method
+		// create arrays to store start and end points
+		int[] startPoint = new int[2];
+		int[] endPoint = new int[2];
+
+		// read the next lines and fill the point arrays
 		while (readableFile.hasNextLine()) {
 			String linePoints = readableFile.nextLine();
-			parseLinePoints(linePoints);
+
+			// fill the start point array
+			for (int i = 0; i < startPoint.length; i++) {
+				startPoint[i] = Character.getNumericValue(linePoints.charAt(i));
+			}
+
+			// fill the end point array
+			for (int j = 2; j < endPoint.length; j++) {
+				endPoint[j-2] = Character.getNumericValue(linePoints.charAt(j));
+			}
+
 		}
 	}
 
