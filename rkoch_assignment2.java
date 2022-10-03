@@ -12,12 +12,13 @@ public class rkoch_assignment2 {
 
 	public static int recentTurns;
 	public static String[][] gameBoard;
+	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
 
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
-		// get the list of lines from the input file
-		ArrayList<int[][]> lines = inputReader(setupTheInputFile());
+		// setup and read the input file information
+		inputReader(setupTheInputFile());
 
 		// setup the input and output files
 		PrintWriter resultsFile = setupTheOutputFile();
@@ -28,7 +29,7 @@ public class rkoch_assignment2 {
 		for (int i = 0; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line and print the game board
-			if (checkPlayValidity(lines.get(i), lines, turnNumber)) { 
+			if (checkPlayValidity(lines.get(i), turnNumber)) { 
 				drawLine(lines.get(i), gameBoard, turnNumber); 
 				printGameBoardToFile(gameBoard, resultsFile);
 			}
@@ -59,7 +60,7 @@ public class rkoch_assignment2 {
 
 	// reads the play input from a file and sets boardsize and recentTurns
 	// returns an arraylist containing the lines drawn from points in the input file
-	public static ArrayList<int[][]> inputReader(File input) throws IOException {
+	public static void inputReader(File input) throws IOException {
 
 		// open the file for reading
 		Scanner readableFile = new Scanner(input);
@@ -74,9 +75,6 @@ public class rkoch_assignment2 {
 		// create arrays to store start and end points
 		int[] startPoint = new int[2];
 		int[] endPoint = new int[2];
-
-		// create an array list to store each of the lines
-		ArrayList<int[][]> lines = new ArrayList<int[][]>();
 
 		// read the next lines and fill the point arrays
 		while (readableFile.hasNextInt()) {
@@ -94,8 +92,6 @@ public class rkoch_assignment2 {
 			lines.add(buildLine(startPoint, endPoint));
 
 		}
-
-		return lines;
 	}
 
 	// generates a square game board from a given size
@@ -208,7 +204,7 @@ public class rkoch_assignment2 {
 	}
 
 
-	public static boolean checkPlayValidity(int[][] line, ArrayList<int[][]> lines, int turn) {
+	public static boolean checkPlayValidity(int[][] line, int turn) {
 
 		boolean validPlay = true;
 		for (int i = 1; i <= recentTurns; i++) {
