@@ -13,6 +13,7 @@ public class rkoch_assignment2 {
 	public static int recentTurns;
 	public static String[][] gameBoard;
 	public static ArrayList<int[][]> allLines = new ArrayList<int[][]>();
+	public static ArrayList<int[][]> playedLines = new ArrayList<int[][]>();
 
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
