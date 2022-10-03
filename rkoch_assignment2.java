@@ -16,22 +16,21 @@ public class rkoch_assignment2 {
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
-		// setup the input and output files
-		inputReader(setupTheInputFile());
-		PrintWriter resultsFile = setupTheOutputFile();
+		// get the list of lines from the input file
+		ArrayList<int[][]> lines = inputReader(setupTheInputFile());
 
 		// generate the game board
 		String [][] gameBoard = generateGameBoard(boardsize);
 
+		// setup the input and output files
+		PrintWriter resultsFile = setupTheOutputFile();
 
 		int turnNumber = 0;
 		// game play loop starting at 3rd element of array list to bypass board size and number of turns
-		for (int i = 2; i < gameValues.size(); i++) {
-
-			// create a new array and build the line for the turn, add it to the array of lines
+		for (int i = 2; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line
-			if (checkPlayValidity(gameTurn)) { drawLine(gameTurn, gameBoard, turnNumber); }
+			if (checkPlayValidity(lines)) { drawLine(lines, gameBoard, turnNumber); }
 
 			// print the game board to a file and increment the turn number
 			printGameBoardToFile(gameBoard, resultsFile);
@@ -116,7 +115,7 @@ public class rkoch_assignment2 {
 	// passes the coordinate information to the line computation method
 	public static int[][] buildLine(int[] start, int[] end) {
 
-		// extract coordinates from the array
+		// extract coordinates from the arrays
 		int x1 = start[0];
 		int y1 = start[1];
 		int x2 = end[0];
