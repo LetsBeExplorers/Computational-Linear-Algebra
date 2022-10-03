@@ -239,9 +239,10 @@ public class rkoch_assignment2 {
 
 				// if the lines are perpendicular (i.e. slopes are negative inverses of each other)
 				// then the play is not valid
-				if (dy_pl*dy_l == -dx_pl*dx_l) {
-					validPlay = false;
-				}
+				if (dy_pl*dy_l == -dx_pl*dx_l) { validPlay = false; }
+
+				// if the move is just a point with no line, the move is invalid
+				if (dx_l == 0 && dy_l == 0) { validPlay = false; }
 			}
 		}
 
