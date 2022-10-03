@@ -3,22 +3,27 @@ import java.util.*;
 import java.lang.*;
 
 public class rkoch_assignment2 {
+	public static int recentTurns;
+	public static String[][] gameBoard;
+	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
+	public static File inputFile;
+
+
 	public static void main(String[] args) throws IOException {
+
+		//setup the input and output files
+		setupTheInputFile();
 
 		// initiate game play
 		playTheGame();
 		
 	}
 
-	public static int recentTurns;
-	public static String[][] gameBoard;
-	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
-
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
-		// setup the input and output files
-		inputReader(setupTheInputFile());
+		// read the input
+		inputReader();
 		PrintWriter resultsFile = setupTheOutputFile();
 
 		// initializing turn number and begin main game loop
@@ -41,11 +46,10 @@ public class rkoch_assignment2 {
 	}
 
 	// prompts the user for an input file and returns it
-	public static File setupTheInputFile() throws IOException {
+	public static void setupTheInputFile() throws IOException {
 		Scanner userInput = new Scanner(System.in);
 		System.out.printf("Please enter the name of an input file: ");
-		File inputFile = new File(userInput.nextLine());
-		return inputFile;
+		inputFile = new File(userInput.nextLine());
 	}
 
 	// creates and sets up the output file for writing
@@ -58,10 +62,10 @@ public class rkoch_assignment2 {
 
 	// reads the play input from a file and sets boardsize and recentTurns
 	// fills an arraylist with the lines drawn from points in the input file
-	public static void inputReader(File input) throws IOException {
+	public static void inputReader() throws IOException {
 
 		// open the file for reading
-		Scanner readableFile = new Scanner(input);
+		Scanner readableFile = new Scanner(inputFile);
 
 		// take the first two integers and assign them to boardsize and recentTurns
 		int boardSize = readableFile.nextInt();

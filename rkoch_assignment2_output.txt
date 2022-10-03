@@ -1,5 +1,5 @@
 Board Size: 5
-Cannot Reuse Row/Col: 3
+Cannot Reuse Row/Col: 0
 X Goes First.
 
 X....
@@ -8,20 +8,63 @@ X....
 ...X.
 ....X
 
-Not a valid play
-Not a valid play
-XO...
-.XO..
+X...O
+.X.O.
 ..O..
-...O.
-...OX
+.O.X.
+O...X
 
-XO...
-.XO.X
-..O.X
-...OX
-...OX
+X...O
+XX.O.
+.XX..
+.O.XX
+O...X
 
-Not a valid play
-Not a valid play
-Not a valid play
+XO..O
+XXOO.
+.XO..
+.O.OX
+O..OX
+
+XO..O
+XXOO.
+XXXXX
+.O.OX
+O..OX
+
+XOO.O
+XXOO.
+XXOXX
+.OOOX
+O.OOX
+
+XOO.O
+XXOXX
+XXXXX
+XOOOX
+O.OOX
+
+XOOOO
+XXOXX
+XXOXX
+XOOOX
+OOOOX
+
+XOOOO
+XXOXX
+XXOXX
+XOXOX
+OOXOX
+
+XOOOO
+XXOXX
+XXOOO
+XOOOX
+OOXOX
+
+XOOOO
+XXOXX
+XXOOO
+XOXOX
+OOXOX
+
