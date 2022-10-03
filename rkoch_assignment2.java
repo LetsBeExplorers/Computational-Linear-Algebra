@@ -9,10 +9,15 @@ public class rkoch_assignment2 {
 		File inputFile = setupTheInputFile();
 		inputReader(inputFile);
 
+		PrintWriter resultsFile = setupTheOutputFile();
+
 		// initiate game play
-		playTheGame();
+		playTheGame(resultsFile);
 		
 	}
+
+	public static int boardsize;
+	public static int recentTurns;
 
 	// prompts the user for an input file and returns it
 	public static File setupTheInputFile() throws IOException {
@@ -22,17 +27,20 @@ public class rkoch_assignment2 {
 		return inputFile;
 	}
 
+	// create and sets up the output file for writing
+	// prints a header in the file
+	public static PrintWriter setupTheOutputFile() throws IOException {
+		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
+		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", boardsize, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
+		return resultsFile;
+	}
+
 	// controls game play and displays the board after each turn
-	public static void playTheGame() throws IOException {
+	public static void playTheGame(PrintWriter file) throws IOException {
 
 		// generate the game board
 		String [][] gameBoard = generateGameBoard(gameValues.get(0));
 
-		// setup and create the output file
-		// print a header
-		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
-		resultsFile.printf("%s%s\n%s%s\n%s\n\n", "Board Size: ", Arrays.toString(gameValues.get(0)), 
-			"Cannot Reuse Row/Col: ",  Arrays.toString(gameValues.get(1)), "X Goes First.");
 
 		// create an array list to store each of the lines played
 		ArrayList<int[][]> lines = new ArrayList<int[][]>();
@@ -50,11 +58,11 @@ public class rkoch_assignment2 {
 			if (checkPlayValidity(gameTurn)) { drawLine(gameTurn, gameBoard, turnNumber); }
 
 			// print the game board to a file and increment the turn number
-			printGameBoardToFile(gameBoard, resultsFile);
+			printGameBoardToFile(gameBoard, file);
 			turnNumber++;
 		}
 
-		resultsFile.close();
+		file.close();
 
 	}
 
@@ -64,33 +72,33 @@ public class rkoch_assignment2 {
 		// open the file for reading
 		Scanner readableFile = new Scanner(inputFile);
 
-		// read the first line and pass it into a method for extraction
+		// read the first line and pass it into a parsing method
 		String firstLine = readableFile.nextLine();
-		extractSizeAndRecentTurns(firstLine);
+		parseSizeAndRecentTurns(firstLine);
 
-		// read the next lines and pass them into a method for extraction
+		// read the next lines and pass them into a parsing method
 		while (readableFile.hasNextLine()) {
 			String linePoints = readableFile.nextLine()
-			extractLinePoints(linePoints);
+			parseLinePoints(linePoints);
 		}
 	}
 
-	// extracts size and recent turns from a string
-	public static void extractSizeAndRecentTurns(String input) {
+	// gets size and recent turns from a string
+	public static void parseSizeAndRecentTurns(String input) {
 
 	}
 
-	// extracts points on a line from a string
-	public static void extractLinePoints(String input) {
+	// gets points on a line from a string
+	public static void parseLinePoints(String input) {
 		
 	}
 
 
 	// generates a square game board from a given size
-	public static String[][] generateGameBoard(int[] size) {
+	public static String[][] generateGameBoard() {
 
 		// create a new game board array
-		String[][] gameBoard = new String[size[0]][size[0]];
+		String[][] gameBoard = new String[boardsize[boardsize];
 
 		// fill the game board with periods as the starting value of each cell
 		for (int row = 0; row < gameBoard.length; row++) {
