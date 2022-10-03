@@ -1,5 +1,5 @@
-Board Size: [5]
-Cannot Reuse Row/Col: [0]
+Board Size: 5
+Cannot Reuse Row/Col: 0
 X Goes First.
 
 X....

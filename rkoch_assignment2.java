@@ -27,10 +27,10 @@ public class rkoch_assignment2 {
 
 		int turnNumber = 0;
 		// game play loop starting at 3rd element of array list to bypass board size and number of turns
-		for (int i = 2; i < lines.size(); i++) {
+		for (int i = 0; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line
-			if (checkPlayValidity(lines)) { drawLine(lines, gameBoard, turnNumber); }
+			if (checkPlayValidity(lines.get(i))) { drawLine(lines.get(i), gameBoard, turnNumber); }
 
 			// print the game board to a file and increment the turn number
 			printGameBoardToFile(gameBoard, resultsFile);
@@ -96,7 +96,7 @@ public class rkoch_assignment2 {
 	}
 
 	// generates a square game board from a given size
-	public static String[][] generateGameBoard() {
+	public static String[][] generateGameBoard(int size) {
 
 		// create a new game board array
 		String[][] gameBoard = new String[boardsize][boardsize];
