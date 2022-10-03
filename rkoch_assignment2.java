@@ -189,6 +189,9 @@ public class rkoch_assignment2 {
 		
 		for (int i = 0; i < line[0].length; i++) {
 
+			// add the line being drawn to the played lines array list
+			playedLines.add(line);
+
 			// assign x and y values of the points on the line to variables
 			int rowValue = line[0][i];
 			int columnValue = line[1][i];
