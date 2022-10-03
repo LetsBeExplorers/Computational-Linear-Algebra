@@ -27,13 +27,17 @@ public class rkoch_assignment2 {
 
 		// initializing turn number and begin main game loop
 		int turnNumber = 0;
+
 		for (int i = 0; i < lines.size(); i++) {
 
-			// if the play is valid, then draw the line
-			if (checkPlayValidity(lines.get(i))) { drawLine(lines.get(i), gameBoard, turnNumber); }
+			// if the play is valid, then draw the line and print the game board
+			if (checkPlayValidity(lines.get(i), lines, turnNumber)) { 
+				drawLine(lines.get(i), gameBoard, turnNumber); 
+				printGameBoardToFile(gameBoard, resultsFile);
+			}
+			else { resultsFile.println("Not a valid play"); }
 
-			// print the game board to a file and increment the turn number
-			printGameBoardToFile(gameBoard, resultsFile);
+
 			turnNumber++;
 		}
 
@@ -197,7 +201,7 @@ public class rkoch_assignment2 {
 
 			// if the turn is even, then print X's. Otherwise print O's
 			// fill the board cell with the x and y values from the line
-			// subtract one from the indices because the cells start at one
+			// subtract one from the indices because the cell values start at one
 			if (turn%2 == 0) {
 				board[rowValue-1][columnValue-1] = "X";
 			} else {
@@ -207,9 +211,27 @@ public class rkoch_assignment2 {
 	}
 
 
-	public static boolean checkPlayValidity(int[][] line) {
-		
+	public static boolean checkPlayValidity(int[][] line, ArrayList<int[][]> lines, int turn) {
+
 		boolean validPlay = true;
+		for (int i = 1; i <= recentTurns; i++) {
+
+			// if the index will not be negative
+			if ((turn - i) >= 0) { 
+				// then set the line to compare against some line in the previous recentTurns
+				// this will start with the last line and work back to a line recentTurns ago
+				int[][] prevLine = lines.get(turn-i);
+
+				// if the start point of the current line matches the start point of the previous line
+				// or if the end point of the current line matches the end point of the previous line
+				// then the play is not valid
+				if ((line[0][0] == prevLine[0][0] && line[1][0] == prevLine[1][0]) || 
+					(line[0][line.length-1] == prevLine[0][prevLine.length-1] && 
+					line[1][line.length-1] == prevLine[1][prevLine.length-1])) {
+					validPlay = false;
+				}
+			}
+		}
 
 		return validPlay;
 	}
