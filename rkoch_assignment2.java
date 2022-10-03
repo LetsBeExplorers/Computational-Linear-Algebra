@@ -58,7 +58,7 @@ public class rkoch_assignment2 {
 	}
 
 	// reads the play input from a file and sets boardsize and recentTurns
-	// returns a 2d array of points from the input file
+	// returns an arraylist containing the lines drawn from points in the input file
 	public static ArrayList<int[][]> inputReader(File input) throws IOException {
 
 		// open the file for reading
