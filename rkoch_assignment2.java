@@ -185,15 +185,27 @@ public class rkoch_assignment2 {
 			int rowValue = line[0][i];
 			int columnValue = line[1][i];
 
-			// if the turn is even, then print X's. Otherwise print O's
-			// fill the board cell with the x and y values from the line
+			// set the cell to be filled equal to a variable for passing
 			// subtract one from the indices because the cell values start at one
+			String cell = gameBoard[rowValue-1][columnValue-1];
+
+			// if the turn is even, then print X's. Otherwise print O's
+			// flip the cell if there is already a value in it
 			if (turn%2 == 0) {
-				gameBoard[rowValue-1][columnValue-1] = "X";
+				if (cell.equals("O")) { cell = flipTheCell(cell, "X"); } 
+				else { cell = "X"; }
 			} else {
-				gameBoard[rowValue-1][columnValue-1] = "O";
+				if (cell.equals("X")) { cell = flipTheCell(cell, "O"); } 
+				else { cell = "O"; }
 			}
+
+			gameBoard[rowValue-1][columnValue-1] = cell;
 		}
+	}
+
+	public static String flipTheCell (String cell, String value) {
+		cell = value;
+		return cell;
 	}
 
 	// checks a play for validity by checking start and end points and perpendicularity
