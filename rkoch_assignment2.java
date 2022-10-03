@@ -134,13 +134,22 @@ public class rkoch_assignment2 {
         // if slope is greater than or equal to one, then swap x and y
         else { line = computeLine(y1, x1, y2, x2, dy, dx, true); }
 
+        // testing
+		for (int row = 0; row < line.length; row++) {
+			for (int column = 0; column < line[row].length; column++) {
+				System.out.printf("%2d", line[row][column]);
+			}
+			System.out.println();
+		}
+
 		return line;
 	}
 
 	// uses Bresenhams Line algorithm to obtain the integer points for a line between two points
 	public static int[][] computeLine(int x1, int y1, int x2, int y2, int dx, int dy, boolean swap) {
 
-		// create a new array to hold the line points
+		// create a new 2D array to hold the line points
+		// format: row one is x's and row 2 is y's
         int[][] linePoints = new int[2][dx+1];
 
         // error for comparison
@@ -189,6 +198,7 @@ public class rkoch_assignment2 {
 
 			// if the turn is even, then print X's. Otherwise print O's
 			// fill the board cell with the x and y values from the line
+			// subtract one from the indices because the cells start at one
 			if (turn%2 == 0) {
 				board[rowValue-1][columnValue-1] = "X";
 			} else {
