@@ -12,6 +12,7 @@ public class rkoch_assignment2 {
 
 	public static int recentTurns;
 	public static String[][] gameBoard;
+	public static int[] line;
 	public static ArrayList<int[][]> allLines = new ArrayList<int[][]>();
 	public static ArrayList<int[][]> playedLines = new ArrayList<int[][]>();
 
@@ -240,6 +241,9 @@ public class rkoch_assignment2 {
 					validPlay = false;
 				}
 			}
+
+
+
 		}
 
 		return validPlay;
