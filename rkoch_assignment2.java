@@ -131,9 +131,9 @@ public class rkoch_assignment2 {
 	// uses Bresenhams Line algorithm to obtain the integer points for a line between two points
 	public static int[][] computeLine(int x1, int y1, int x2, int y2) {
 		
-		// compute change in x and y
-		int dx = x2 - x1;
-		int dy = y2 - y1;
+		// compute the magnitude of change in x and y
+		int dx = Math.abs(x2 - x1);
+		int dy = Math.abs(y2 - y1);
 
 		// handle the case where slope is greater than zero 
         if (dx < dy) { 

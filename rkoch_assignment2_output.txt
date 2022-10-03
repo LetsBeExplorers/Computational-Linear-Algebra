@@ -8,28 +8,18 @@ X....
 ...X.
 ....X
 
-X....
-.X...
-..XO.
-...O.
-....X
-
-X....
-XX...
-.XXO.
-..XO.
-....X
-
+Not a valid play
+Not a valid play
 XO...
-XXO..
-.XOO.
-..XO.
+.XO..
+..O..
+...O.
 ...OX
 
 XO...
-XXO.X
-.XOOX
-..XOX
+.XO.X
+..O.X
+...OX
 ...OX
 
 Not a valid play
