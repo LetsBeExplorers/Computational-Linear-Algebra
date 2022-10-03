@@ -18,10 +18,8 @@ public class rkoch_assignment2 {
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
-		// setup and read the input file information
-		inputReader(setupTheInputFile());
-
 		// setup the input and output files
+		inputReader(setupTheInputFile());
 		PrintWriter resultsFile = setupTheOutputFile();
 
 		// initializing turn number and begin main game loop
@@ -60,7 +58,7 @@ public class rkoch_assignment2 {
 	}
 
 	// reads the play input from a file and sets boardsize and recentTurns
-	// returns an arraylist containing the lines drawn from points in the input file
+	// fills an arraylist with the lines drawn from points in the input file
 	public static void inputReader(File input) throws IOException {
 
 		// open the file for reading
@@ -207,7 +205,7 @@ public class rkoch_assignment2 {
 		}
 	}
 
-
+	// checks a play for validity by checking start and end points and perpendicularity
 	public static boolean checkPlayValidity(int[][] line, int turn) {
 
 		boolean validPlay = true;
