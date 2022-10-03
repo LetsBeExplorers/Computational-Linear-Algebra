@@ -114,17 +114,9 @@ public class rkoch_assignment2 {
 		int x2 = end[0];
 		int y2 = end[1];
 
-		// compute change in x and y
-		int dx = Math.abs(x2 - x1);
-		int dy = Math.abs(y2 - y1);
-
 		// create a new array for storage of the line points
-		int[][] line;
+		int[][] line = computeLine(x1, y1, x2, y2);
 
-		// if slope is less than one
-        if (dx > dy) { line = computeLine(x1, y1, x2, y2, dx, dy, false); }
-        // if slope is greater than or equal to one, then swap x and y
-        else { line = computeLine(y1, x1, y2, x2, dy, dx, true); }
 
         // testing
 		for (int row = 0; row < line.length; row++) {
@@ -138,12 +130,25 @@ public class rkoch_assignment2 {
 	}
 
 	// uses Bresenhams Line algorithm to obtain the integer points for a line between two points
-	public static int[][] computeLine(int x1, int y1, int x2, int y2, int dx, int dy, boolean swap) {
+	public static int[][] computeLine(int x1, int y1, int x2, int y2) {
+		
+		// compute change in x and y
+		int dx = x2 - x1;
+		int dy = y2 - y1;
+
+		// handle the case where slope is greater than zero 
+        if (dx < dy) { 
+        	int[][] reverse = computeLine(y1, x1, y2, x2);
+        	int[] swap = reverse[0];
+        	reverse[0] = reverse[1];
+        	reverse[1] = swap;
+        	return reverse;
+        }
 
 		// create a new 2D array to hold the line points
 		// format: row one is x's and row 2 is y's
-		// # of columns is +2 to include the end point and dx/dy
-        int[][] line = new int[2][dx+2];
+		// # of columns is +1 to include the end point
+        int[][] line = new int[2][dx+1];
 
         // error for comparison
         // multiply by 2 to avoid comparing with 1/2
@@ -153,16 +158,8 @@ public class rkoch_assignment2 {
 		for (int i = 0; i <= dx; i++) {
 
 			// fill the array with x and y values
-			// swap the order if x and y were swapped
-			if (!swap) {
-				System.out.println(x1 + "," + y1 + "\n");
-				line[0][i] = x1;
-	        	line[1][i] = y1;
-			} else {
-				System.out.println(y1 + "," + x1 + " swapped" + "\n");
-				line[0][i] = y1;
-	        	line[1][i] = x1;
-			}
+			line[0][i] = x1;
+	        line[1][i] = y1;
 
 	        // increment or decrement x depending on the slope direction
 	        // and if the the error is smaller than zero, increase it
