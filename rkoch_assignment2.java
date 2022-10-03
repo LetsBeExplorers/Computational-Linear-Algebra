@@ -73,7 +73,9 @@ public class rkoch_assignment2 {
 
 		// read the first line and pass it into a parsing method
 		String firstLine = readableFile.nextLine();
-		parseSizeAndRecentTurns(firstLine);
+		boardsize = Character.getNumericValue(firstline.charAt(0));
+		recentTurns = Character.getNumericValue(firstline.charAt(1));
+
 
 		// read the next lines and pass them into a parsing method
 		while (readableFile.hasNextLine()) {
@@ -81,18 +83,6 @@ public class rkoch_assignment2 {
 			parseLinePoints(linePoints);
 		}
 	}
-
-	// gets size and recent turns from a string
-	public static void parseSizeAndRecentTurns(String input) {
-		boardsize = Character.getNumericValue(input.charAt(0));
-		recentTurns = Character.getNumericValue(input.charAt(1));
-	}
-
-	// gets points on a line from a string
-	public static void parseLinePoints(String input) {
-		
-	}
-
 
 	// generates a square game board from a given size
 	public static String[][] generateGameBoard() {
