@@ -12,7 +12,7 @@ public class rkoch_assignment2 {
 
 	public static int recentTurns;
 	public static String[][] gameBoard;
-	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
+	public static ArrayList<int[][]> allLines = new ArrayList<int[][]>();
 
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
@@ -26,11 +26,11 @@ public class rkoch_assignment2 {
 		// initializing turn number and begin main game loop
 		int turnNumber = 0;
 
-		for (int i = 0; i < lines.size(); i++) {
+		for (int i = 0; i < allLines.size(); i++) {
 
 			// if the play is valid, then draw the line and print the game board
-			if (checkPlayValidity(lines.get(i), turnNumber)) { 
-				drawLine(lines.get(i), gameBoard, turnNumber); 
+			if (checkPlayValidity(allLines.get(i), turnNumber)) { 
+				drawLine(allLines.get(i), gameBoard, turnNumber); 
 				printGameBoardToFile(gameBoard, resultsFile);
 			}
 			else { resultsFile.println("Not a valid play"); }
@@ -89,7 +89,7 @@ public class rkoch_assignment2 {
 				endPoint[j] = readableFile.nextInt();
 			}
 
-			lines.add(buildLine(startPoint, endPoint));
+			allLines.add(buildLine(startPoint, endPoint));
 
 		}
 	}
@@ -213,7 +213,7 @@ public class rkoch_assignment2 {
 			if ((turn - i) >= 0) { 
 				// then set the line to compare against some line in the previous recentTurns
 				// this will start with the last line and work back to a line recentTurns ago
-				int[][] prevLine = lines.get(turn-i);
+				int[][] prevLine = allLines.get(turn-i);
 
 				// create start and end point arrays for both lines
 				int[] lineStart = new int[2];
