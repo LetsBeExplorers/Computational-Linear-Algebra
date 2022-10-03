@@ -23,17 +23,12 @@ public class rkoch_assignment2 {
 		// generate the game board
 		String [][] gameBoard = generateGameBoard(boardsize);
 
-		// create an array list to store each of the lines played
-		ArrayList<int[][]> lines = new ArrayList<int[][]>();
 
 		int turnNumber = 0;
 		// game play loop starting at 3rd element of array list to bypass board size and number of turns
 		for (int i = 2; i < gameValues.size(); i++) {
 
 			// create a new array and build the line for the turn, add it to the array of lines
-			int[][] gameTurn;
-			gameTurn = buildLine(gameValues.get(i));
-			lines.add(gameTurn);
 
 			// if the play is valid, then draw the line
 			if (checkPlayValidity(gameTurn)) { drawLine(gameTurn, gameBoard, turnNumber); }
@@ -65,7 +60,7 @@ public class rkoch_assignment2 {
 
 	// reads the play input from a file and sets boardsize and recentTurns
 	// returns a 2d array of points from the input file
-	public static void inputReader(File input) throws IOException {
+	public static ArrayList<int[][]> inputReader(File input) throws IOException {
 
 		// open the file for reading
 		Scanner readableFile = new Scanner(input);
@@ -77,6 +72,9 @@ public class rkoch_assignment2 {
 		// create arrays to store start and end points
 		int[] startPoint = new int[2];
 		int[] endPoint = new int[2];
+
+		// create an array list to store each of the lines
+		ArrayList<int[][]> lines = new ArrayList<int[][]>();
 
 		// read the next lines and fill the point arrays
 		while (readableFile.hasNextInt()) {
@@ -91,7 +89,11 @@ public class rkoch_assignment2 {
 				endPoint[j] = readableFile.nextInt();
 			}
 
+			lines.add(buildLine(startPoint, endPoint));
+
 		}
+
+		return lines;
 	}
 
 	// generates a square game board from a given size
@@ -131,14 +133,6 @@ public class rkoch_assignment2 {
         if (dx > dy) { line = computeLine(x1, y1, x2, y2, dx, dy, false); }
         // if slope is greater than or equal to one, then swap x and y
         else { line = computeLine(y1, x1, y2, x2, dy, dx, true); }
-
-        // testing
-		for (int row = 0; row < line.length; row++) {
-			for (int column = 0; column < line[row].length; column++) {
-				System.out.printf("%2d", line[row][column]);
-			}
-			System.out.println();
-		}
 
 		return line;
 	}
