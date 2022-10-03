@@ -25,8 +25,8 @@ public class rkoch_assignment2 {
 		// setup the input and output files
 		PrintWriter resultsFile = setupTheOutputFile();
 
+		// initializing turn number and begin main game loop
 		int turnNumber = 0;
-		// game play loop starting at 3rd element of array list to bypass board size and number of turns
 		for (int i = 0; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line
