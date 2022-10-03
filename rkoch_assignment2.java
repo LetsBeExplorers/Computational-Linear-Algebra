@@ -220,6 +220,7 @@ public class rkoch_assignment2 {
 				int[][] prevLine = allLines.get(turn-i);
 
 				// create start and end point arrays for both lines
+				// pLine is previous line
 				int[] lineStart = new int[2];
 				int[] lineEnd = new int[2];
 				int[] pLineStart = new int[2];
