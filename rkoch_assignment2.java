@@ -13,22 +13,6 @@ public class rkoch_assignment2 {
 	public static int boardsize;
 	public static int recentTurns;
 
-	// prompts the user for an input file and returns it
-	public static File setupTheInputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an input file: ");
-		File inputFile = new File(userInput.nextLine());
-		return inputFile;
-	}
-
-	// create and sets up the output file for writing
-	// prints a header in the file
-	public static PrintWriter setupTheOutputFile() throws IOException {
-		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
-		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", boardsize, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
-		return resultsFile;
-	}
-
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
@@ -61,6 +45,22 @@ public class rkoch_assignment2 {
 
 		file.close();
 
+	}
+
+	// prompts the user for an input file and returns it
+	public static File setupTheInputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an input file: ");
+		File inputFile = new File(userInput.nextLine());
+		return inputFile;
+	}
+
+	// create and sets up the output file for writing
+	// prints a header in the file
+	public static PrintWriter setupTheOutputFile() throws IOException {
+		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
+		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", boardsize, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
+		return resultsFile;
 	}
 
 	// reads the play input from a file and creates an array list with the information from that file
