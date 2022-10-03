@@ -122,13 +122,10 @@ public class rkoch_assignment2 {
 		int dx = Math.abs(x2 - x1);
 		int dy = Math.abs(y2 - y1);
 
-		// create a new array for storage of the line points
-		int[][] line;
-
 		// if slope is less than one
-        if (dx > dy) { line = computeLine(x1, y1, x2, y2, dx, dy, false); }
+        if (dx > dy) { computeLine(x1, y1, x2, y2, dx, dy, false); }
         // if slope is greater than or equal to one, then swap x and y
-        else { line = computeLine(y1, x1, y2, x2, dy, dx, true); }
+        else { computeLine(y1, x1, y2, x2, dy, dx, true); }
 
         // testing
 		for (int row = 0; row < line.length; row++) {
@@ -142,11 +139,11 @@ public class rkoch_assignment2 {
 	}
 
 	// uses Bresenhams Line algorithm to obtain the integer points for a line between two points
-	public static int[][] computeLine(int x1, int y1, int x2, int y2, int dx, int dy, boolean swap) {
+	public static void computeLine(int x1, int y1, int x2, int y2, int dx, int dy, boolean swap) {
 
 		// create a new 2D array to hold the line points
 		// format: row one is x's and row 2 is y's
-        int[][] linePoints = new int[2][dx+1];
+        line = new int[2][dx+1];
 
         // error for comparison
         // multiply by 2 to avoid comparing with 1/2
@@ -159,12 +156,12 @@ public class rkoch_assignment2 {
 			// swap the order if x and y were swapped
 			if (!swap) {
 				System.out.println(x1 + "," + y1 + "\n");
-				linePoints[0][i] = x1;
-	        	linePoints[1][i] = y1;
+				line[0][i] = x1;
+	        	line[1][i] = y1;
 			} else {
 				System.out.println(y1 + "," + x1 + " swapped" + "\n");
-				linePoints[0][i] = y1;
-	        	linePoints[1][i] = x1;
+				line[0][i] = y1;
+	        	line[1][i] = x1;
 			}
 
 	        // increment or decrement x depending on the slope direction
@@ -177,10 +174,7 @@ public class rkoch_assignment2 {
 	            if (y1 < y2) { y1++; } else { y1--; }
 	            error += 2 * dy - 2 * dx;
 	        }
-
 		}
-
-		return linePoints;
 	}
 
 	// prints either X's or O's on a board according to a given line
