@@ -16,3 +16,9 @@ OOOOO
 
 Not a valid play
 Not a valid play
+XXXXX
+OOOOO
+X....
+X....
+.....
+
