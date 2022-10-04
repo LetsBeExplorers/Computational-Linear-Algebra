@@ -33,9 +33,9 @@ public class rkoch_assignment2 {
 			// if the play is valid, then draw the line and print the game board
 			if (checkPlayValidity(lines.get(i), turnNumber)) { 
 				drawLine(lines.get(i), turnNumber); 
-				printGameBoardToFile();
-				printTheScore();
 			}
+			printGameBoardToFile();
+			printTheScore();
 			turnNumber++;
 		}
 		resultsFile.close();
