@@ -11,7 +11,7 @@
   will prompt for an input file when it is run, and will crash if the file does not exist. A new board is printed to the output file after each 
   move, even if the move is invalid. The invalid line/move will not be drawn and the board will be the same as after the last move. The current 
   score will print in the output file under each new board. The invalid line is stored and used to compare for violations as discussed in the 
-  last paragraph.</p>
+  last paragraph. Output is sent to a single output file, so output from a new input file will overwrite any current text in the output file.</p>
   
  <h5>Pseudocode</h5>
  
