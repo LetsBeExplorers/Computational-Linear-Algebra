@@ -181,3 +181,5 @@
   The control method is called playTheGame(), and it controls the main game loop to create and draw the lines, to check play validity, and to draw the 
   game board and print the current score. It also keeps track of the turn number. This method will draw a game board after each play, regardless of 
   validity. However if the play is invalid, then the line will not be drawn and the board printed will look the same as after the last play. </p>
+
+<p> The line for cloning the repository is: https://github.com/LetsBeExplorers/cs2300-coursework.git </p>
