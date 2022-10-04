@@ -215,7 +215,7 @@ public class rkoch_assignment2 {
 
 			// if the index will not be negative
 			if ((turn - i) >= 0) { 
-				// then set the line to compare against some line in the previous recentTurns
+				// then set the line to compare against as some line in the previous recentTurns
 				// this will start with the last line and work back to a line recentTurns ago
 				int[][] prevLine = lines.get(turn-i);
 
