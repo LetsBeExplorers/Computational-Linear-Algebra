@@ -7,12 +7,16 @@ public class rkoch_assignment2 {
 	public static String[][] gameBoard;
 	public static ArrayList<int[][]> lines = new ArrayList<int[][]>();
 	public static File inputFile;
-
+	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
 
-		//setup the input and output files
+		//setup and read the input file
 		setupTheInputFile();
+		inputReader();
+
+		// setup the output file and header
+		setupTheOutputFile();
 
 		// initiate game play
 		playTheGame();
@@ -22,10 +26,6 @@ public class rkoch_assignment2 {
 	// controls game play and displays the board after each turn
 	public static void playTheGame() throws IOException {
 
-		// read the input
-		inputReader();
-		PrintWriter resultsFile = setupTheOutputFile();
-
 		// initializing turn number and begin main game loop
 		int turnNumber = 0;
 
@@ -34,7 +34,7 @@ public class rkoch_assignment2 {
 			// if the play is valid, then draw the line and print the game board
 			if (checkPlayValidity(lines.get(i), turnNumber)) { 
 				drawLine(lines.get(i), turnNumber); 
-				printGameBoardToFile(resultsFile);
+				printGameBoardToFile();
 			}
 			else { resultsFile.println("Not a valid play"); }
 
@@ -54,10 +54,9 @@ public class rkoch_assignment2 {
 
 	// creates and sets up the output file for writing
 	// prints a header in the file
-	public static PrintWriter setupTheOutputFile() throws IOException {
-		PrintWriter resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
+	public static void setupTheOutputFile() throws IOException {
+		resultsFile = new PrintWriter(new File("rkoch_assignment2_output.txt"));
 		resultsFile.printf("%s%d\n%s%d\n%s\n\n", "Board Size: ", gameBoard.length, "Cannot Reuse Row/Col: ", recentTurns, "X Goes First.");
-		return resultsFile;
 	}
 
 	// reads the play input from a file and sets boardsize and recentTurns
@@ -267,16 +266,16 @@ public class rkoch_assignment2 {
 	}
 
 	// prints the game board to a given file
-	public static void printGameBoardToFile(PrintWriter file) throws IOException {
+	public static void printGameBoardToFile() throws IOException {
 
 		// print the contents of each cell to a file
 		for (int row = 0; row < gameBoard.length; row++) {
 			for (int column = 0; column < gameBoard[row].length; column++) {
-				file.printf("%s", gameBoard[row][column]);
+				resultsFile.printf("%s", gameBoard[row][column]);
 			}
-			file.println();
+			resultsFile.println();
 		}
-		file.println();
+		resultsFile.println();
 	}
 
 }
