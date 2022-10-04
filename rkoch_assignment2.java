@@ -176,7 +176,7 @@ public class rkoch_assignment2 {
 			int rowValue = line[0][i];
 			int columnValue = line[1][i];
 
-			// set the cell to be filled equal to a variable for passing
+			// set the gameboard cell value equal to a variable for passing around
 			// subtract one from the indices because the cell values start at one
 			String cell = gameBoard[rowValue-1][columnValue-1];
 
