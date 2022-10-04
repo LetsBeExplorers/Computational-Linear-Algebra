@@ -1,60 +1,92 @@
 Board Size: 5
-Cannot Reuse Row/Col: 3
+Cannot Reuse Row/Col: 0
 X Goes First.
 
-X
-X
-X
-X
-X
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
+X....
+.X...
+..X..
+...X.
+....X
 Current X Score: 5
 Current O Score: 0
 
-X
-X
-X
-X
-X
-O
-O
-O
-O
-O
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-Current X Score: 5
+X...O
+.X.O.
+..O..
+.O.X.
+O...X
+Current X Score: 4
 Current O Score: 5
+
+X...O
+XX.O.
+.XX..
+.O.XX
+O...X
+Current X Score: 8
+Current O Score: 4
+
+XO..O
+XXOO.
+.XO..
+.O.OX
+O..OX
+Current X Score: 6
+Current O Score: 9
+
+XO..O
+XXOO.
+XXXXX
+.O.OX
+O..OX
+Current X Score: 10
+Current O Score: 8
+
+XOO.O
+XXOO.
+XXOXX
+.OOOX
+O.OOX
+Current X Score: 9
+Current O Score: 12
+
+XOO.O
+XXOXX
+XXXXX
+XOOOX
+O.OOX
+Current X Score: 13
+Current O Score: 10
+
+XOOOO
+XXOXX
+XXOXX
+XOOOX
+OOOOX
+Current X Score: 12
+Current O Score: 13
+
+XOOOO
+XXOXX
+XXOXX
+XOXOX
+OOXOX
+Current X Score: 14
+Current O Score: 11
+
+XOOOO
+XXOXX
+XXOOO
+XOOOX
+OOXOX
+Current X Score: 11
+Current O Score: 14
+
+XOOOO
+XXOXX
+XXOOO
+XOXOX
+OOXOX
+Current X Score: 12
+Current O Score: 13
 
