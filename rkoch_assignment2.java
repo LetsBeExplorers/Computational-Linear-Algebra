@@ -92,7 +92,7 @@ public class rkoch_assignment2 {
 	// generates a square game board from a given size
 	public static void generateGameBoard(int size) {
 
-		// create a new game board array
+		// create the game board
 		gameBoard = new String[size][size];
 
 		// fill the game board with periods as the starting value of each cell
