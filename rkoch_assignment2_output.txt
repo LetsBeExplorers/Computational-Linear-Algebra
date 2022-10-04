@@ -1,0 +1,68 @@
+Board Size: 5
+Cannot Reuse Row/Col: 3
+X Goes First.
+
+X....
+.X...
+..X..
+...X.
+....X
+Current X Score: 5
+Current O Score: 0
+
+X....
+.X...
+..X..
+...X.
+....X
+Current X Score: 5
+Current O Score: 0
+
+X....
+.X...
+..X..
+...X.
+....X
+Current X Score: 5
+Current O Score: 0
+
+XO...
+.XO..
+..O..
+...O.
+...OX
+Current X Score: 3
+Current O Score: 5
+
+XO...
+.XO.X
+..O.X
+...OX
+...OX
+Current X Score: 6
+Current O Score: 5
+
+XO...
+.XO.X
+..O.X
+...OX
+...OX
+Current X Score: 6
+Current O Score: 5
+
+XO...
+.XO.X
+..O.X
+...OX
+...OX
+Current X Score: 6
+Current O Score: 5
+
+XO...
+.XO.X
+..O.X
+...OX
+...OX
+Current X Score: 6
+Current O Score: 5
+
