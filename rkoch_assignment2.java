@@ -116,14 +116,6 @@ public class rkoch_assignment2 {
 		// create a new array for storage of the line points
 		int[][] line = computeLine(x1, y1, x2, y2);
 
-        // testing
-		for (int row = 0; row < line.length; row++) {
-			for (int column = 0; column < line[row].length; column++) {
-				System.out.printf("%2d", line[row][column]);
-			}
-			System.out.println();
-		}
-
 		return line;
 	}
 

@@ -1,208 +1,92 @@
-Board Size: 9
-Cannot Reuse Row/Col: 1
+Board Size: 5
+Cannot Reuse Row/Col: 0
 X Goes First.
 
-.........
-.........
-X........
-.X.......
-..XX.....
-....X....
-.....X...
-......XX.
-........X
-Current X Score: 9
+X....
+.X...
+..X..
+...X.
+....X
+Current X Score: 5
 Current O Score: 0
 
-.........
-OOOOO....
-X........
-.X.......
-..XX.....
-....X....
-.....X...
-......XX.
-........X
-Current X Score: 9
+X...O
+.X.O.
+..O..
+.O.X.
+O...X
+Current X Score: 4
 Current O Score: 5
 
-.........
-OOOOO....
-X........
-.X.......
-..XX.....
-....X....
-O....X...
-O.....XX.
-.O......X
-Current X Score: 9
+X...O
+XX.O.
+.XX..
+.O.XX
+O...X
+Current X Score: 8
+Current O Score: 4
+
+XO..O
+XXOO.
+.XO..
+.O.OX
+O..OX
+Current X Score: 6
+Current O Score: 9
+
+XO..O
+XXOO.
+XXXXX
+.O.OX
+O..OX
+Current X Score: 10
 Current O Score: 8
 
-.........
-OOOOO....
-X..X.....
-.XX......
-..XX.....
-.X..X....
-OX...X...
-X.....XX.
-.O......X
-Current X Score: 14
-Current O Score: 7
-
-.....O...
-OOOOOO...
-X..X.O...
-.XX...O..
-..XX..O..
-.X..X.O..
-OX...X...
-X.....XX.
-.O......X
-Current X Score: 14
-Current O Score: 13
-
-X....O...
-OXOOOO...
-X.XX.O...
-.XXX..O..
-..XXX.O..
-.X..XXO..
-OX...XX..
-X.....XX.
-.O......X
-Current X Score: 21
+XOO.O
+XXOO.
+XXOXX
+.OOOX
+O.OOX
+Current X Score: 9
 Current O Score: 12
 
-X....O...
-OXOOOO...
-X.XX.O...
-.XXX..O..
-..XXX.O..
-.X..XXO..
-OX...XO..
-X.....OX.
-.O....O.X
-Current X Score: 19
-Current O Score: 15
+XOO.O
+XXOXX
+XXXXX
+XOOOX
+O.OOX
+Current X Score: 13
+Current O Score: 10
 
-X....O...
-OXOOOO...
-XOOX.O...
-.XXOOOO..
-..XXX.OOO
-.X..XXO..
-OX...XO..
-X.....OX.
-.O....O.X
-Current X Score: 17
-Current O Score: 22
+XOOOO
+XXOXX
+XXOXX
+XOOOX
+OOOOX
+Current X Score: 12
+Current O Score: 13
 
-X..X.O...
-OXOXOO...
-XOOXXO...
-.XXOXOO..
-..XXXXOOO
-.X..XXO..
-OX...XX..
-X.....XX.
-.O....O.X
-Current X Score: 24
-Current O Score: 18
+XOOOO
+XXOXX
+XXOXX
+XOXOX
+OOXOX
+Current X Score: 14
+Current O Score: 11
 
-X..X.O...
-OXOOOO...
-XOOXOO...
-.XXOXOO..
-..XXXOOOO
-.X..XXO..
-OX...XX..
-X.....XX.
-.O....O.X
-Current X Score: 21
-Current O Score: 21
+XOOOO
+XXOXX
+XXOOO
+XOOOX
+OOXOX
+Current X Score: 11
+Current O Score: 14
 
-X..X.O...
-OXOOOO...
-XOOOOO...
-.XXOXOO..
-..XXXOOOO
-.X..XXO..
-OX...XX..
-X.....XX.
-.O....O.X
-Current X Score: 20
-Current O Score: 22
-
-X..X.O...
-XXOOOO...
-XOOOOO...
-XXXOXOO..
-X.XXXOOOO
-XX..XXO..
-XX...XX..
-X.....XX.
-XO....O.X
-Current X Score: 26
-Current O Score: 20
-
-X..X.O..O
-XXOOOO..O
-XOOOOO.O.
-XXXOXOOO.
-X.XXXOOOO
-XX..XXO..
-XX...XO..
-X.....XX.
-XO....O.X
-Current X Score: 25
-Current O Score: 25
-
-X..X.O..O
-XXOOOO..O
-XOOOOO.O.
-XXXOXOOO.
-XXXXXOOOO
-XX.XXXO..
-XX...XO..
-X.....XX.
-XO....O.X
-Current X Score: 27
-Current O Score: 25
-
-O..X.O..O
-XOOOOO..O
-XOOOOO.O.
-XXXOXOOO.
-XXXXOOOOO
-XX.XXOO..
-XX...XO..
-X.....XO.
-XO....O.O
-Current X Score: 21
-Current O Score: 31
-
-OX.X.O..O
-XOXOOO..O
-XOOXXO.O.
-XXXOXXOO.
-XXXXOOXOO
-XX.XXOO..
-XX...XO..
-X.....XO.
-XO....O.O
-Current X Score: 27
-Current O Score: 26
-
-OX.X.OO.O
-XOXOOO..O
-XOOXXO.O.
-XXXOXXOO.
-XXXXOOXOO
-XX.XXOO..
-XX...XO..
-X.....XO.
-XO....O.O
-Current X Score: 27
-Current O Score: 27
+XOOOO
+XXOXX
+XXOOO
+XOXOX
+OOXOX
+Current X Score: 12
+Current O Score: 13
 
