@@ -2,18 +2,59 @@ Board Size: 5
 Cannot Reuse Row/Col: 3
 X Goes First.
 
-XXXXX
-.....
-.....
-.....
-.....
+X
+X
+X
+X
+X
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Current X Score: 5
+Current O Score: 0
 
-XXXXX
-OOOOO
-.....
-.....
-.....
+X
+X
+X
+X
+X
+O
+O
+O
+O
+O
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Current X Score: 5
+Current O Score: 5
 
-Not a valid play
-Not a valid play
-Not a valid play

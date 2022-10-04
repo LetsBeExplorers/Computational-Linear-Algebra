@@ -28,21 +28,17 @@ public class rkoch_assignment2 {
 
 		// initializing turn number and begin main game loop
 		int turnNumber = 0;
-
 		for (int i = 0; i < lines.size(); i++) {
 
 			// if the play is valid, then draw the line and print the game board
 			if (checkPlayValidity(lines.get(i), turnNumber)) { 
 				drawLine(lines.get(i), turnNumber); 
 				printGameBoardToFile();
+				printTheScore();
 			}
-			else { resultsFile.println("Not a valid play"); }
-
 			turnNumber++;
 		}
-
 		resultsFile.close();
-
 	}
 
 	// prompts the user for an input file and returns it
@@ -275,7 +271,23 @@ public class rkoch_assignment2 {
 			}
 			resultsFile.println();
 		}
-		resultsFile.println();
+	}
+
+	// prints the current score
+	public static void printTheScore() {
+
+		// initialize count variables
+		int x_Count = 0;
+		int o_Count = 0;
+
+		// iterate through the gameBoard array counting X's and O's
+		for (int row = 0; row < gameBoard.length; row++) {
+			for (int column = 0; column < gameBoard[row].length; column ++) {
+				if (gameBoard[row][column].equals("X")) { x_Count++; }
+				else if (gameBoard[row][column].equals("O")) { o_Count++; }
+			}
+		}
+		resultsFile.printf("%s%d\n%s%d\n\n", "Current X Score: ", x_Count, "Current O Score: ", o_Count);
 	}
 
 }
