@@ -8,6 +8,7 @@ public class rkoch3_p1 {
 	public static double[][] matrixA;
 	public static double[][] shearedMatrixA;
 	public static double[][] vectorb;
+	public static double[][] shearedVectorb;
 	public static double[][] solution;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
@@ -81,6 +82,7 @@ public class rkoch3_p1 {
 		shearMatrix[1][1] = 1;
 
 		shearMatrixA(shearMatrix);
+		shearVectorb(shearMatrix);
 
 	}
 
@@ -97,7 +99,13 @@ public class rkoch3_p1 {
 
 	// shears vectorb using a given shear matrix
 	public static void shearVectorb(double[][] shear) {
+		shearedVectorb = new double[2][1];
 
+		for (int row = 0; row < shearedVectorb.length; row++) {
+			for (int column = 0; column < shearedVectorb[row].length; column++) {
+				shearedVectorb[row][column] = shear[row][0]*vectorb[0][column] + shear[row][1]*vectorb[1][column];
+			}
+		}
 	}
 
 	// creates and sets up the output file for writing
