@@ -5,17 +5,17 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class rkoch3_p1 {
-	public static int[][] matrixA;
-	public static int[][] vectorb;
-	public static int[][] solution;
+	public static double[][] matrixA;
+	public static double[][] vectorb;
+	public static double[][] solution;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
 		// matrix A size is 2x2
-		matrixA = new int[2][2];
+		matrixA = new double[2][2];
 		// vector b size is 2x1
-		vectorb = new int[2][1];
+		vectorb = new double[2][1];
 
 		// setup the input file and read the matrix
 		setupTheInputFile();
