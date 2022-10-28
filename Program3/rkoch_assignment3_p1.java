@@ -23,6 +23,7 @@ public class rkoch3_p1 {
 
 		// setup the output file
 		setupTheOutputFile();
+
 	}
 
 	// prompts the user for an input file and returns it
@@ -50,8 +51,8 @@ public class rkoch3_p1 {
 	// and the last number is the vector row
 	public static void extractMatrixAndVectorRows(String row, int i) {
 		matrixA[i][0] = Character.getNumericValue(row.charAt(0));
-		matrixA[i][1] = Character.getNumericValue(row.charAt(1));
-		vectorb[i][0] = Character.getNumericValue(row.charAt(2));
+		matrixA[i][1] = Character.getNumericValue(row.charAt(2));
+		vectorb[i][0] = Character.getNumericValue(row.charAt(4));
 	}
 
 	// creates and sets up the output file for writing
