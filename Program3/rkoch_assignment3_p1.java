@@ -34,9 +34,16 @@ public class rkoch3_p1 {
 
 		// read each row into a string and feed it into the extraction method
 		for (int i = 0; i < 2; i++) {
-			String row = readablefile.nextLine();
-			extractMatrixAndVector();
+			String row = readableFile.nextLine();
+			extractMatrixAndVector(row);
 		}
+	}
+
+	// extracts a matrix row and vector row from a string
+	// first two numbers are the matrix row and the last number is the vector row
+	public static void extractMatrixAndVector(String row) {
+		int result = Character.getNumericValue(row.charAt(0));
+		System.out.println(result);
 	}
 
 
