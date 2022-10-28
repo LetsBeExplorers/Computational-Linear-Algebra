@@ -20,6 +20,9 @@ public class rkoch3_p1 {
 		// setup the input file and read the matrix
 		setupTheInputFile();
 		readMatrixFromFile();
+
+		// setup the output file
+		setupTheOutputFile();
 	}
 
 	// prompts the user for an input file and returns it
@@ -51,5 +54,8 @@ public class rkoch3_p1 {
 		vectorb[i][0] = Character.getNumericValue(row.charAt(2));
 	}
 
-
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile() throws IOException {
+		resultsFile = new PrintWriter(new File("rkoch_assignment3_output_p1.txt"));
+	}
 }
