@@ -24,7 +24,7 @@ public class rkoch3_p1 {
 		// setup the output file
 		setupTheOutputFile();
 
-
+		gaussElimination();
 
 	}
 
