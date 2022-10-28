@@ -25,4 +25,19 @@ public class rkoch3_p1 {
 		System.out.printf("Please enter the name of an input file: ");
 		inputFile = new File(userInput.nextLine());
 	}
+
+	// reads a matrix from a file and puts the rows into a string for extraction
+	public static void readMatrixFromFile() throws IOException {
+
+		// open the file for reading
+		Scanner readableFile = new Scanner(inputFile);
+
+		// read each row into a string and feed it into the extraction method
+		for (int i = 0; i < 2; i++) {
+			String row = readablefile.nextLine();
+			extractMatrixAndVector();
+		}
+	}
+
+
 }
