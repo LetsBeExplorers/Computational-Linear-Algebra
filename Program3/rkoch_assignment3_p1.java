@@ -24,6 +24,8 @@ public class rkoch3_p1 {
 		// setup the output file
 		setupTheOutputFile();
 
+
+
 	}
 
 	// prompts the user for an input file and returns it
@@ -53,6 +55,23 @@ public class rkoch3_p1 {
 		matrixA[i][0] = Character.getNumericValue(row.charAt(0));
 		matrixA[i][1] = Character.getNumericValue(row.charAt(2));
 		vectorb[i][0] = Character.getNumericValue(row.charAt(4));
+	}
+
+	public static void gaussElimination() {
+		forwardElimination();
+	}
+
+	// performs forward elimination by creating a shear matrix
+	// and mulitplying it by MatrixA and vectorb
+	public static void forwardElimination() {
+		double[][] shearMatrix = new double[2][2];
+
+		// fill the shear matrix
+		shearMatrix[0][0] = 1;
+		shearMatrix[0][1] = 0;
+		shearMatrix[1][0] = -matrixA[1][0]/matrixA[0][0];
+		shearMatrix[1][1] = 1;
+
 	}
 
 	// creates and sets up the output file for writing
