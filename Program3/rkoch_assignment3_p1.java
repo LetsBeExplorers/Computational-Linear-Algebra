@@ -57,6 +57,8 @@ public class rkoch3_p1 {
 
 	// creates and sets up the output file for writing
 	public static void setupTheOutputFile() throws IOException {
-		resultsFile = new PrintWriter(new File("rkoch_assignment3_output_p1.txt"));
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an output file: ");
+		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
 }
