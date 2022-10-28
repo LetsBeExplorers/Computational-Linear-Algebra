@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class rkoch3_p1 {
 	public static double[][] matrixA;
+	public static double[][] shearedMatrixA;
 	public static double[][] vectorb;
 	public static double[][] solution;
 	public static File inputFile;
@@ -78,6 +79,24 @@ public class rkoch3_p1 {
 		shearMatrix[0][1] = 0;
 		shearMatrix[1][0] = -matrixA[1][0]/matrixA[0][0];
 		shearMatrix[1][1] = 1;
+
+		shearMatrixA(shearMatrix);
+
+	}
+
+	// shears MatrixA using a given shear matrix
+	public static void shearMatrixA(double[][] shear) {
+		shearedMatrixA = new double[2][2];
+
+		for (int row = 0; row < shearedMatrixA.length; row++) {
+			for (int column = 0; column < shearedMatrixA[row].length; column++) {
+				shearedMatrixA[row][column] = shear[row][0]*matrixA[0][column] + shear[row][1]*matrixA[1][column];
+			}
+		}
+	}
+
+	// shears vectorb using a given shear matrix
+	public static void shearVectorb(double[][] shear) {
 
 	}
 
