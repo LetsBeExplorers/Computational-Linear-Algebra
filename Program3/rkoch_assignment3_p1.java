@@ -26,12 +26,19 @@ public class rkoch3_p1 {
 
 		for (int row = 0; row < matrixA.length; row++) {
 			for (int column = 0; column < matrixA[row].length; column++) {
-				System.out.printf("%2d", matrixA[row][column]);
+				System.out.printf("%8.4f", matrixA[row][column]);
 			}
 			System.out.println();
 		}
 
 		gaussElimination();
+
+		for (int row = 0; row < matrixA.length; row++) {
+			for (int column = 0; column < matrixA[row].length; column++) {
+				System.out.printf("%8.4f", matrixA[row][column]);
+			}
+			System.out.println();
+		}
 
 	}
 
@@ -81,7 +88,7 @@ public class rkoch3_p1 {
 
 		for (int row = 0; row < shearMatrix.length; row++) {
 			for (int column = 0; column < shearMatrix[row].length; column++) {
-				System.out.printf("%2.4f", shearMatrix[row][column]);
+				System.out.printf("%8.4f", shearMatrix[row][column]);
 			}
 		System.out.println();
 		}
