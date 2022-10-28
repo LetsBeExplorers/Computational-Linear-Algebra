@@ -28,13 +28,6 @@ public class rkoch3_p1 {
 
 		gaussElimination();
 
-		for (int row = 0; row < matrixA.length; row++) {
-			for (int column = 0; column < matrixA[row].length; column++) {
-				System.out.printf("%8.4f", matrixA[row][column]);
-			}
-			System.out.println();
-		}
-
 	}
 
 	// prompts the user for an input file and returns it
