@@ -44,7 +44,8 @@ public class rkoch3_p1 {
 	}
 
 	// extracts a matrix row and vector row from a string
-	// first two numbers are the matrix row and the last number is the vector row
+	// first two numbers of the string are the matrix row 
+	// and the last number is the vector row
 	public static void extractMatrixAndVectorRows(String row, int i) {
 		matrixA[i][0] = Character.getNumericValue(row.charAt(0));
 		matrixA[i][1] = Character.getNumericValue(row.charAt(1));
