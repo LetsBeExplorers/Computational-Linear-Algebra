@@ -60,17 +60,31 @@ public class rkoch3_p1 {
 		}
 	}
 
-	// swaps the columns of a matrix
+	// checks for edge cases and puts them into a form
+	// that can be processed like everything else
 	public static void checkEdgeCases() {
 		if (matrixA[0][0] == 0 && matrixA[0][1] != 0) {
- 			columnSwap(matrixA);
+ 			rowSwap(matrixA, vectorb);
+		} else if (matrixA[0][0] == 0 && matrixA[0][1] == 0){
+			rowSwap(matrixA, vectorb);
 		}
 	}
 
-	public static void rowSwap(double[][] matrix) {
+	// swaps the columns of a matrix and it's vector
+	public static void rowSwap(double[][] matrix, double[][] vector) {
+		
+		// swap the matrix rows
+		double[] swap = matrix[0];
+        matrix[0] = matrix[1];
+        matrix[1] = swap;
 
+        // swap the vector rows
+		swap = vector[0];
+		vector[0] = vector[1];
+		vector[1] = swap;
 	}
 
+	// swaps the columns of a matrix
 	public static void columnSwap(double[][] matrix) {
 		double[] swap = matrix[0];
         matrix[0] = matrix[1];
