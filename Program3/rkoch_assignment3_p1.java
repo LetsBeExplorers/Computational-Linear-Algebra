@@ -25,7 +25,7 @@ public class rkoch3_p1 {
 		checkEdgeCases();
 
 		gaussElimination();
-		checkSolutionViability();
+		printSolutiontoFile();
 
 	}
 
@@ -151,7 +151,7 @@ public class rkoch3_p1 {
 
 	// checks if the system is inconsistent or underdetermined
 	// if not, it prints the solution
-	public static void checkSolutionViability() throws IOException {
+	public static void printSolutiontoFile() throws IOException {
 
 		// if the system is inconsistent, then it can't be solved
 		if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
