@@ -67,6 +67,8 @@ public class rkoch3_p1 {
  			rowSwap(matrixA, vectorb);
 		} else if (matrixA[0][0] == 0 && matrixA[0][1] == 0 && matrixA[1][0] != 0){
 			rowSwap(matrixA, vectorb);
+		} else if (matrixA[0][1] == 0 && matrixA[1][1] == 0) {
+			columnSwap(matrixA);
 		}
 	}
 
@@ -82,6 +84,21 @@ public class rkoch3_p1 {
 		swap = vector[0];
 		vector[0] = vector[1];
 		vector[1] = swap;
+	}
+
+	// only performs a column swap for the purpose of checking if a system
+	// is underdetermined. This is not algebraically sound to obtain a 
+	// numerical solution to a system of equations. 
+	public static void columnSwap(double[][] matrix) {
+
+		// swap the matrix columns
+		double[][] swap = new double[2][1];
+        swap[0][0] = matrix[0][0];
+        swap[1][0] = matrix[1][0];
+        matrix[0][0] = matrix[0][1];
+        matrix[1][0] = matrix[1][1];
+        matrix[0][1] = swap[0][0];
+        matrix[1][1] = swap[1][0];
 	}
 
 	// performs Gauss elimination
@@ -160,7 +177,8 @@ public class rkoch3_p1 {
 
 		// checks to see if the system is underdetermined
 		// if so, there are infinitely many solutions
-		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0) {
+		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0 ||
+					shearedMatrixA[0][0] == 0 && shearedMatrixA[1][0] == 0) {
 			resultsFile.println("System underdetermined");
 		}
 
