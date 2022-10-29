@@ -51,6 +51,13 @@ public class rkoch3_p1 {
 		}
 	}
 
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an output file: ");
+		resultsFile = new PrintWriter(new File(userInput.nextLine()));
+	}
+
 	public static void gaussElimination() {
 		forwardElimination();
 	}
@@ -79,12 +86,5 @@ public class rkoch3_p1 {
 				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
 			}
 		}
-	}
-
-	// creates and sets up the output file for writing
-	public static void setupTheOutputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an output file: ");
-		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
 }
