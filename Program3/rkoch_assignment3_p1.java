@@ -93,7 +93,7 @@ public class rkoch3_p1 {
 	public static void backSubstitution() {
 		
 		// variables we are solving for
-		int x1, x2;
+		double x1, x2;
 
 		// first number is row and second number is column
 		// a11 is matrix A, row 1, column 1
