@@ -71,6 +71,16 @@ public class rkoch3_p1 {
 
 	}
 
+	// multipies a 2x2 matrix by another matrix and fills a new matrix with the result
+	public static void matrixMultipy(double[][] operator, double[][] operand, double[][] result) {
+		for (int row = 0; row < result.length; row++) {
+			for (int column = 0; column < result[row].length; column++) {
+				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+			}
+		}
+	}
+
+
 	// shears MatrixA using a given shear matrix
 	public static void shearMatrixA(double[][] shear) {
 		shearedMatrixA = new double[2][2];
