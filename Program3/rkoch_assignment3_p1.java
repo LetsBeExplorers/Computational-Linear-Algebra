@@ -88,7 +88,7 @@ public class rkoch3_p1 {
 	public static void gaussElimination() {
 		
 		// checks if the matrix is in upper triangular form
-		// if not, it shears it to the e1 axis
+		// if not, shear it to the e1 axis
 		if (matrixA[1][0] != 0){
 			forwardElimination();
 		} else {
