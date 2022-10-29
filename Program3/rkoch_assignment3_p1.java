@@ -170,13 +170,18 @@ public class rkoch3_p1 {
 	// if not, it prints the solution
 	public static void printSolutiontoFile() throws IOException {
 
+		if (shearedVectorb[0][0] == 0 && shearedVectorb[1][0] == 0){
+			solution[0][0] = 0;
+			solution[1][0] = 0;
+			printMatrixToFile();
+		}
+
 		// if the system is inconsistent, then it can't be solved
-		if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
+		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
 			resultsFile.println("System inconsistent");
 		} 
 
-		// checks to see if the system is underdetermined
-		// if so, there are infinitely many solutions
+		// if a row or column is all zeros, then the system is underdetermined
 		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0 ||
 					shearedMatrixA[0][0] == 0 && shearedMatrixA[1][0] == 0) {
 			resultsFile.println("System underdetermined");
