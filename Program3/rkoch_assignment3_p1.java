@@ -44,10 +44,10 @@ public class rkoch3_p1 {
 		// first two on each line fill matrix A 
 		// the last double fills vector b
 		// depends on the input matrix being a 2x3
-		for (int i = 0; i < 2; i++) {
-			matrixA[i][0] = readableFile.nextDouble();
-			matrixA[i][1] = readableFile.nextDouble();
-			vectorb[i][0] = readableFile.nextDouble();
+		for (int row = 0; row < 2; row++) {
+			matrixA[row][0] = readableFile.nextDouble();
+			matrixA[row][1] = readableFile.nextDouble();
+			vectorb[row][0] = readableFile.nextDouble();
 		}
 	}
 
