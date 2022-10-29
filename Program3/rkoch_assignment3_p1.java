@@ -5,18 +5,16 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class rkoch3_p1 {
-	public static double[][] matrixA;
-	public static double[][] shearedMatrixA;
-	public static double[][] vectorb;
-	public static double[][] shearedVectorb;
+	// this program depends on the matrices being these sizes
+	public static double[][] matrixA = new double[2][2];
+	public static double[][] shearedMatrixA = new double[2][2];
+	public static double[][] vectorb = new double[2][1];
+	public static double[][] shearedVectorb = new double[2][1];
 	public static double[][] solution;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
-		// this program depends on the arrays being these sizes
-		matrixA = new double[2][2];
-		vectorb = new double[2][1];
 
 		// setup the input file and read the matrix
 		setupTheInputFile();
