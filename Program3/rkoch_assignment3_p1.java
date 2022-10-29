@@ -166,13 +166,13 @@ public class rkoch3_p1 {
 
 		// otherwise, print the solution
 		else {
-			printSolutionToFile();
+			printMatrixToFile();
 		}
 		resultsFile.close();
 	}
 
-	// prints the solution matrix to a given file
-	public static void printSolutionToFile() throws IOException {
+	// prints a matrix to a given file
+	public static void printMatrixToFile() throws IOException {
 		resultsFile.printf("%.4g\n%.4g", solution[0][0], solution[1][0]);
 	}
 }
