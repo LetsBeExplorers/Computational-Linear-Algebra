@@ -80,29 +80,6 @@ public class rkoch3_p1 {
 		}
 	}
 
-
-	// shears MatrixA using a given shear matrix
-	public static void shearMatrixA(double[][] shear) {
-		shearedMatrixA = new double[2][2];
-
-		for (int row = 0; row < shearedMatrixA.length; row++) {
-			for (int column = 0; column < shearedMatrixA[row].length; column++) {
-				shearedMatrixA[row][column] = shear[row][0]*matrixA[0][column] + shear[row][1]*matrixA[1][column];
-			}
-		}
-	}
-
-	// shears vectorb using a given shear matrix
-	public static void shearVectorb(double[][] shear) {
-		shearedVectorb = new double[2][1];
-
-		for (int row = 0; row < shearedVectorb.length; row++) {
-			for (int column = 0; column < shearedVectorb[row].length; column++) {
-				shearedVectorb[row][column] = shear[row][0]*vectorb[0][column] + shear[row][1]*vectorb[1][column];
-			}
-		}
-	}
-
 	// creates and sets up the output file for writing
 	public static void setupTheOutputFile() throws IOException {
 		Scanner userInput = new Scanner(System.in);
