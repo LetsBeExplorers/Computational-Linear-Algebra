@@ -102,6 +102,8 @@ public class rkoch3_p1 {
 		}
 	}
 
+	// performs back substitution to solve for 2 unknown variables
+	// dependent on forward elmination being performed first
 	public static void backSubstitution() {
 		
 		// variables we are solving for
