@@ -115,6 +115,18 @@ public class rkoch3_p1 {
 		solution[1][0] = x2;
 	}
 
+	// checks if the system is inconsistent or underdetermined
+	// if not, it prints the solution
+	public static void checkSolutionViability() throws IOException {
+		if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
+			resultsFile.println("System inconsistent");
+		} else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0) {
+			resultsFile.println("System underdetermined");
+		} else {
+			printSolutionToFile();
+		}
+	}
+
 	// prints the solution matrix to a given file
 	public static void printSolutionToFile() throws IOException {
 		resultsFile.printf("%.4f\n%.4f", solution[0][0], solution[1][0]);
