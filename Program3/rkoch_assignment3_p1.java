@@ -70,7 +70,7 @@ public class rkoch3_p1 {
 		}
 	}
 
-	// swaps the columns of a matrix and it's vector
+	// swaps the rows of a matrix and it's vector
 	public static void rowSwap(double[][] matrix, double[][] vector) {
 		
 		// swap the matrix rows
