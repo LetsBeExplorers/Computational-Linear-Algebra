@@ -25,7 +25,7 @@ public class rkoch3_p1 {
 		readMatrixFromFile();
 		gaussElimination();
 		printSolutionToFile();
-		
+
 	}
 
 	// prompts the user for an input file and returns it
@@ -59,9 +59,9 @@ public class rkoch3_p1 {
 		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
 
+	// performs Gauss elimination
 	public static void gaussElimination() {
 		forwardElimination();
-
 		backSubstitution();
 	}
 
