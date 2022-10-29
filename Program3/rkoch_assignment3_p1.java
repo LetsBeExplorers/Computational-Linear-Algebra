@@ -60,6 +60,7 @@ public class rkoch3_p1 {
 		}
 	}
 
+	// swaps the columns of a matrix
 	public static void checkEdgeCases() {
 		if (matrixA[0][0] == 0 && matrixA[0][1] != 0) {
  			columnSwap(matrixA);
