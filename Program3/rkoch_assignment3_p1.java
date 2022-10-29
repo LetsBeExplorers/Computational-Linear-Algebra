@@ -24,8 +24,8 @@ public class rkoch3_p1 {
 		// print the solution to a file
 		readMatrixFromFile();
 		gaussElimination();
-		printSolutionToFile();
-
+		checkSolutionViability();
+		
 	}
 
 	// prompts the user for an input file and returns it
