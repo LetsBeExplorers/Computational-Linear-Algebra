@@ -14,9 +14,8 @@ public class rkoch3_p1 {
 	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
-		// matrix A size is 2x2
+		// this program depends on the arrays being these sizes
 		matrixA = new double[2][2];
-		// vector b size is 2x1
 		vectorb = new double[2][1];
 
 		// setup the input file and read the matrix
