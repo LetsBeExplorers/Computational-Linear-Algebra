@@ -66,6 +66,7 @@ public class rkoch3_p1 {
 		shearMatrix[1][0] = -matrixA[1][0]/matrixA[0][0];
 		shearMatrix[1][1] = 1;
 
+		// multiply matrix A and vector b by the shear matrix
 		matrixMultiply(shearMatrix, matrixA, shearedMatrixA);
 		matrixMultiply(shearMatrix, vectorb, shearedVectorb);
 
