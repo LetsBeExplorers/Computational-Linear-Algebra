@@ -97,11 +97,11 @@ public class rkoch3_p1 {
 
 		// first number is row and second number is column
 		// a11 is matrix A, row 1, column 1
-		int a11 = shearedMatrixA[0][0];
-		int a12 = shearedMatrixA[0][1];
-		int a22 = shearedMatrixA[1][1];
-		int b1 = shearedVectorb[0][0];
-		int b2 = shearedVectorb[1][0];
+		double a11 = shearedMatrixA[0][0];
+		double a12 = shearedMatrixA[0][1];
+		double a22 = shearedMatrixA[1][1];
+		double b1 = shearedVectorb[0][0];
+		double b2 = shearedVectorb[1][0];
 
 		// solve for x1 and x2
 		x2 = b2/a22;
