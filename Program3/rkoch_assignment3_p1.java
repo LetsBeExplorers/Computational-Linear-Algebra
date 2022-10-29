@@ -25,7 +25,7 @@ public class rkoch3_p1 {
 		readMatrixFromFile();
 		gaussElimination();
 		checkSolutionViability();
-		
+
 	}
 
 	// prompts the user for an input file and returns it
@@ -130,6 +130,6 @@ public class rkoch3_p1 {
 
 	// prints the solution matrix to a given file
 	public static void printSolutionToFile() throws IOException {
-		resultsFile.printf("%.4f\n%.4f", solution[0][0], solution[1][0]);
+		resultsFile.printf("%.4g\n%.4g", solution[0][0], solution[1][0]);
 	}
 }
