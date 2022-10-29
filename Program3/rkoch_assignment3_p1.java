@@ -20,9 +20,10 @@ public class rkoch3_p1 {
 		setupTheInputFile();
 		setupTheOutputFile();
 		
-		// read the matrix from a file, solve it
-		// print the solution to a file
+		// read the matrix from a file and check edge cases
 		readMatrixFromFile();
+		checkEdgeCases();
+
 		gaussElimination();
 		checkSolutionViability();
 
@@ -59,9 +60,24 @@ public class rkoch3_p1 {
 		}
 	}
 
+	public static void checkEdgeCases() {
+		if (matrixA[0][0] == 0 && matrixA[0][1] != 0) {
+        	double[] swap = matrixA[0];
+        	matrixA[0] = matrixA[1];
+        	matrixA[1] = swap;
+		}
+	}
+
 	// performs Gauss elimination
 	public static void gaussElimination() {
-		forwardElimination();
+		
+		if (matrixA[1][0] != 0){
+			forwardElimination();
+		} else {
+			shearedMatrixA = matrixA;
+			shearedVectorb = vectorb;
+		}
+
 		backSubstitution();
 	}
 
