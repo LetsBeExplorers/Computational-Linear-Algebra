@@ -63,9 +63,9 @@ public class rkoch3_p1 {
 	// checks for edge cases and puts them into a form
 	// that can be processed like everything else
 	public static void checkEdgeCases() {
-		if (matrixA[0][0] == 0 && matrixA[0][1] != 0) {
+		if (matrixA[0][0] == 0 && matrixA[0][1] != 0 && matrixA[1][0] != 0) {
  			rowSwap(matrixA, vectorb);
-		} else if (matrixA[0][0] == 0 && matrixA[0][1] == 0){
+		} else if (matrixA[0][0] == 0 && matrixA[0][1] == 0 && matrixA[1][0] != 0){
 			rowSwap(matrixA, vectorb);
 		}
 	}
