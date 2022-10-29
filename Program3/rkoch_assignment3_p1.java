@@ -62,10 +62,18 @@ public class rkoch3_p1 {
 
 	public static void checkEdgeCases() {
 		if (matrixA[0][0] == 0 && matrixA[0][1] != 0) {
-        	double[] swap = matrixA[0];
-        	matrixA[0] = matrixA[1];
-        	matrixA[1] = swap;
+ 			columnSwap(matrixA);
 		}
+	}
+
+	public static void rowSwap(double[][] matrix) {
+
+	}
+
+	public static void columnSwap(double[][] matrix) {
+		double[] swap = matrix[0];
+        matrix[0] = matrix[1];
+        matrix[1] = swap;
 	}
 
 	// performs Gauss elimination
