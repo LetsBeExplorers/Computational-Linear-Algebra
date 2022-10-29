@@ -10,7 +10,7 @@ public class rkoch3_p1 {
 	public static double[][] shearedMatrixA = new double[2][2];
 	public static double[][] vectorb = new double[2][1];
 	public static double[][] shearedVectorb = new double[2][1];
-	public static double[][] solution;
+	public static double[][] solution = new double[2][1];;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -60,6 +60,8 @@ public class rkoch3_p1 {
 
 	public static void gaussElimination() {
 		forwardElimination();
+
+		backSubstitution();
 	}
 
 	// performs forward elimination by creating a shear matrix
@@ -86,5 +88,27 @@ public class rkoch3_p1 {
 				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
 			}
 		}
+	}
+
+	public static void backSubstitution() {
+		
+		// variables we are solving for
+		int x1, x2;
+
+		// first number is row and second number is column
+		// a11 is matrix A, row 1, column 1
+		int a11 = shearedMatrixA[0][0];
+		int a12 = shearedMatrixA[0][1];
+		int a22 = shearedMatrixA[1][1];
+		int b1 = shearedVectorb[0][0];
+		int b2 = shearedVectorb[1][0];
+
+		// solve for x1 and x2
+		x2 = b2/a22;
+		x1 = (b1-(x2*a12))/a11;
+
+		// fill the solution matrix
+		solution[0][0] = x1;
+		solution[1][0] = x2;
 	}
 }
