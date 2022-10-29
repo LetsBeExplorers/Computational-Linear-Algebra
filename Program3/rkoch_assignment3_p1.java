@@ -36,26 +36,21 @@ public class rkoch3_p1 {
 		inputFile = new File(userInput.nextLine());
 	}
 
-	// reads a matrix from a file and puts the rows into a string for extraction
+	// reads a matrix from a file and puts each value into a 2D array
 	public static void readMatrixFromFile() throws IOException {
 
 		// open the file for reading
 		Scanner readableFile = new Scanner(inputFile);
 
-		// read each row into a string and feed it into the extraction method
+		// take each double and put it into a matrix
+		// first two on each line fill matrix A 
+		// the last double fills vector b
+		// depends on the input matrix being a 2x3
 		for (int i = 0; i < 2; i++) {
-			String row = readableFile.nextLine();
-			extractMatrixAndVectorRows(row, i);
+			matrixA[i][0] = readableFile.nextDouble();
+			matrixA[i][1] = readableFile.nextDouble();
+			vectorb[i][0] = readableFile.nextDouble();
 		}
-	}
-
-	// extracts a matrix row and vector row from a string
-	// first two numbers of the string are the matrix row 
-	// and the last number is the vector row
-	public static void extractMatrixAndVectorRows(String row, int i) {
-		matrixA[i][0] = Character.getNumericValue(row.charAt(0));
-		matrixA[i][1] = Character.getNumericValue(row.charAt(2));
-		vectorb[i][0] = Character.getNumericValue(row.charAt(4));
 	}
 
 	public static void gaussElimination() {
