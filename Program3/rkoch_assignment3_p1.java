@@ -125,11 +125,11 @@ public class rkoch3_p1 {
 		} else {
 			printSolutionToFile();
 		}
+		resultsFile.close();
 	}
 
 	// prints the solution matrix to a given file
 	public static void printSolutionToFile() throws IOException {
 		resultsFile.printf("%.4f\n%.4f", solution[0][0], solution[1][0]);
-		resultsFile.close();
 	}
 }
