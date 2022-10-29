@@ -25,6 +25,18 @@ public class rkoch3_p1 {
 
 		gaussElimination();
 
+		for (int row = 0; row < shearedMatrixA.length; row++) {
+			for (int column = 0; column < shearedMatrixA[row].length; column++) {
+				System.out.printf("%8.4f", shearedMatrixA[row][column]);
+			}
+			System.out.println();
+		}
+
+		System.out.println(shearedVectorb[0][0]);
+		System.out.println(shearedVectorb[1][0]);
+
+		System.out.println(solution[0][0]);
+		System.out.println(solution[1][0]);
 	}
 
 	// prompts the user for an input file and returns it
