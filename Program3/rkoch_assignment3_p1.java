@@ -84,16 +84,11 @@ public class rkoch3_p1 {
 		vector[1] = swap;
 	}
 
-	// swaps the columns of a matrix
-	public static void columnSwap(double[][] matrix) {
-		double[] swap = matrix[0];
-        matrix[0] = matrix[1];
-        matrix[1] = swap;
-	}
-
 	// performs Gauss elimination
 	public static void gaussElimination() {
 		
+		// checks if the matrix is in upper triangular form
+		// if not, it shears it to the e1 axis
 		if (matrixA[1][0] != 0){
 			forwardElimination();
 		} else {
@@ -157,11 +152,20 @@ public class rkoch3_p1 {
 	// checks if the system is inconsistent or underdetermined
 	// if not, it prints the solution
 	public static void checkSolutionViability() throws IOException {
+
+		// if the system is inconsistent, then it can't be solved
 		if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
 			resultsFile.println("System inconsistent");
-		} else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0) {
+		} 
+
+		// checks to see if the system is underdetermined
+		// if so, there are infinitely many solutions
+		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0) {
 			resultsFile.println("System underdetermined");
-		} else {
+		}
+
+		// otherwise, print the solution
+		else {
 			printSolutionToFile();
 		}
 		resultsFile.close();
