@@ -35,6 +35,13 @@ public class rkoch3_p1 {
 		inputFile = new File(userInput.nextLine());
 	}
 
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an output file: ");
+		resultsFile = new PrintWriter(new File(userInput.nextLine()));
+	}
+
 	// reads a matrix from a file and puts each value into a 2D array
 	public static void readMatrixFromFile() throws IOException {
 
@@ -50,13 +57,6 @@ public class rkoch3_p1 {
 			matrixA[row][1] = readableFile.nextDouble();
 			vectorb[row][0] = readableFile.nextDouble();
 		}
-	}
-
-	// creates and sets up the output file for writing
-	public static void setupTheOutputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an output file: ");
-		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
 
 	// performs Gauss elimination
