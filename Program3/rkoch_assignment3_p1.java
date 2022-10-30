@@ -198,8 +198,8 @@ public class rkoch_assignment3_p1 {
 		} 
 
 		// if a row or column is all zeros, then the system is underdetermined
-		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] == 0 ||
-					shearedMatrixA[0][0] == 0 && shearedMatrixA[1][0] == 0) {
+		else if (Double.isNaN(solution[0][0]) && Double.isNaN(solution[1][0]) ||
+					Double.isInfinite(solution[0][0]) && Double.isFinite(solution[1][0])) {
 			resultsFile.println("System underdetermined");
 		}
 
