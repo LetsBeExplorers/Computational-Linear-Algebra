@@ -20,7 +20,7 @@ public class rkoch_assignment3_p2 {
 
 		// read the matrix from a file
 		readMatrixFromFile();
-		solveForEigenValues();
+		controlMethod();
 
 	}
 
@@ -55,6 +55,14 @@ public class rkoch_assignment3_p2 {
 		}
 	}
 
+	// controls the flow of operation
+	public static void controlMethod() throws IOException {
+
+		if (solveForEigenValues()) {
+
+
+		} else { resultsFile.println("No real eigenvalues"); }
+	}
 
 	// solves for the eigenvalues and returns a boolean inidicating
 	// if they are real or not
