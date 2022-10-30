@@ -184,7 +184,7 @@ public class rkoch_assignment3_p1 {
 	public static void printSolutiontoFile() throws IOException {
 
 		// if vectorb is zero, the solution is the zero vector
-		if (shearedVectorb[0][0] == 0 && shearedVectorb[1][0] == 0){
+		if (shearedVectorb[0][0] == 0 && shearedVectorb[1][0] == 0) {
 			solution[0][0] = 0;
 			solution[1][0] = 0;
 			printMatrixToFile();
