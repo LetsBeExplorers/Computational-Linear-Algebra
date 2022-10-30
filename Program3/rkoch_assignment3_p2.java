@@ -133,21 +133,37 @@ public class rkoch_assignment3_p2 {
 	}
 
 	// solves for the eigenvectors given eigenvalues
-	// i determines which eigenvalue is being used
-	public static void solveForEigenVectors(double value, int i) throws IOException {
-		
-		// uses A-I*lambda to solve for the eigenvector
-		double[][] matrixAWithLambda = new double[2][2];
-		matrixAWithLambda[0][0] = matrixA[0][0] - value;
-		matrixAWithLambda[1][1] = matrixA[1][1] - value;
-		matrixAWithLambda[0][1] = matrixA[0][1];
-		matrixAWithLambda[1][0] = matrixA[1][0];
+	public static void solveForEigenVectors() {
+		// create a 2x2 identity matrix
+		int[][] identity = new int[2][2];
+		identity[0][0] = 1;
+		identity[0][1] = 0;
+		identity[1][0] = 0;
+		identity[1][1] = 1;
 
-		// performs forward elimination so matri is in upper triangular form
-		double[][] shearedMatrix = forwardElimination(matrixAWithLambda);
+		// setup empty matrices to fill with the results of λI
+		double[][] λ_1I = new double[2][2];
+		double[][] λ_2I = new double[2][2];
 
-		double r1 = 1;
-		double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
+		// solve for A − λI using the first λ value
+		matrixAWithLambda1[0][0] = matrixA[0][0] - eigenValues[0][0];
+		matrixAWithLambda1[1][1] = matrixA[1][1] - eigenValues[0][0];
+		matrixAWithLambda1[0][1] = matrixA[0][1];
+		matrixAWithLambda1[1][0] = matrixA[1][0];
+
+		// solve for A − λI using the second λ value
+		matrixAWithLambda2[0][0] = matrixA[0][0] - eigenValues[1][0];
+		matrixAWithLambda2[1][1] = matrixA[1][1] - eigenValues[1][0];
+		matrixAWithLambda2[0][1] = matrixA[0][1];
+		matrixAWithLambda2[1][0] = matrixA[1][0];
+
+		// setup an array of zeros to compare
+		double[] zero = {0, 0};
+
+		if (matrixAWithLambda[0] != zero && matrixAWithLambda[1] != zero) {
+			double r1 = 1;
+			double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
+		}
 
 		if (i == 0) {
 			matrixR[0][0] = r1/Math.sqrt((r1*r1) + (r2*r2));
@@ -160,29 +176,11 @@ public class rkoch_assignment3_p2 {
 
 	}
 
-	// performs forward elimination by creating a shear matrix
-	// and mulitplying it by a given matrix
-	public static double[][] forwardElimination(double[][] matrix) {
-		double[][] shearMatrix = new double[2][2];
-		double[][] shearedMatrix = new double[2][2];
-
-		// fill the shear matrix
-		shearMatrix[0][0] = 1;
-		shearMatrix[0][1] = 0;
-		shearMatrix[1][0] = -matrix[1][0]/matrix[0][0];
-		shearMatrix[1][1] = 1;
-
-		// multiply the input matrix by the shear matrix
-		matrixMultiply(shearMatrix, matrix, shearedMatrix);
-
-		return shearedMatrix;
-	}
-
-	// multipies a 2x2 matrix by another matrix and fills a new matrix with the result
-	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
-		for (int row = 0; row < result.length; row++) {
-			for (int column = 0; column < result[row].length; column++) {
-				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+	// multiplies a matrix by a scalar value
+	public static void scalarMultiply(double scalar, double[][] matrix) {
+		for (int row = 0; row < matrix.length; row++){
+			for (int column = 0; column < matrix[0].length; column++) {
+				matrix[row][column] = matrix[row][column]*scalar;
 			}
 		}
 	}
