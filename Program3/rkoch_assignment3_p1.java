@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.math.*;
 
 public class rkoch3_p1 {
 	// this program depends on the matrices being these sizes
@@ -162,9 +163,14 @@ public class rkoch3_p1 {
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
 
-		// fill the solution matrix
-		solution[0][0] = x1;
-		solution[1][0] = x2;
+		BigDecimal bigDecimal = new BigDecimal(x1);
+		bigDecimal = bigDecimal.round(new MathContext(4));
+		solution[0][0] = bigDecimal.doubleValue();
+
+		bigDecimal = new BigDecimal(x2);
+		bigDecimal = bigDecimal.round(new MathContext(4));
+		solution[1][0] = bigDecimal.doubleValue();
+
 	}
 
 	// checks if the system is inconsistent or underdetermined
