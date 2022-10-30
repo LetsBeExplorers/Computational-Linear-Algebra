@@ -145,6 +145,14 @@ public class rkoch_assignment3_p2 {
 		double[][] λ_1I = new double[2][2];
 		double[][] λ_2I = new double[2][2];
 
+		// bring in eigenvalues
+		λ_1 = eigenValues[0][0];
+		λ_2 = eigenValues[1][0];
+
+		// solve for λI
+		λ_1I = scalarMultiply(λ_1, identity);
+		λ_2I = scalarMultiply(λ_2, identity);
+
 		// solve for A − λI using the first λ value
 		matrixAWithLambda1[0][0] = matrixA[0][0] - eigenValues[0][0];
 		matrixAWithLambda1[1][1] = matrixA[1][1] - eigenValues[0][0];
@@ -177,12 +185,16 @@ public class rkoch_assignment3_p2 {
 	}
 
 	// multiplies a matrix by a scalar value
-	public static void scalarMultiply(double scalar, double[][] matrix) {
+	public static double[][] scalarMultiply(double scalar, double[][] matrix) {
+		double[][] scaledMatrix = new double[matrix.length][matrix[0].length];
+
 		for (int row = 0; row < matrix.length; row++){
 			for (int column = 0; column < matrix[0].length; column++) {
-				matrix[row][column] = matrix[row][column]*scalar;
+				scaledMatrix[row][column] = matrix[row][column]*scalar;
 			}
 		}
+
+		return scaledMatrix;
 	}
 
 	// prints a matrix to a given file
