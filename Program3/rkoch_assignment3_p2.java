@@ -63,9 +63,7 @@ public class rkoch_assignment3_p2 {
 		if (solveForEigenValues()) {
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
-			for (int i = 0; i < 2; i++) {
-				solveForEigenVectors();
-			}
+			solveForEigenVectors();
 			printMatrixToFile(matrixR);
 
 		} else { resultsFile.println("No real eigenvalues"); }
@@ -101,7 +99,7 @@ public class rkoch_assignment3_p2 {
 		// if not, return false for realValue
 		if (Double.isFinite(ev1) && Double.isFinite(ev2)) {
 			eigenValues[0][0] = roundToSignificantDigits(ev1, 4);
-			eigenValues[1][0] = roundToSignificantDigits(ev1, 4);
+			eigenValues[1][0] = roundToSignificantDigits(ev2, 4);
 		} else { realValue = false; }
 
 		return realValue;
@@ -137,17 +135,17 @@ public class rkoch_assignment3_p2 {
 	}
 
 	// solves for the eigenvectors given eigenvalues
-	public static void solveForEigenVectors() {
+	public static void solveForEigenVectors() throws IOException {
 		// create a 2x2 identity matrix
-		int[][] identity = new int[2][2];
+		double[][] identity = new double[2][2];
 		identity[0][0] = 1;
 		identity[0][1] = 0;
 		identity[1][0] = 0;
 		identity[1][1] = 1;
 
 		// bring in eigenvalues
-		λ_1 = eigenValues[0][0];
-		λ_2 = eigenValues[1][0];
+		double λ_1 = eigenValues[0][0];
+		double λ_2 = eigenValues[1][0];
 
 		// solve for λI
 		double[][] λ_1I = scalarMultiply(λ_1, identity);
@@ -166,11 +164,29 @@ public class rkoch_assignment3_p2 {
 		// by the Cayley–Hamilton theorem: Assuming neither matrix is zero, 
 		// the columns of each must include eigenvectors for the other eigenvalue
 		if (aλ_1I[0] != zero && aλ_1I[1] != zero && aλ_2I[0] != zero && aλ_2I[1] != zero) {
-			r1_1 = aλ_2I[0][0];
-			r1_2 = aλ_2I[1][0];
+			// if the column is all zeros, move to the next one
+			if (aλ_2I[0][0] == 0 && aλ_2I[1][0] == 0) {
+				r1_1 = aλ_2I[0][1];
+				r1_2 = aλ_2I[1][1];
+			} 
 
-			r2_1 = aλ_1I[0][0];
-			r2_2 = aλ_1I[1][0];
+			// if the column is not all zeros, set this as the eigenvector
+			else {
+				r1_1 = aλ_2I[0][0];
+				r1_2 = aλ_2I[1][0];
+			}
+
+			// if the column is all zeros, move to the next one
+			if (aλ_1I[0][0] == 0 && aλ_1I[1][0] == 0) {
+				r2_1 = aλ_1I[0][1];
+				r2_2 = aλ_1I[1][1];
+			} 
+
+			// if the column is not all zeros, set this as the eigenvector
+			else {
+				r2_1 = aλ_1I[0][0];
+				r2_2 = aλ_1I[1][0];
+			}
 		} 
 
 		// again by the Cayley–Hamilton theorem: If either matrix is zero, 
@@ -183,19 +199,30 @@ public class rkoch_assignment3_p2 {
 			r2_2 = 4;
 		}
 
-		// normalizing the eigenvectors
-		double normr1_1 = r1_1/Math.sqrt((r1_1*r1_1) + (r1_2*r1_2));
-		double normr1_2 = r1_2/Math.sqrt((r1_1*r1_1) + (r1_2*r1_2));
 
-		double normr2_1 = r2_1/Math.sqrt((r2_1*r2_1) + (r2_2*r2_2));
-		double normr2_2 = r2_2/Math.sqrt((r2_1*r2_1) + (r2_2*r2_2));
+		// if the length of the eigenvector is not already one, then normalize it
+		if (((r1_1*r1_1) + (r1_2*r1_2)) != 1) {
+			double normr1_1 = normalizeVectorValue(r1_1, r1_2);
+			double normr1_2 = normalizeVectorValue(r1_2, r1_1);
 
+			matrixR[0][0] = roundToSignificantDigits(normr1_1, 4);
+			matrixR[1][0] = roundToSignificantDigits(normr1_2, 4);
+		} else {
+			matrixR[0][0] = roundToSignificantDigits(r1_1, 4);
+			matrixR[1][0] = roundToSignificantDigits(r1_2, 4);
+		}
 
-		// fill in matrix R with the normalized eigenvectors
-		matrixR[0][0] = roundToSignificantDigits(normr1_1, 4);
-		matrixR[1][0] = roundToSignificantDigits(normr1_2, 4);
-		matrixR[0][1] = roundToSignificantDigits(normr2_1, 4);
-		matrixR[1][1] = roundToSignificantDigits(normr2_2, 4);
+		// if the length of the eigenvector is not already one, then normalize it
+		if (((r1_1*r1_1) + (r1_2*r1_2)) != 1) {
+			double normr2_1 = normalizeVectorValue(r2_1, r2_2);
+			double normr2_2 = normalizeVectorValue(r2_2, r2_1);
+
+			matrixR[0][1] = roundToSignificantDigits(normr2_1, 4);
+			matrixR[1][1] = roundToSignificantDigits(normr2_2, 4);
+		} else {
+			matrixR[0][1] = roundToSignificantDigits(r2_1, 4);
+			matrixR[1][1] = roundToSignificantDigits(r2_2, 4);
+		}
 
 	}
 
@@ -223,7 +250,15 @@ public class rkoch_assignment3_p2 {
 		}
 
 		return newMatrix;
-	} 
+	}
+
+	// normalizes a value in a vector of length 2 given both values of the vector
+	// normalizes the first value given
+	public static double normalizeVectorValue(double x1, double x2) {
+		double norm = x1/Math.sqrt((x1*x1) + (x2*x2));
+
+		return norm;
+	}
 
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
@@ -233,5 +268,6 @@ public class rkoch_assignment3_p2 {
 			}
 			resultsFile.println();
 		}
+		resultsFile.println();
 	}
 }
