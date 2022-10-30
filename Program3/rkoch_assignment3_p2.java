@@ -8,6 +8,7 @@ import java.math.*;
 public class rkoch_assignment3_p2 {
 	// this program depends on the matrices being these sizes
 	public static double[][] matrixA = new double[2][2];
+	public static double[][] eigenValues = new double[2][1];
 	public static double[][] diagnolMatrix = new double[2][2];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
@@ -59,9 +60,12 @@ public class rkoch_assignment3_p2 {
 	public static void controlMethod() throws IOException {
 
 		if (solveForEigenValues()) {
-
+			fillTheDiagnolMatrix();
+			printMatrixToFile(diagnolMatrix);
 
 		} else { resultsFile.println("No real eigenvalues"); }
+
+		resultsFile.close();
 	}
 
 	// solves for the eigenvalues and returns a boolean inidicating
@@ -93,13 +97,13 @@ public class rkoch_assignment3_p2 {
 		if (Double.isFinite(ev1)) {
 			BigDecimal bigDecimal = new BigDecimal(ev1);
 			bigDecimal = bigDecimal.round(new MathContext(4));
-			ev1 = bigDecimal.doubleValue();
+			eigenValues[0][0] = bigDecimal.doubleValue();
 		} else { realValue = false; }
 
-		if (Double.isFinite(ev2) {
+		if (Double.isFinite(ev2)) {
 			BigDecimal bigDecimal = new BigDecimal(ev2);
 			bigDecimal = bigDecimal.round(new MathContext(4));
-			ev2 = bigDecimal.doubleValue();
+			eigenValues[1][0] = bigDecimal.doubleValue();
 		} else { realValue = false; }
 
 		return realValue;
@@ -107,12 +111,23 @@ public class rkoch_assignment3_p2 {
 
 	// fills the diagnol matrix with the eigenvalues
 	public static void fillTheDiagnolMatrix() {
-		if (ev2 > ev1) {
-			diagnolMatrix[0][0] = ev2;
-			diagnolMatrix[1][1] = ev1;
+
+		if (eigenValues[1][0] > eigenValues[0][0]) {
+			diagnolMatrix[0][0] = eigenValues[1][0];
+			diagnolMatrix[1][1] = eigenValues[0][0];
 		} else {
-			diagnolMatrix[0][0] = ev1;
-			diagnolMatrix[1][1] = ev2;
+			diagnolMatrix[0][0] = eigenValues[0][0];
+			diagnolMatrix[1][1] = eigenValues[1][0];
+		}
+	}
+
+	// prints a matrix to a given file
+	public static void printMatrixToFile(double[][] matrix) throws IOException {
+		for (int row = 0; row < matrix.length; row++) {
+			for (int column = 0; column < matrix[row].length; column++) {
+				resultsFile.printf("%-8.4g", matrix[row][column]);
+			}
+			resultsFile.println();
 		}
 	}
 }
