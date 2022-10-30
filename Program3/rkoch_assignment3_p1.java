@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.math.*;
 
-public class rkoch3_p1 {
+public class rkoch_assignment3_p1 {
 	// this program depends on the matrices being these sizes
 	public static double[][] matrixA = new double[2][2];
 	public static double[][] shearedMatrixA = new double[2][2];
