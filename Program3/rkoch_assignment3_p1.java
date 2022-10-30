@@ -79,10 +79,10 @@ public class rkoch_assignment3_p1 {
 		
 		// swap the matrix rows
 		double[] swap = matrix[0];
-        matrix[0] = matrix[1];
-        matrix[1] = swap;
+		matrix[0] = matrix[1];
+		matrix[1] = swap;
 
-        // swap the vector rows
+		// swap the vector rows
 		swap = vector[0];
 		vector[0] = vector[1];
 		vector[1] = swap;
