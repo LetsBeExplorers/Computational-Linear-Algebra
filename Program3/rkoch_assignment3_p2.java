@@ -150,8 +150,8 @@ public class rkoch_assignment3_p2 {
 			shearedMatrix = forwardElimination(matrixAWithLambda);
 		} else { shearedMatrix = matrixAWithLambda; }
 
-
-
+		
+		
 		double r1 = 1;
 		double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
 
@@ -191,20 +191,6 @@ public class rkoch_assignment3_p2 {
 				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
 			}
 		}
-	}
-
-	// swaps the rows of a matrix and it's vector
-	public static void rowSwap(double[][] matrix, double[][] vector) {
-		
-		// swap the matrix rows
-		double[] swap = matrix[0];
-        matrix[0] = matrix[1];
-        matrix[1] = swap;
-
-        // swap the vector rows
-		swap = vector[0];
-		vector[0] = vector[1];
-		vector[1] = swap;
 	}
 
 	// prints a matrix to a given file
