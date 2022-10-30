@@ -95,12 +95,12 @@ public class rkoch_assignment3_p1 {
 
 		// swap the matrix columns
 		double[][] swap = new double[2][1];
-        swap[0][0] = matrix[0][0];
-        swap[1][0] = matrix[1][0];
-        matrix[0][0] = matrix[0][1];
-        matrix[1][0] = matrix[1][1];
-        matrix[0][1] = swap[0][0];
-        matrix[1][1] = swap[1][0];
+		swap[0][0] = matrix[0][0];
+		swap[1][0] = matrix[1][0];
+		matrix[0][0] = matrix[0][1];
+		matrix[1][0] = matrix[1][1];
+		matrix[0][1] = swap[0][0];
+		matrix[1][1] = swap[1][0];
 	}
 
 	// performs Gauss elimination
