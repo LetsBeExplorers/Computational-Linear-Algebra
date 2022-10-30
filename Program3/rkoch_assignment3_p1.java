@@ -170,6 +170,7 @@ public class rkoch3_p1 {
 	// if not, it prints the solution
 	public static void printSolutiontoFile() throws IOException {
 
+		// if vectorb is zero, the solution is the zero vector
 		if (shearedVectorb[0][0] == 0 && shearedVectorb[1][0] == 0){
 			solution[0][0] = 0;
 			solution[1][0] = 0;
