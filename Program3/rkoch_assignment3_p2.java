@@ -160,19 +160,42 @@ public class rkoch_assignment3_p2 {
 		// setup an array of zeros to compare
 		double[] zero = {0, 0};
 
-		if (matrixAWithLambda[0] != zero && matrixAWithLambda[1] != zero) {
-			double r1 = 1;
-			double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
+		// setup the values of r
+		double r1_1 = 0, r1_2 = 0, r2_1 = 0, r2_2 = 0;
+
+		// by the Cayley–Hamilton theorem: Assuming neither matrix is zero, 
+		// the columns of each must include eigenvectors for the other eigenvalue
+		if (aλ_1I[0] != zero && aλ_1I[1] != zero && aλ_2I[0] != zero && aλ_2I[1] != zero) {
+			r1_1 = aλ_2I[0][0];
+			r1_2 = aλ_2I[1][0];
+
+			r2_1 = aλ_1I[0][0];
+			r2_2 = aλ_1I[1][0];
+		} 
+
+		// again by the Cayley–Hamilton theorem: If either matrix is zero, 
+		// then A is a multiple of the identity and any non-zero vector is an eigenvector.
+		else {
+			r1_1 = 1;
+			r1_2 = 2;
+
+			r2_1 = 3;
+			r2_2 = 4;
 		}
 
-		if (i == 0) {
-			matrixR[0][0] = r1/Math.sqrt((r1*r1) + (r2*r2));
-			matrixR[1][0] = r2/Math.sqrt((r1*r1) + (r2*r2));
-		} else {
-			matrixR[0][1] = r1/Math.sqrt((r1*r1) + (r2*r2));
-			matrixR[1][1] = r2/Math.sqrt((r1*r1) + (r2*r2));
-		}
+		// normalizing the eigenvectors
+		double normr1_1 = r1_1/Math.sqrt((r1_1*r1_1) + (r1_2*r1_2));
+		double normr1_2 = r1_2/Math.sqrt((r1_1*r1_1) + (r1_2*r1_2));
 
+		double normr2_1 = r2_1/Math.sqrt((r2_1*r2_1) + (r2_2*r2_2));
+		double normr2_2 = r2_2/Math.sqrt((r2_1*r2_1) + (r2_2*r2_2));
+
+
+		// fill in matrix R with the normalized eigenvectors
+		matrixR[0][0] = roundToSignificantDigits(normr1_1, 4);
+		matrixR[1][0] = roundToSignificantDigits(normr1_2, 4);
+		matrixR[0][1] = roundToSignificantDigits(normr2_1, 4);
+		matrixR[1][1] = roundToSignificantDigits(normr2_2, 4);
 
 	}
 
