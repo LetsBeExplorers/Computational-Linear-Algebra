@@ -79,15 +79,17 @@ public class rkoch_assignment3_p2 {
 		double a21 = matrixA[1][0];
 		double a22 = matrixA[1][1];
 
+		// find coefficients of the characteristic equations
 		int a = 1;
 		double b = -(a11 + a22);
 		double c = -(a21*a12 - a11*a22);
 
+		// use the quadratic equation to solve for the eigenvalues
 		ev1 = (-b + Math.sqrt((b*b) - 4*a*c))/(2*a);
 		ev2 = (-b - Math.sqrt((b*b) - 4*a*c))/(2*a);
 
-		// checks that the solutions are finite, if so rounds to 4 sig figs
-		// if not, reaturns false for realValue
+		// check that the solutions are finite, if so round to 4 sig figs
+		// if not, return false for realValue
 		if (Double.isFinite(ev1)) {
 			BigDecimal bigDecimal = new BigDecimal(ev1);
 			bigDecimal = bigDecimal.round(new MathContext(4));
