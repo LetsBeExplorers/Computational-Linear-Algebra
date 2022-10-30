@@ -11,7 +11,7 @@ public class rkoch_assignment3_p1 {
 	public static double[][] shearedMatrixA = new double[2][2];
 	public static double[][] vectorb = new double[2][1];
 	public static double[][] shearedVectorb = new double[2][1];
-	public static double[][] solution = new double[2][1];;
+	public static double[][] solution = new double[2][1];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -163,6 +163,8 @@ public class rkoch_assignment3_p1 {
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
 
+		System.out.printf("%f%f", x1, x2);
+
 		// checks that the solutions are finite, if so rounds to 4 sig figs
 		// if not, exceptions are handled later and answers don't need rounding
 		if (Double.isFinite(x1)) {
@@ -191,7 +193,7 @@ public class rkoch_assignment3_p1 {
 		}
 
 		// if the system is inconsistent, then it can't be solved
-		else if (shearedMatrixA[1][0] == 0 && shearedMatrixA[1][1] == 0 && shearedVectorb[1][0] != 0) {
+		else if (Double.isInfinite(solution[0][0]) && Double.isInfinite(solution[1][0])) {
 			resultsFile.println("System inconsistent");
 		} 
 
