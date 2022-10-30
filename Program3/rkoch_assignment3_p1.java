@@ -105,16 +105,7 @@ public class rkoch_assignment3_p1 {
 
 	// performs Gauss elimination
 	public static void gaussElimination() {
-		
-		// checks if the matrix is in upper triangular form
-		// if not, shear it to the e1 axis
-		if (matrixA[1][0] != 0){
-			forwardElimination();
-		} else {
-			shearedMatrixA = matrixA;
-			shearedVectorb = vectorb;
-		}
-
+		forwardElimination();
 		backSubstitution();
 	}
 
@@ -162,8 +153,6 @@ public class rkoch_assignment3_p1 {
 		// solve for x1 and x2
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
-
-		System.out.printf("%f%f", x1, x2);
 
 		// checks that the solutions are finite, if so rounds to 4 sig figs
 		// if not, exceptions are handled later and answers don't need rounding
