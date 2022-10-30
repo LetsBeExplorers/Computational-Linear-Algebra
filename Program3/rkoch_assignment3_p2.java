@@ -10,6 +10,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] matrixA = new double[2][2];
 	public static double[][] eigenValues = new double[2][1];
 	public static double[][] diagnolMatrix = new double[2][2];
+	public static double[][] matrixR = new double[2][2];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -62,6 +63,8 @@ public class rkoch_assignment3_p2 {
 		if (solveForEigenValues()) {
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
+			solveForEigenVectors(diagnolMatrix[0][0]);
+			solveForEigenVectors(diagnolMatrix[1][1]);
 
 		} else { resultsFile.println("No real eigenvalues"); }
 
@@ -124,6 +127,44 @@ public class rkoch_assignment3_p2 {
 		else {
 			diagnolMatrix[0][0] = eigenValues[0][0];
 			diagnolMatrix[1][1] = eigenValues[1][0];
+		}
+	}
+
+	public static void solveForEigenVectors(double value) throws IOException {
+		double[][] matrixAWithLamda = new double[2][2];
+		matrixAWithLamda[0][0] = matrixA[0][0] - value;
+		matrixAWithLamda[1][1] = matrixA[1][1] - value;
+		matrixAWithLamda[0][1] = matrixA[0][1];
+		matrixAWithLamda[1][0] = matrixA[1][0];
+
+		double[][] shearedMatrix = forwardElimination(matrixAWithLamda);
+
+	}
+
+	// performs forward elimination by creating a shear matrix
+	// and mulitplying it by a  given matrix
+	public static double[][] forwardElimination(double[][] matrix) {
+		double[][] shearMatrix = new double[2][2];
+		double[][] shearedMatrix = new double[2][2];
+
+		// fill the shear matrix
+		shearMatrix[0][0] = 1;
+		shearMatrix[0][1] = 0;
+		shearMatrix[1][0] = -matrix[1][0]/matrix[0][0];
+		shearMatrix[1][1] = 1;
+
+		// multiply the input matrix by the shear matrix
+		matrixMultiply(shearMatrix, matrix, shearedMatrix);
+
+		return shearedMatrix;
+	}
+
+	// multipies a 2x2 matrix by another matrix and fills a new matrix with the result
+	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
+		for (int row = 0; row < result.length; row++) {
+			for (int column = 0; column < result[row].length; column++) {
+				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+			}
 		}
 	}
 
