@@ -24,6 +24,7 @@ public class rkoch3_p1 {
 		readMatrixFromFile();
 		checkEdgeCases();
 
+		// perform Gauss elimination and print the solution to a file
 		gaussElimination();
 		printSolutiontoFile();
 
