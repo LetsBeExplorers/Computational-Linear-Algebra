@@ -112,10 +112,16 @@ public class rkoch_assignment3_p2 {
 	// fills the diagnol matrix with the eigenvalues
 	public static void fillTheDiagnolMatrix() {
 
+		// if the second eigenvalue is greater than the first
+		// then it is the dominannt eigenvalue
 		if (eigenValues[1][0] > eigenValues[0][0]) {
 			diagnolMatrix[0][0] = eigenValues[1][0];
 			diagnolMatrix[1][1] = eigenValues[0][0];
-		} else {
+		} 
+
+		// otherwise they are equal or
+		// the first eigenvalue is dominant
+		else {
 			diagnolMatrix[0][0] = eigenValues[0][0];
 			diagnolMatrix[1][1] = eigenValues[1][0];
 		}
