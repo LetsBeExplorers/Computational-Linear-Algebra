@@ -132,15 +132,17 @@ public class rkoch_assignment3_p2 {
 	}
 
 	// solves for the eigenvectors given eigenvalues
-	// takes in lamba to use A-I*lambda to solve for the eigenvector
 	// i determines which eigenvalue is being used
 	public static void solveForEigenVectors(double value, int i) {
+		
+		// uses A-I*lambda to solve for the eigenvector
 		double[][] matrixAWithLambda = new double[2][2];
 		matrixAWithLambda[0][0] = matrixA[0][0] - value;
 		matrixAWithLambda[1][1] = matrixA[1][1] - value;
 		matrixAWithLambda[0][1] = matrixA[0][1];
 		matrixAWithLambda[1][0] = matrixA[1][0];
 
+		// shears A-I*lambda to the e1 axis so we can solve for the eigenvector
 		double[][] shearedMatrix = forwardElimination(matrixAWithLambda);
 
 	}
