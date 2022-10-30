@@ -126,7 +126,7 @@ public class rkoch_assignment3_p1 {
 
 	}
 
-	// multipies a 2x2 matrix by another matrix and fills a new matrix with the result
+	// multiplies a 2x2 matrix by another matrix and fills a new matrix with the result
 	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
 		for (int row = 0; row < result.length; row++) {
 			for (int column = 0; column < result[row].length; column++) {
@@ -156,18 +156,24 @@ public class rkoch_assignment3_p1 {
 
 		// checks that the solutions are finite, if so rounds to 4 sig figs
 		// if not, exceptions are handled later and answers don't need rounding
-		if (Double.isFinite(x1)) {
-			BigDecimal bigDecimal = new BigDecimal(x1);
-			bigDecimal = bigDecimal.round(new MathContext(4));
-			solution[0][0] = bigDecimal.doubleValue();
-		} else { solution[0][0] = x1; }
+		if (Double.isFinite(x1) && Double.isFinite(x2)) {
+			solution[0][0] = roundToSignificantDigits(x1, 4);
+			solution[1][0] = roundToSignificantDigits(x2, 4);
+		} else { 
+			solution[0][0] = x1;
+			solution[1][0] = x2;
+		}
+	}
 
-		if (Double.isFinite(x2)) {
-			BigDecimal bigDecimal = new BigDecimal(x2);
-			bigDecimal = bigDecimal.round(new MathContext(4));
-			solution[1][0] = bigDecimal.doubleValue();
-		} else { solution[1][0] = x2; }
+	// rounds a double to a specified number of significant digits
+	public static double roundToSignificantDigits(double number, int digits) {
+		double roundedNum;
 
+		BigDecimal bigDecimal = new BigDecimal(number);
+		bigDecimal = bigDecimal.round(new MathContext(digits));
+		roundedNum = bigDecimal.doubleValue();
+
+		return roundedNum;
 	}
 
 	// checks if the system is inconsistent or underdetermined
