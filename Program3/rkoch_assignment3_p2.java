@@ -104,4 +104,15 @@ public class rkoch_assignment3_p2 {
 
 		return realValue;
 	}
+
+	// fills the diagnol matrix with the eigenvalues
+	public static void fillTheDiagnolMatrix() {
+		if (ev2 > ev1) {
+			diagnolMatrix[0][0] = ev2;
+			diagnolMatrix[1][1] = ev1;
+		} else {
+			diagnolMatrix[0][0] = ev1;
+			diagnolMatrix[1][1] = ev2;
+		}
+	}
 }
