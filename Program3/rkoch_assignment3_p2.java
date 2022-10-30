@@ -141,29 +141,17 @@ public class rkoch_assignment3_p2 {
 		identity[1][0] = 0;
 		identity[1][1] = 1;
 
-		// setup empty matrices to fill with the results of λI
-		double[][] λ_1I = new double[2][2];
-		double[][] λ_2I = new double[2][2];
-
 		// bring in eigenvalues
 		λ_1 = eigenValues[0][0];
 		λ_2 = eigenValues[1][0];
 
 		// solve for λI
-		λ_1I = scalarMultiply(λ_1, identity);
-		λ_2I = scalarMultiply(λ_2, identity);
+		double[][] λ_1I = scalarMultiply(λ_1, identity);
+		double[][] λ_2I = scalarMultiply(λ_2, identity);
 
-		// solve for A − λI using the first λ value
-		matrixAWithLambda1[0][0] = matrixA[0][0] - eigenValues[0][0];
-		matrixAWithLambda1[1][1] = matrixA[1][1] - eigenValues[0][0];
-		matrixAWithLambda1[0][1] = matrixA[0][1];
-		matrixAWithLambda1[1][0] = matrixA[1][0];
-
-		// solve for A − λI using the second λ value
-		matrixAWithLambda2[0][0] = matrixA[0][0] - eigenValues[1][0];
-		matrixAWithLambda2[1][1] = matrixA[1][1] - eigenValues[1][0];
-		matrixAWithLambda2[0][1] = matrixA[0][1];
-		matrixAWithLambda2[1][0] = matrixA[1][0];
+		// solve for A − λI for both values of λ
+		double[][] aλ_1I = matrixSubtraction(matrixA, λ_1I);
+		double[][] aλ_2I = matrixSubtraction(matrixA, λ_2I);
 
 		// setup an array of zeros to compare
 		double[] zero = {0, 0};
@@ -188,14 +176,27 @@ public class rkoch_assignment3_p2 {
 	public static double[][] scalarMultiply(double scalar, double[][] matrix) {
 		double[][] scaledMatrix = new double[matrix.length][matrix[0].length];
 
-		for (int row = 0; row < matrix.length; row++){
-			for (int column = 0; column < matrix[0].length; column++) {
+		for (int row = 0; row < scaledMatrix.length; row++) {
+			for (int column = 0; column < scaledMatrix[0].length; column++) {
 				scaledMatrix[row][column] = matrix[row][column]*scalar;
 			}
 		}
 
 		return scaledMatrix;
 	}
+
+	// subtracts one matrix from another
+	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
+		double[][] newMatrix = new double[left.length][left[0].length];
+
+		for (int row = 0; row < newMatrix.length; row++) {
+			for (int column = 0; column < newMatrix[0].length; column++) {
+				newMatrix[row][column] = left[row][column] - right[row][column];
+			}
+		}
+
+		return newMatrix;
+	} 
 
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
