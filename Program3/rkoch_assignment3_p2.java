@@ -143,15 +143,9 @@ public class rkoch_assignment3_p2 {
 		matrixAWithLambda[0][1] = matrixA[0][1];
 		matrixAWithLambda[1][0] = matrixA[1][0];
 
-		double[][] shearedMatrix = new double[2][2];
+		// performs forward elimination so matri is in upper triangular form
+		double[][] shearedMatrix = forwardElimination(matrixAWithLambda);
 
-		// shears A-I*lambda to the e1 axis so we can solve for the eigenvector
-		if (matrixAWithLambda[1][0] != 0) {
-			shearedMatrix = forwardElimination(matrixAWithLambda);
-		} else { shearedMatrix = matrixAWithLambda; }
-
-		
-		
 		double r1 = 1;
 		double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
 
