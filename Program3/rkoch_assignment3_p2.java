@@ -64,7 +64,7 @@ public class rkoch_assignment3_p2 {
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
 			for (int i = 0; i < 2; i++) {
-				solveForEigenVectors(diagnolMatrix[i][i], i);
+				solveForEigenVectors();
 			}
 			printMatrixToFile(matrixR);
 
@@ -99,19 +99,23 @@ public class rkoch_assignment3_p2 {
 
 		// check that the solutions are finite, if so round to 4 sig figs
 		// if not, return false for realValue
-		if (Double.isFinite(ev1)) {
-			BigDecimal bigDecimal = new BigDecimal(ev1);
-			bigDecimal = bigDecimal.round(new MathContext(4));
-			eigenValues[0][0] = bigDecimal.doubleValue();
-		} else { realValue = false; }
-
-		if (Double.isFinite(ev2)) {
-			BigDecimal bigDecimal = new BigDecimal(ev2);
-			bigDecimal = bigDecimal.round(new MathContext(4));
-			eigenValues[1][0] = bigDecimal.doubleValue();
+		if (Double.isFinite(ev1) && Double.isFinite(ev2)) {
+			eigenValues[0][0] = roundToSignificantDigits(ev1, 4);
+			eigenValues[1][0] = roundToSignificantDigits(ev1, 4);
 		} else { realValue = false; }
 
 		return realValue;
+	}
+
+	// rounds a double to a specified number of significant digits
+	public static double roundToSignificantDigits(double number, int digits) {
+		double roundedNum;
+
+		BigDecimal bigDecimal = new BigDecimal(number);
+		bigDecimal = bigDecimal.round(new MathContext(digits));
+		roundedNum = bigDecimal.doubleValue();
+
+		return roundedNum;
 	}
 
 	// fills the diagnol matrix with the eigenvalues
