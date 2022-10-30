@@ -63,9 +63,10 @@ public class rkoch_assignment3_p2 {
 		if (solveForEigenValues()) {
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
-			for (int i = 0; i < 2; 1++) {
+			for (int i = 0; i < 2; i++) {
 				solveForEigenVectors(diagnolMatrix[i][i], i);
 			}
+			printMatrixToFile(matrixR);
 
 		} else { resultsFile.println("No real eigenvalues"); }
 
@@ -133,7 +134,7 @@ public class rkoch_assignment3_p2 {
 
 	// solves for the eigenvectors given eigenvalues
 	// i determines which eigenvalue is being used
-	public static void solveForEigenVectors(double value, int i) {
+	public static void solveForEigenVectors(double value, int i) throws IOException {
 		
 		// uses A-I*lambda to solve for the eigenvector
 		double[][] matrixAWithLambda = new double[2][2];
@@ -142,13 +143,29 @@ public class rkoch_assignment3_p2 {
 		matrixAWithLambda[0][1] = matrixA[0][1];
 		matrixAWithLambda[1][0] = matrixA[1][0];
 
+		double[][] shearedMatrix = new double[2][2];
+
 		// shears A-I*lambda to the e1 axis so we can solve for the eigenvector
-		double[][] shearedMatrix = forwardElimination(matrixAWithLambda);
+		if (matrixAWithLambda[1][0] != 0) {
+			shearedMatrix = forwardElimination(matrixAWithLambda);
+		} else { shearedMatrix = matrixAWithLambda; }
+		
+		double r1 = 1;
+		double r2 = (0 - (r1*shearedMatrix[0][0]))/matrixAWithLambda[0][1];
+
+		if (i == 0) {
+			matrixR[0][0] = r1/Math.sqrt((r1*r1) + (r2*r2));
+			matrixR[1][0] = r2/Math.sqrt((r1*r1) + (r2*r2));
+		} else {
+			matrixR[0][1] = r1/Math.sqrt((r1*r1) + (r2*r2));
+			matrixR[1][1] = r2/Math.sqrt((r1*r1) + (r2*r2));
+		}
+
 
 	}
 
 	// performs forward elimination by creating a shear matrix
-	// and mulitplying it by a  given matrix
+	// and mulitplying it by a given matrix
 	public static double[][] forwardElimination(double[][] matrix) {
 		double[][] shearMatrix = new double[2][2];
 		double[][] shearedMatrix = new double[2][2];
