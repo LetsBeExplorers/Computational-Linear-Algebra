@@ -163,13 +163,19 @@ public class rkoch3_p1 {
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
 
-		BigDecimal bigDecimal = new BigDecimal(x1);
-		bigDecimal = bigDecimal.round(new MathContext(4));
-		solution[0][0] = bigDecimal.doubleValue();
+		// checks that the solutions are finite, if so rounds to 4 sig figs
+		// if not, exceptions are handled later and answers don't need rounding
+		if (Double.isFinite(x1)) {
+			BigDecimal bigDecimal = new BigDecimal(x1);
+			bigDecimal = bigDecimal.round(new MathContext(4));
+			solution[0][0] = bigDecimal.doubleValue();
+		} else { solution[0][0] = x1; }
 
-		bigDecimal = new BigDecimal(x2);
-		bigDecimal = bigDecimal.round(new MathContext(4));
-		solution[1][0] = bigDecimal.doubleValue();
+		if (Double.isFinite(x2)) {
+			BigDecimal bigDecimal = new BigDecimal(x2);
+			bigDecimal = bigDecimal.round(new MathContext(4));
+			solution[1][0] = bigDecimal.doubleValue();
+		} else { solution[1][0] = x2; }
 
 	}
 
