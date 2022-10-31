@@ -11,6 +11,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] eigenValues = new double[2][1];
 	public static double[][] diagnolMatrix = new double[2][2];
 	public static double[][] matrixR = new double[2][2];
+	public static double[][] transposedMatrixR = new double[2][2];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -65,6 +66,7 @@ public class rkoch_assignment3_p2 {
 			printMatrixToFile(diagnolMatrix);
 			solveForEigenVectors();
 			printMatrixToFile(matrixR);
+			transposedMatrixR = transposeMatrix(matrixR);
 
 		} else { resultsFile.println("No real eigenvalues"); }
 
@@ -260,6 +262,19 @@ public class rkoch_assignment3_p2 {
 		return norm;
 	}
 
+	// transposes a given matrix
+	public static double[][] transposeMatrix(double[][] matrix) throws IOException {
+		double[][] transposedMatrix = new double[matrix.length][matrix[0].length];
+
+		for (int column = 0; column < transposedMatrix[0].length; column++) {
+			for (int row = 0; row < transposedMatrix.length; row++) {
+				transposedMatrix[row][column] = matrix[column][row];
+			}
+		}
+
+		return transposedMatrix;
+	}
+
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
 		for (int row = 0; row < matrix.length; row++) {
@@ -268,6 +283,5 @@ public class rkoch_assignment3_p2 {
 			}
 			resultsFile.println();
 		}
-		resultsFile.println();
 	}
 }
