@@ -126,7 +126,8 @@ public class rkoch_assignment3_p1 {
 
 	}
 
-	// multiplies a 2x2 matrix by another matrix and fills a new matrix with the result
+	// multiplies a matrix by another matrix and fills a new matrix with the result
+	// user must ensure the matrices being multiplied are the same size
 	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
 		for (int row = 0; row < result.length; row++) {
 			for (int column = 0; column < result[row].length; column++) {
