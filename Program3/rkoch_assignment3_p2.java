@@ -12,7 +12,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] diagnolMatrix = new double[2][2];
 	public static double[][] matrixR = new double[2][2];
 	public static double[][] transposedMatrixR = new double[2][2];
-	public static double[][] matrixComposition = new double[2][2];
+	public static double[][] matrixComposite = new double[2][2];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -29,7 +29,7 @@ public class rkoch_assignment3_p2 {
 		// otherwise print there are no real eigenvalues
 		if (solveForEigenValues()) {
 
-			// fill and pring the diagnol matrix
+			// fill and print the diagnol matrix
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
 
@@ -39,8 +39,8 @@ public class rkoch_assignment3_p2 {
 
 			// transpose R for the matrix composition
 			transposedMatrixR = transposeMatrix(matrixR);
-
-
+			matrixComposite = matrixComposition(matrixR, diagnolMatrix, transposedMatrixR);
+			printMatrixToFile(matrixComposite);
 
 		} else { resultsFile.println("No real eigenvalues"); }
 
@@ -279,6 +279,28 @@ public class rkoch_assignment3_p2 {
 		}
 
 		return transposedMatrix;
+	}
+
+	// performs matrix composition
+	// user must ensure the matrices are the same size
+	public static double[][] matrixComposition(double[][] matrix1, double[][] matrix2, double[][] matrix3) {
+		double[][] matrixComposition = new double[matrix1.length][matrix1[0].length];
+		double[][] holdingMatrix = new double[matrix1.length][matrix1[0].length];
+
+		matrixMultiply(matrix1, matrix2, holdingMatrix);
+		matrixMultiply(holdingMatrix, matrix3, matrixComposition);
+
+		return matrixComposition;
+	}
+
+	// multiplies a matrix by another matrix and fills a new matrix with the result
+	// user must ensure the matrices being multiplied are the same size
+	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
+		for (int row = 0; row < result.length; row++) {
+			for (int column = 0; column < result[row].length; column++) {
+				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+			}
+		}
 	}
 
 	// prints a matrix to a given file
