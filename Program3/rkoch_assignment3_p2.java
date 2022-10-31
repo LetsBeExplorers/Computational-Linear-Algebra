@@ -12,6 +12,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] diagnolMatrix = new double[2][2];
 	public static double[][] matrixR = new double[2][2];
 	public static double[][] transposedMatrixR = new double[2][2];
+	public static double[][] matrixComposition = new double[2][2];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -61,12 +62,22 @@ public class rkoch_assignment3_p2 {
 	// controls the flow of operation
 	public static void controlMethod() throws IOException {
 
+		// if the eigenvalues are real, then continue calculations
+		// otherwise print there are no real eigenvalues
 		if (solveForEigenValues()) {
+
+			// fill and pring the diagnol matrix
 			fillTheDiagnolMatrix();
 			printMatrixToFile(diagnolMatrix);
+
+			// solve for the eigenvectors and print R
 			solveForEigenVectors();
 			printMatrixToFile(matrixR);
+
+			// transpose R for the matrix composition
 			transposedMatrixR = transposeMatrix(matrixR);
+
+			
 
 		} else { resultsFile.println("No real eigenvalues"); }
 
