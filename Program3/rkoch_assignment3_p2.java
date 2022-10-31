@@ -42,6 +42,11 @@ public class rkoch_assignment3_p2 {
 			matrixComposite = matrixComposition(matrixR, diagnolMatrix, transposedMatrixR);
 			printMatrixToFile(matrixComposite);
 
+			// compare the two matrices and print the result
+			if (matrixCompare(matrixA, matrixComposite)) {
+				resultsFile.printf("%d", 1);
+			} else { resultsFile.printf("%d", 0); }
+
 		} else { resultsFile.println("No real eigenvalues"); }
 
 		resultsFile.close();
@@ -106,8 +111,8 @@ public class rkoch_assignment3_p2 {
 		// check that the solutions are finite, if so round to 4 sig figs
 		// if not, return false for realValue
 		if (Double.isFinite(ev1) && Double.isFinite(ev2)) {
-			eigenValues[0][0] = roundToSignificantDigits(ev1, 4);
-			eigenValues[1][0] = roundToSignificantDigits(ev2, 4);
+			eigenValues[0][0] = ev1;
+			eigenValues[1][0] = ev2;
 		} else { realValue = false; }
 
 		return realValue;
@@ -213,11 +218,11 @@ public class rkoch_assignment3_p2 {
 			double normr1_1 = normalizeVectorValue(r1_1, r1_2);
 			double normr1_2 = normalizeVectorValue(r1_2, r1_1);
 
-			matrixR[0][0] = roundToSignificantDigits(normr1_1, 4);
-			matrixR[1][0] = roundToSignificantDigits(normr1_2, 4);
+			matrixR[0][0] = normr1_1;
+			matrixR[1][0] = normr1_2;
 		} else {
-			matrixR[0][0] = roundToSignificantDigits(r1_1, 4);
-			matrixR[1][0] = roundToSignificantDigits(r1_2, 4);
+			matrixR[0][0] = r1_1;
+			matrixR[1][0] = r1_2;
 		}
 
 		// if the length of the eigenvector is not already one, then normalize it
@@ -225,11 +230,11 @@ public class rkoch_assignment3_p2 {
 			double normr2_1 = normalizeVectorValue(r2_1, r2_2);
 			double normr2_2 = normalizeVectorValue(r2_2, r2_1);
 
-			matrixR[0][1] = roundToSignificantDigits(normr2_1, 4);
-			matrixR[1][1] = roundToSignificantDigits(normr2_2, 4);
+			matrixR[0][1] = normr2_1;
+			matrixR[1][1] = normr2_2;
 		} else {
-			matrixR[0][1] = roundToSignificantDigits(r2_1, 4);
-			matrixR[1][1] = roundToSignificantDigits(r2_2, 4);
+			matrixR[0][1] = r2_1;
+			matrixR[1][1] = r2_2;
 		}
 
 	}
@@ -303,11 +308,24 @@ public class rkoch_assignment3_p2 {
 		}
 	}
 
+	// compares two matrices and returns 1 if they are the same and 0 if they are not
+	public static boolean matrixCompare(double[][] matrix1, double[][] matrix2) {
+		boolean match = true;
+
+		for (int row = 0; row < matrix1.length; row++) {
+			for (int column = 0; column < matrix1[0].length; column++) {
+				match = match && (matrix1[row][column] == matrix2[row][column]);
+			}
+		}
+
+		return match;
+	}
+
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
 		for (int row = 0; row < matrix.length; row++) {
 			for (int column = 0; column < matrix[row].length; column++) {
-				resultsFile.printf("%-8.4g", matrix[row][column]);
+				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix[row][column], 4));
 			}
 			resultsFile.println();
 		}
