@@ -1,10 +1,7 @@
 
 <h1>Programming Assignment #3</h1>
 
-<p>This is my programming assignment #3 for CS2300 (Computational Linear Algebra). It has three parts (p1, p2, p3), three input files, and each 
-part has a program and resulting output files. The programs are written in Java and commented for easier understanding. Each output file contains 
-matrices with no headings or descriptive text, only the numerical matrix elements. Each column is 8 spaces wide with the row elements
-left justified in each column. The rows are separated by line breaks. All decimal values are rounded to four significant digits. </p>
+<p>This is my programming assignment #3 for CS2300 (Computational Linear Algebra). It has three parts (p1, p2, p3), three input files, and each part has a program and resulting output files. The programs are written in Java and commented for easier understanding. Each output file contains matrices with no headings or descriptive text, only the numerical matrix elements. Each column is 8 spaces wide with the row elements left justified in each column. The rows are separated by line breaks. All decimal values are rounded to four significant digits. There are a total of 7 output files, 3 java programs, and 3 test input files. The java IO, Utility, and Math libraries were imported for very limited use in items such as handling the IO, Scanner, FIle and PrintWriter functions, and Big decimal/MAth context to handle the rounding to four significant digits.</p>
 
 <h4>Part 1</h4>
 <p>The first part of this assignment reads a 2x3 matrix from a file and separates it into a 2x2 matrix A and a 2x1 vector b. It then solves for
@@ -13,7 +10,7 @@ back substitution on it. If there is a unique solution, the output file contains
 system is unsolvable or inconsistent, then the output file is a single line reading "System inconsistent". If the system is underdetermined, the output 
 file is a single line reading "System underdetermined". </p>
     
-<p> Due to the nature of the computations involved in the back substitution, the input is checked for  a few edge cases and reworked into a standard form if needed. It also uses the facts that dividing by zero will yield infinity and zero divided by zero is not a number in order to determine whether the system is inconsistent or underdetermined. This program depends on the inputs being of a certain size and formatting in order for it to work. There are two output files from this part, generated from the 2D testing input files
+<p> Due to the nature of the computations involved in the back substitution, the input is checked for a few edge cases and reworked into a standard form if needed. It also uses the facts that dividing by zero will yield infinity and zero divided by zero is not a number in order to determine whether the system is inconsistent or underdetermined. This program depends on the inputs being of a certain size and formatting in order for it to work. There are two output files from this part, generated from the 2D testing input files
     
 <h5>Part 1 Pseudocode</h5>
 
