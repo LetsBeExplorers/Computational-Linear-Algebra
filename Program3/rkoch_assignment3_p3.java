@@ -23,6 +23,8 @@ public class rkoch_assignment3_p3 {
 		countNumberOfLines();
 		readMatrixFromFile();
 
+		double length = matrixLength(point1);
+
 		resultsFile.close();
 	}
 
@@ -87,16 +89,6 @@ public class rkoch_assignment3_p3 {
 		return roundedNum;
 	}
 
-	// prints a matrix to a given file
-	public static void printMatrixToFile(double[][] matrix) throws IOException {
-		for (int row = 0; row < matrix.length; row++) {
-			for (int column = 0; column < matrix[row].length; column++) {
-				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix[row][column], 4));
-			}
-			resultsFile.println();
-		}
-	}
-
 	// subtracts one matrix from another
 	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
 		double[][] newMatrix = new double[left.length][left[0].length];
@@ -108,6 +100,30 @@ public class rkoch_assignment3_p3 {
 		}
 
 		return newMatrix;
+	}
+
+	// finds the length of a given matrix
+	public static double matrixLength(double[][] matrix) {
+		double total = 0;
+
+		for (int row = 0; row < matrix.length; row++) {
+			for (int column = 0; column < matrix[0].length; column++) {
+				total += matrix[row][column]*matrix[row][column];
+			}
+		}
+
+		total = Math.sqrt(total);
+		return total;
+	}
+
+	// prints a matrix to a given file
+	public static void printMatrixToFile(double[][] matrix) throws IOException {
+		for (int row = 0; row < matrix.length; row++) {
+			for (int column = 0; column < matrix[row].length; column++) {
+				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix[row][column], 4));
+			}
+			resultsFile.println();
+		}
 	}
 
 
