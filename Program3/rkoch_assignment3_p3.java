@@ -100,6 +100,19 @@ public class rkoch_assignment3_p3 {
 		return newMatrix;
 	}
 
+	// adds one matrix to another
+	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
+		double[][] newMatrix = new double[left.length][left[0].length];
+
+		for (int row = 0; row < newMatrix.length; row++) {
+			for (int column = 0; column < newMatrix[0].length; column++) {
+				newMatrix[row][column] = left[row][column] + right[row][column];
+			}
+		}
+
+		return newMatrix;
+	}
+
 	// finds the length of a given matrix
 	public static double matrixLength(double[][] matrix) {
 		double total = 0;
