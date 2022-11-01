@@ -94,9 +94,9 @@ one binary number corresponding to either yes, matrix A is the same (1), or no (
 
 <h5>Part 2 Pseudocode</h5>
 
-   class rkoch_assignment3_p2
-    this program will depends on the matrices being the size 2x2
-    static variables matrixA, eigenValues, diagnolMatrix, matrixR, transposedMatrixR, matrixComposite, inputFile and resultsFile
+    class rkoch_assignment3_p2
+        this program will depends on the matrices being the size 2x2
+        static variables matrixA, eigenValues, diagnolMatrix, matrixR, transposedMatrixR, matrixComposite, inputFile and resultsFile
 
     main
       setup the input and output file
