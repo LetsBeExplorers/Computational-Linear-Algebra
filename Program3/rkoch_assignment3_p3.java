@@ -172,6 +172,15 @@ public class rkoch_assignment3_p3 {
 		return total;
 	}
 
+	// projects matrix1 onto matrix2
+	// only works if matrix2 is not zero
+	public static double[][] matrixProjection(double[][] matrix1, double[][] matrix2) {
+		double scalar = dotProduct(matrix1, matrix2)/(matrixLength(matrix1)*matrixLength(matrix1));
+		double[][] projectedMatrix = scalarMultiply(scalar, matrix1);
+
+		return projectedMatrix;
+	}
+
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
 		for (int row = 0; row < matrix.length; row++) {
