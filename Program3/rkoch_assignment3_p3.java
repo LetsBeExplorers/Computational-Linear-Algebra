@@ -110,7 +110,7 @@ public class rkoch_assignment3_p3 {
 	}
 
 	// adds one matrix to another
-	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
+	public static double[][] matrixAddition(double[][] left, double[][] right) {
 		double[][] newMatrix = new double[left.length][left[0].length];
 
 		for (int row = 0; row < newMatrix.length; row++) {
@@ -168,7 +168,7 @@ public class rkoch_assignment3_p3 {
 				total += matrix1[row][column]*matrix2[row][column];
 			}
 		}
-		
+
 		return total;
 	}
 
