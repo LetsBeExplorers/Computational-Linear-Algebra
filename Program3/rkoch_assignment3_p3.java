@@ -176,20 +176,6 @@ public class rkoch_assignment3_p3 {
 		return scaledMatrix;
 	}
 
-	// multiplies a matrix by another matrix and fills a new matrix with the result
-	// user must ensure the matrices being multiplied are the same size
-	public static double[][] matrixMultiply(double[][] operator, double[][] operand) {
-		double[][] newMatrix = new double[operator.length][operand[0].length];
-
-		for (int row = 0; row < newMatrix.length; row++) {
-			for (int column = 0; column < newMatrix[row].length; column++) {
-				newMatrix[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
-			}
-		}
-
-		return newMatrix;
-	}
-
 	// find the dot product between two matrices
 	public static double dotProduct(double[][] matrix1, double[][] matrix2) {
 		double total = 0;
