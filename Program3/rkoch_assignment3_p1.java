@@ -2,8 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class rkoch_assignment3_p1 {
 	// this program depends on the matrices being these sizes
