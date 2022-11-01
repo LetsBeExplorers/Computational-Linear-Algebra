@@ -97,6 +97,7 @@ public class rkoch_assignment3_p3 {
 		}
 	}
 
+	// finds the area of a triangle given 3 points
 	public static double triangleArea(double[][] point1, double[][] point2, double[][] point3) {
 		
 		// setup vectors v and w between point 1 and 2 and point 1 and 3
@@ -113,6 +114,25 @@ public class rkoch_assignment3_p3 {
 		// are of a triangle is 1/2 base times height
 		double area = 0.5*base*height;
 		return area;
+	}
+
+	public static double distanceCalculator(double[][] point1, double[][] point2, double[][] point3) {
+
+	}
+
+	// finds the midpoint of two points
+	public static double[][] midpointCalculator(double[][] point1, double[][] point2) {
+		double[][] midpoint = new double[point1.length][point1[0].length];
+
+		// for each row, for each column, find the midpoint
+		for (int row = 0; row < newMatrix.length; row++) {
+			for (int column = 0; column < newMatrix[0].length; column++) {
+				midpoint[row][column] = (point1[row][column] + point2[row][column])/2;
+			}
+		}
+
+		return midpoint;
+
 	}
 
 	// finds the distance between two points
