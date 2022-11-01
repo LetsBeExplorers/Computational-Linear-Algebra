@@ -16,12 +16,14 @@ public class rkoch_assignment3_p3 {
 	public static void main(String[] args) throws IOException {
 
 		// setup the input and output files
-		// count the number of lines in the input fil
+		// count the number of lines in the input file
 		// fill the point arrays
 		setupTheInputFile();
 		setupTheOutputFile();
 		countNumberOfLines();
 		readMatrixFromFile();
+
+
 
 		resultsFile.close();
 	}
@@ -74,6 +76,13 @@ public class rkoch_assignment3_p3 {
 			point2[row][0] = readableFile.nextDouble();
 			point3[row][0] = readableFile.nextDouble();
 		}
+	}
+
+	// finds the distance between two points
+	public static double distanceTwoPoints(double[][] point1, double[][] point2) {
+		double[][] newMatrix = matrixSubtraction(point1, point2);
+		double distance = matrixLength(newMatrix);
+		return distance;
 	}
 
 	// rounds a double to a specified number of significant digits
