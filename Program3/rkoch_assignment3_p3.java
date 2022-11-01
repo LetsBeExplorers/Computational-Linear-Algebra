@@ -7,14 +7,20 @@ import java.math.*;
 
 public class rkoch_assignment3_p3 {
 	public static int numLines = 0;
+	public static double[][] point1;
+	public static double[][] point2;
+	public static double[][] point3;
 	public static File inputFile;
 
 	public static void main(String[] args) throws IOException {
 
-		// setup the input file and count the number of lines in it
+		// setup the input file
+		// count the number of lines in it
+		// fill the point arrays
 		setupTheInputFile();
 		countNumberOfLines();
-
+		readMatrixFromFile();
+		
 	}
 
 	// prompts the user for an input file and returns it
@@ -39,4 +45,24 @@ public class rkoch_assignment3_p3 {
 		numLines = count/3;
 	}
 
+	// reads a matrix from a file and puts each value into a 2D array
+	public static void readMatrixFromFile() throws IOException {
+
+		// fill the point arrays, always have only 1 column
+		point1 = new double[numLines][1];
+		point2 = new double[numLines][1];
+		point3 = new double[numLines][1];
+
+		// open the file for reading
+		Scanner readableFile = new Scanner(inputFile);
+
+		// take each double and put it into a matrix
+		// first two on each line fill matrix A 
+		// depends on the input matrix being a 2x3
+		for (int row = 0; row < numLines; row++) {
+			point1[row][0] = readableFile.nextDouble();
+			point2[row][0] = readableFile.nextDouble();
+			point3[row][0] = readableFile.nextDouble();
+		}
+	}
 }
