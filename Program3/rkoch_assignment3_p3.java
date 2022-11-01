@@ -33,6 +33,13 @@ public class rkoch_assignment3_p3 {
 		inputFile = new File(userInput.nextLine());
 	}
 
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an output file: ");
+		resultsFile = new PrintWriter(new File(userInput.nextLine()));
+	}
+	
 	// counts the number of lines in a given input file by
 	// counting the number of doubles and diving by 3, depends
 	// on each line of the input matrix having 3 numeric values
@@ -69,10 +76,4 @@ public class rkoch_assignment3_p3 {
 		}
 	}
 
-	// creates and sets up the output file for writing
-	public static void setupTheOutputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an output file: ");
-		resultsFile = new PrintWriter(new File(userInput.nextLine()));
-	}
 }
