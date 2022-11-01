@@ -28,14 +28,18 @@ public class rkoch_assignment3_p3 {
 		countNumberOfLines();
 		readMatrixFromFile();
 
+		// the area of the triangle is the first entry in the solution matrix
 		solution[0][0] = triangleArea(point1, point2, point3);
+		
+		// print the solution matrix and close the file
 		printMatrixToFile(solution);
-
 		resultsFile.close();
 	}
 
 	// prompts the user for an input file and returns it
 	public static void setupTheInputFile(String filename) throws IOException {
+		
+		// if a filename was not entered, then prompt for one
 		if(filename == null) {
 			Scanner userInput = new Scanner(System.in);
 			System.out.printf("Please enter the name of an input file: ");
@@ -47,6 +51,8 @@ public class rkoch_assignment3_p3 {
 
 	// creates and sets up the output file for writing
 	public static void setupTheOutputFile(String filename) throws IOException {
+		
+		// if a filename was not entered, then prompt for one
 		if(filename == null) {
 			Scanner userInput = new Scanner(System.in);
 			System.out.printf("Please enter the name of an output file: ");
@@ -92,21 +98,27 @@ public class rkoch_assignment3_p3 {
 	}
 
 	public static double triangleArea(double[][] point1, double[][] point2, double[][] point3) {
+		
+		// setup vectors v and w between point 1 and 2 and point 1 and 3
 		double[][] vectorv = matrixSubtraction(point2, point1);
 		double[][] vectorw = matrixSubtraction(point3, point1);
 
 		// height = w orthogonal to v
 		double[][] vectorh = matrixSubtraction(vectorw, matrixProjection(vectorv, vectorw));
 
+		// find the length of the base and height
 		double base = vectorLength(vectorv);
 		double height = vectorLength(vectorh);
 
+		// are of a triangle is 1/2 base times height
 		double area = 0.5*base*height;
 		return area;
 	}
 
 	// finds the distance between two points
 	public static double distanceTwoPoints(double[][] point1, double[][] point2) {
+		
+		// distance is the magnitude of the vector between two points
 		double[][] newMatrix = matrixSubtraction(point2, point1);
 		double distance = vectorLength(newMatrix);
 		return distance;
@@ -127,6 +139,7 @@ public class rkoch_assignment3_p3 {
 	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
 		double[][] newMatrix = new double[left.length][left[0].length];
 
+		// for each row, for each column, subtract the right from the left
 		for (int row = 0; row < newMatrix.length; row++) {
 			for (int column = 0; column < newMatrix[0].length; column++) {
 				newMatrix[row][column] = left[row][column] - right[row][column];
@@ -140,6 +153,7 @@ public class rkoch_assignment3_p3 {
 	public static double[][] matrixAddition(double[][] left, double[][] right) {
 		double[][] newMatrix = new double[left.length][left[0].length];
 
+		// for each row, for each column, add the right to the left
 		for (int row = 0; row < newMatrix.length; row++) {
 			for (int column = 0; column < newMatrix[0].length; column++) {
 				newMatrix[row][column] = left[row][column] + right[row][column];
@@ -153,12 +167,14 @@ public class rkoch_assignment3_p3 {
 	public static double vectorLength(double[][] matrix) {
 		double total = 0;
 
+		// for each row, for each column, add the square of the value to the total
 		for (int row = 0; row < matrix.length; row++) {
 			for (int column = 0; column < matrix[0].length; column++) {
 				total += matrix[row][column]*matrix[row][column];
 			}
 		}
 
+		// the total is the the square root of the sums
 		total = Math.sqrt(total);
 		return total;
 	}
@@ -167,6 +183,7 @@ public class rkoch_assignment3_p3 {
 	public static double[][] scalarMultiply(double scalar, double[][] matrix) {
 		double[][] scaledMatrix = new double[matrix.length][matrix[0].length];
 
+		// for each row, for each column, mulitply the matrix value by the scalar
 		for (int row = 0; row < scaledMatrix.length; row++) {
 			for (int column = 0; column < scaledMatrix[0].length; column++) {
 				scaledMatrix[row][column] = matrix[row][column]*scalar;
@@ -180,6 +197,7 @@ public class rkoch_assignment3_p3 {
 	public static double dotProduct(double[][] matrix1, double[][] matrix2) {
 		double total = 0;
 
+		// for each row, for each column, add the product of the matrix values to the total
 		for (int row = 0; row < matrix1.length; row++) {
 			for (int column = 0; column < matrix1[0].length; column++) {
 				total += matrix1[row][column]*matrix2[row][column];
@@ -192,6 +210,8 @@ public class rkoch_assignment3_p3 {
 	// projects matrix1 onto matrix2
 	// only works if matrix2 is not zero
 	public static double[][] matrixProjection(double[][] matrix1, double[][] matrix2) {
+		
+		// projection is the dot product divided by the length squared, multiplied by the vector
 		double scalar = dotProduct(matrix1, matrix2)/(vectorLength(matrix1)*vectorLength(matrix1));
 		double[][] projectedMatrix = scalarMultiply(scalar, matrix1);
 
