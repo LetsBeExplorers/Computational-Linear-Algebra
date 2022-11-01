@@ -154,7 +154,6 @@ public class rkoch_assignment3_p1 {
 		// solve for x1 and x2
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
-
 		solution[0][0] = x1;
 		solution[1][0] = x2;
 
