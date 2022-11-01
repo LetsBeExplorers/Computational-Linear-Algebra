@@ -127,7 +127,7 @@ public class rkoch_assignment3_p1 {
 	}
 
 	// multiplies a matrix by another matrix and fills a new matrix with the result
-	// user must ensure the matrices being multiplied are the same size
+	// user must ensure the matrices being multiplied are the same sizet
 	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
 		for (int row = 0; row < result.length; row++) {
 			for (int column = 0; column < result[row].length; column++) {
@@ -155,15 +155,9 @@ public class rkoch_assignment3_p1 {
 		x2 = b2/a22;
 		x1 = (b1-(x2*a12))/a11;
 
-		// checks that the solutions are finite, if so rounds to 4 sig figs
-		// if not, exceptions are handled later and answers don't need rounding
-		if (Double.isFinite(x1) && Double.isFinite(x2)) {
-			solution[0][0] = roundToSignificantDigits(x1, 4);
-			solution[1][0] = roundToSignificantDigits(x2, 4);
-		} else { 
-			solution[0][0] = x1;
-			solution[1][0] = x2;
-		}
+		solution[0][0] = x1;
+		solution[1][0] = x2;
+
 	}
 
 	// rounds a double to a specified number of significant digits
@@ -185,7 +179,7 @@ public class rkoch_assignment3_p1 {
 		if (shearedVectorb[0][0] == 0 && shearedVectorb[1][0] == 0) {
 			solution[0][0] = 0;
 			solution[1][0] = 0;
-			printMatrixToFile();
+			printMatrixToFile(solution);
 		}
 
 		// if the system is inconsistent, then it can't be solved
@@ -201,13 +195,18 @@ public class rkoch_assignment3_p1 {
 
 		// otherwise, print the solution
 		else {
-			printMatrixToFile();
+			printMatrixToFile(solution);
 		}
 		resultsFile.close();
 	}
 
 	// prints a matrix to a given file
-	public static void printMatrixToFile() throws IOException {
-		resultsFile.printf("%.4g\n%.4g", solution[0][0], solution[1][0]);
+	public static void printMatrixToFile(double[][] matrix) throws IOException {
+		for (int row = 0; row < matrix.length; row++) {
+			for (int column = 0; column < matrix[row].length; column++) {
+				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix[row][column], 4));
+			}
+			resultsFile.println();
+		}
 	}
 }
