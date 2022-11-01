@@ -64,7 +64,7 @@ public class rkoch_assignment3_p3 {
 	}
 
 	// counts the number of lines in a given input file by
-	// counting the number of doubles and diving by 3, depends
+	// counting the number of doubles and dividing by 3, depends
 	// on each line of the input matrix having only 3 numeric values
 	public static void countNumberOfLines() throws IOException{
 		Scanner scanLines = new Scanner(inputFile);
