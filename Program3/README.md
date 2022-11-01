@@ -73,7 +73,7 @@ file is a single line reading "System underdetermined". </p>
 
     method called roundToSignificantDigits: rounds a double to a specified number of significant digits
 
-    method called printSolutiontoFile: checks if the system is inconsistent or underdetermined. if not, it prints the solution
+    method called printSolutiontoFile: checks if the system is inconsistent or underdetermined. if not, print the solution
       if vectorb is zero, the solution is the zero vector
       if the system is inconsistent, then it can't be solved. 
         solution matrix will contain infinities
