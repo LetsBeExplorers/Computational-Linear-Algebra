@@ -15,12 +15,17 @@ public class rkoch_assignment3_p3 {
 
 	public static void main(String[] args) throws IOException {
 
-		// setup the input file
-		// count the number of lines in it
+		// setup the input and output files
+		// count the number of lines in the input fil
 		// fill the point arrays
 		setupTheInputFile();
+		setupTheOutputFile();
 		countNumberOfLines();
 		readMatrixFromFile();
+
+		printMatrixToFile(point1);
+		printMatrixToFile(point2);
+		printMatrixToFile(point3);
 
 
 		resultsFile.close();
@@ -42,13 +47,13 @@ public class rkoch_assignment3_p3 {
 
 	// counts the number of lines in a given input file by
 	// counting the number of doubles and diving by 3, depends
-	// on each line of the input matrix having 3 numeric values
+	// on each line of the input matrix having only 3 numeric values
 	public static void countNumberOfLines() throws IOException{
-		Scanner readableFile = new Scanner(inputFile);
+		Scanner scanLines = new Scanner(inputFile);
 
 		int count = 0;
-		while (readableFile.hasNextDouble()) {
-			readableFile.nextDouble();
+		while (scanLines.hasNextDouble()) {
+			scanLines.nextDouble();
 			count++;
 		}
 
