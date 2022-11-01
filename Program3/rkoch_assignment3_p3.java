@@ -23,8 +23,6 @@ public class rkoch_assignment3_p3 {
 		countNumberOfLines();
 		readMatrixFromFile();
 
-		double length = matrixLength(point1);
-
 		resultsFile.close();
 	}
 
@@ -114,6 +112,29 @@ public class rkoch_assignment3_p3 {
 
 		total = Math.sqrt(total);
 		return total;
+	}
+
+	// multiplies a matrix by a scalar value
+	public static double[][] scalarMultiply(double scalar, double[][] matrix) {
+		double[][] scaledMatrix = new double[matrix.length][matrix[0].length];
+
+		for (int row = 0; row < scaledMatrix.length; row++) {
+			for (int column = 0; column < scaledMatrix[0].length; column++) {
+				scaledMatrix[row][column] = matrix[row][column]*scalar;
+			}
+		}
+
+		return scaledMatrix;
+	}
+
+	// multiplies a matrix by another matrix and fills a new matrix with the result
+	// user must ensure the matrices being multiplied are the same size
+	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
+		for (int row = 0; row < result.length; row++) {
+			for (int column = 0; column < result[row].length; column++) {
+				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+			}
+		}
 	}
 
 	// prints a matrix to a given file
