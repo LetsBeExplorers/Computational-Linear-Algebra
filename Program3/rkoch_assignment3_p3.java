@@ -159,6 +159,19 @@ public class rkoch_assignment3_p3 {
 		}
 	}
 
+	// find the dot product between two matrices
+	public static double dotProduct(double[][] matrix1, double[][] matrix2) {
+		double total = 0;
+
+		for (int row = 0; row < matrix.length; row++) {
+			for (int column = 0; column < matrix[0].length; column++) {
+				total += matrix1[row][column]*matrix2[row][column];
+			}
+		}
+		
+		return total;
+	}
+
 	// prints a matrix to a given file
 	public static void printMatrixToFile(double[][] matrix) throws IOException {
 		for (int row = 0; row < matrix.length; row++) {
