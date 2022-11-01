@@ -11,7 +11,10 @@ left justified in each column. The rows are separated by line breaks. All decima
 x in Ax=b for general A. In order to solve for x, this program performs Gaussian elimination by taking matrix A, performing forward elimination and then 
 back substitution on it. If there is a unique solution, the output file contains a single 2x1 matrix with two lines and one number per line. If the 
 system is unsolvable or inconsistent, then the output file is a single line reading "System inconsistent". If the system is underdetermined, the output 
-file is a single line reading "System underdetermined". Due to the nature of the computations involved in the back substitution, the input is checked for  a few edge cases and reworked into a standard form if needed. It also uses the facts that dividing by zero will yield infinity and zero divided by zero is not a number in order to determine whether the system is inconsistent or underdetermined. This program depends on the inputs being of a certain size and formatting in order for it to work. There are two output files from this part, generated from the 2D testing input files
+file is a single line reading "System underdetermined". </p>
+    
+<p> Due to the nature of the computations involved in the back substitution, the input is checked for  a few edge cases and reworked into a standard form if needed. It also uses the facts that dividing by zero will yield infinity and zero divided by zero is not a number in order to determine whether the system is inconsistent or underdetermined. This program depends on the inputs being of a certain size and formatting in order for it to work. There are two output files from this part, generated from the 2D testing input files
+    
 <h5>Part 1 Pseudocode</h5>
 
     class rkoch_assignment3_p1
@@ -85,7 +88,7 @@ file is a single line reading "System underdetermined". Due to the nature of the
 <h4>Part 2</h4>
 <p>The program for the second part of this assignment reads a 2x3 matrix from a file and separates it into a 2x2 matrix A and throws away the last column 
 vector. Given the matrix A, this program computes the following: 1) the diagonal matrix whose diagonal elements are the corresponding eigenvalues (the dominant eigenvalue is the top left-hand corner), 2) the 2x2 matrix, R, whose ith column vector is the normalized eigenvector corresponding to λi for i=1,2, 3) the matrix composition, 4) the comparison between A and the matrix composition. The output file has seven lines, where the first two lines correspond to the 2x2 diagnol matrix, the next two lines are R, the next two lines are the output of the matrix composition, and the last line is 
-one binary number corresponding to yes matrix A is the same (1) or no (0). The first six lines have two numbers per line, while the last line has one binary number. If there are no real eigenvalues, the output is a single line reading "No real eigenvalues". </p>
+one binary number corresponding to either yes, matrix A is the same (1), or no (0). The first six lines have two numbers per line, while the last line has one binary number. If there are no real eigenvalues, the output is a single line reading "No real eigenvalues". </p>
 
 <p> The eigenvalues are found by using the coefficients of the characteristic equation to solve the quadratic equation, if they are not real values then the program stops here. If they are real, in order to solve for the eigenvectors, first, A − λI is found for both eigenvalues. By the Cayley–Hamilton theorem, assuming neither matrix is zero, the columns of each A − λI must include eigenvectors for the other eigenvalue. Again by the Cayley–Hamilton theorem, if either matrix is zero (this is checked by the program), then A is a multiple of the identity and any non-zero vector is an eigenvector. Wikipedia was used to find this theorem. </p>
 
