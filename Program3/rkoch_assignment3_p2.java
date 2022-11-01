@@ -243,6 +243,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] scalarMultiply(double scalar, double[][] matrix) {
 		double[][] scaledMatrix = new double[matrix.length][matrix[0].length];
 
+		// for each row, for each column, mulitply the matrix value by the scalar
 		for (int row = 0; row < scaledMatrix.length; row++) {
 			for (int column = 0; column < scaledMatrix[0].length; column++) {
 				scaledMatrix[row][column] = matrix[row][column]*scalar;
@@ -256,6 +257,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] matrixSubtraction(double[][] left, double[][] right) {
 		double[][] newMatrix = new double[left.length][left[0].length];
 
+		// for each row, for each column, subtract the right from the left
 		for (int row = 0; row < newMatrix.length; row++) {
 			for (int column = 0; column < newMatrix[0].length; column++) {
 				newMatrix[row][column] = left[row][column] - right[row][column];
@@ -268,8 +270,8 @@ public class rkoch_assignment3_p2 {
 	// normalizes a value in a vector of length 2 given both values of the vector
 	// normalizes the first value given
 	public static double normalizeVectorValue(double x1, double x2) {
+		// divide the value by the length of the vector
 		double norm = x1/Math.sqrt((x1*x1) + (x2*x2));
-
 		return norm;
 	}
 
@@ -277,6 +279,7 @@ public class rkoch_assignment3_p2 {
 	public static double[][] transposeMatrix(double[][] matrix) throws IOException {
 		double[][] transposedMatrix = new double[matrix.length][matrix[0].length];
 
+		// for each row, for each column, transpose the row and columns
 		for (int column = 0; column < transposedMatrix[0].length; column++) {
 			for (int row = 0; row < transposedMatrix.length; row++) {
 				transposedMatrix[row][column] = matrix[column][row];
@@ -292,6 +295,7 @@ public class rkoch_assignment3_p2 {
 		double[][] matrixComposition = new double[matrix1.length][matrix1[0].length];
 		double[][] holdingMatrix = new double[matrix1.length][matrix1[0].length];
 
+		// mulitply the first two matrices, then multiply that by the last matrix
 		matrixMultiply(matrix1, matrix2, holdingMatrix);
 		matrixMultiply(holdingMatrix, matrix3, matrixComposition);
 
@@ -312,6 +316,7 @@ public class rkoch_assignment3_p2 {
 	public static boolean matrixCompare(double[][] matrix1, double[][] matrix2) {
 		boolean match = true;
 
+		// for each row, for each column, check that the value is the same
 		for (int row = 0; row < matrix1.length; row++) {
 			for (int column = 0; column < matrix1[0].length; column++) {
 				match = match && (matrix1[row][column] == matrix2[row][column]);
