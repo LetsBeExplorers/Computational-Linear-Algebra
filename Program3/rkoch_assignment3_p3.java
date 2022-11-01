@@ -23,11 +23,6 @@ public class rkoch_assignment3_p3 {
 		countNumberOfLines();
 		readMatrixFromFile();
 
-		printMatrixToFile(point1);
-		printMatrixToFile(point2);
-		printMatrixToFile(point3);
-
-
 		resultsFile.close();
 	}
 
