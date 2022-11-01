@@ -54,7 +54,8 @@ file is a single line reading "System underdetermined". </p>
       forward elimination
       back substitution
 
-    method called forwardElimination: performs forward elimination by creating a shear matrix and mulitplying it by MatrixA and vectorb
+    method called forwardElimination: performs forward elimination by creating a shear matrix and mulitplying it by 
+        MatrixA and vectorb
       fill the shear matrix
       multiply matrix A and vector b by the shear matrix
 
@@ -93,7 +94,8 @@ one binary number corresponding to either yes, matrix A is the same (1), or no (
 
     class rkoch_assignment3_p2
         this program will depends on the matrices being the size 2x2
-        static variables matrixA, eigenValues, diagnolMatrix, matrixR, transposedMatrixR, matrixComposite, inputFile and resultsFile
+        static variables matrixA, eigenValues, diagnolMatrix, matrixR, transposedMatrixR, matrixComposite, inputFile and 
+            resultsFile
 
     main
       setup the input and output file
@@ -120,7 +122,7 @@ one binary number corresponding to either yes, matrix A is the same (1), or no (
         first two on each line fill matrix A 
         throw away the last value on each row
 
-    method called solveForEigenValues: solves for the eigenvalues and returns a boolean indicating if they are real or not
+    method called solveForEigenValues: solves for the eigenvalues and returns a boolean if they are real or not
       setup variables for the eigenvalues we are solving for
       setup matrix a values
         first number is row and second number is column
