@@ -10,6 +10,7 @@ public class rkoch_assignment3_p3 {
 	public static double[][] point1;
 	public static double[][] point2;
 	public static double[][] point3;
+	public static double[][] solution = new double[2][1];
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -18,28 +19,40 @@ public class rkoch_assignment3_p3 {
 		// setup the input and output files
 		// count the number of lines in the input file
 		// fill the point arrays
-		setupTheInputFile();
-		setupTheOutputFile();
+		String filename = null;
+		if(args.length > 0) filename = args[0];
+		setupTheInputFile(filename);
+		filename = null;
+		if(args.length > 1) filename = args[1];
+		setupTheOutputFile(filename);
 		countNumberOfLines();
 		readMatrixFromFile();
 
-		System.out.printf("%f", dotProduct(point1, point2));
+		solution[0][0] = triangleArea(point1, point2, point3);
+		printMatrixToFile(solution);
 
 		resultsFile.close();
 	}
 
 	// prompts the user for an input file and returns it
-	public static void setupTheInputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an input file: ");
-		inputFile = new File(userInput.nextLine());
+	public static void setupTheInputFile(String filename) throws IOException {
+		if(filename == null) {
+			Scanner userInput = new Scanner(System.in);
+			System.out.printf("Please enter the name of an input file: ");
+			filename = userInput.nextLine();
+		}
+
+		inputFile = new File(filename);
 	}
 
 	// creates and sets up the output file for writing
-	public static void setupTheOutputFile() throws IOException {
-		Scanner userInput = new Scanner(System.in);
-		System.out.printf("Please enter the name of an output file: ");
-		resultsFile = new PrintWriter(new File(userInput.nextLine()));
+	public static void setupTheOutputFile(String filename) throws IOException {
+		if(filename == null) {
+			Scanner userInput = new Scanner(System.in);
+			System.out.printf("Please enter the name of an output file: ");
+			filename = userInput.nextLine();
+		}
+		resultsFile = new PrintWriter(new File(filename));
 	}
 
 	// counts the number of lines in a given input file by
@@ -78,10 +91,24 @@ public class rkoch_assignment3_p3 {
 		}
 	}
 
+	public static double triangleArea(double[][] point1, double[][] point2, double[][] point3) {
+		double[][] vectorv = matrixSubtraction(point2, point1);
+		double[][] vectorw = matrixSubtraction(point3, point1);
+
+		// height = w orthogonal to v
+		double[][] vectorh = matrixSubtraction(vectorw, matrixProjection(vectorv, vectorw));
+
+		double base = vectorLength(vectorv);
+		double height = vectorLength(vectorh);
+
+		double area = 0.5*base*height;
+		return area;
+	}
+
 	// finds the distance between two points
 	public static double distanceTwoPoints(double[][] point1, double[][] point2) {
 		double[][] newMatrix = matrixSubtraction(point2, point1);
-		double distance = matrixLength(newMatrix);
+		double distance = vectorLength(newMatrix);
 		return distance;
 	}
 
@@ -122,8 +149,8 @@ public class rkoch_assignment3_p3 {
 		return newMatrix;
 	}
 
-	// finds the length of a given matrix
-	public static double matrixLength(double[][] matrix) {
+	// finds the length of a given vector
+	public static double vectorLength(double[][] matrix) {
 		double total = 0;
 
 		for (int row = 0; row < matrix.length; row++) {
@@ -179,7 +206,7 @@ public class rkoch_assignment3_p3 {
 	// projects matrix1 onto matrix2
 	// only works if matrix2 is not zero
 	public static double[][] matrixProjection(double[][] matrix1, double[][] matrix2) {
-		double scalar = dotProduct(matrix1, matrix2)/(matrixLength(matrix1)*matrixLength(matrix1));
+		double scalar = dotProduct(matrix1, matrix2)/(vectorLength(matrix1)*vectorLength(matrix1));
 		double[][] projectedMatrix = scalarMultiply(scalar, matrix1);
 
 		return projectedMatrix;
