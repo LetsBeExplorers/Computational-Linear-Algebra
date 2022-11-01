@@ -23,7 +23,7 @@ public class rkoch_assignment3_p3 {
 		countNumberOfLines();
 		readMatrixFromFile();
 
-
+		System.out.printf("%f", dotProduct(point1, point2));
 
 		resultsFile.close();
 	}
@@ -80,7 +80,7 @@ public class rkoch_assignment3_p3 {
 
 	// finds the distance between two points
 	public static double distanceTwoPoints(double[][] point1, double[][] point2) {
-		double[][] newMatrix = matrixSubtraction(point1, point2);
+		double[][] newMatrix = matrixSubtraction(point2, point1);
 		double distance = matrixLength(newMatrix);
 		return distance;
 	}
@@ -151,20 +151,24 @@ public class rkoch_assignment3_p3 {
 
 	// multiplies a matrix by another matrix and fills a new matrix with the result
 	// user must ensure the matrices being multiplied are the same size
-	public static void matrixMultiply(double[][] operator, double[][] operand, double[][] result) {
-		for (int row = 0; row < result.length; row++) {
-			for (int column = 0; column < result[row].length; column++) {
-				result[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
+	public static double[][] matrixMultiply(double[][] operator, double[][] operand) {
+		double[][] newMatrix = new double[operator.length][operand[0].length];
+
+		for (int row = 0; row < newMatrix.length; row++) {
+			for (int column = 0; column < newMatrix[row].length; column++) {
+				newMatrix[row][column] = operator[row][0]*operand[0][column] + operator[row][1]*operand[1][column];
 			}
 		}
+
+		return newMatrix;
 	}
 
 	// find the dot product between two matrices
 	public static double dotProduct(double[][] matrix1, double[][] matrix2) {
 		double total = 0;
 
-		for (int row = 0; row < matrix.length; row++) {
-			for (int column = 0; column < matrix[0].length; column++) {
+		for (int row = 0; row < matrix1.length; row++) {
+			for (int column = 0; column < matrix1[0].length; column++) {
 				total += matrix1[row][column]*matrix2[row][column];
 			}
 		}
