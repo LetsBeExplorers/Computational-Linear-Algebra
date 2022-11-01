@@ -11,6 +11,7 @@ public class rkoch_assignment3_p3 {
 	public static double[][] point2;
 	public static double[][] point3;
 	public static File inputFile;
+	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
 
@@ -20,7 +21,9 @@ public class rkoch_assignment3_p3 {
 		setupTheInputFile();
 		countNumberOfLines();
 		readMatrixFromFile();
-		
+
+
+		resultsFile.close();
 	}
 
 	// prompts the user for an input file and returns it
@@ -64,5 +67,12 @@ public class rkoch_assignment3_p3 {
 			point2[row][0] = readableFile.nextDouble();
 			point3[row][0] = readableFile.nextDouble();
 		}
+	}
+
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile() throws IOException {
+		Scanner userInput = new Scanner(System.in);
+		System.out.printf("Please enter the name of an output file: ");
+		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
 }
