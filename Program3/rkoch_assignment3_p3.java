@@ -30,6 +30,8 @@ public class rkoch_assignment3_p3 {
 
 		// the area of the triangle is the first entry in the solution matrix
 		solution[0][0] = triangleArea(point1, point2, point3);
+		// the distance from either the point or the plane is the second entry
+		solution[1][0] = distanceCalculator(point1, point2, point3);
 		
 		// print the solution matrix and close the file
 		printMatrixToFile(solution);
@@ -116,7 +118,20 @@ public class rkoch_assignment3_p3 {
 		return area;
 	}
 
+	// finds the distance between a point and a line or a point and a plane
 	public static double distanceCalculator(double[][] point1, double[][] point2, double[][] point3) {
+		double[][] midpoint = midpointCalculator(point1, point2);
+
+		// setup a vector between the first two points and a vector
+		// between the third point and the midpoint of the first two
+		double[][] vectorv = matrixSubtraction(point2, point1);
+		double[][] vectorw = matrixSubtraction(midpoint, point3);
+
+		// take the projection of v onto w, the length of that is the distance
+		double[][] vectord = matrixProjection(vectorv, vectorw);
+		double distance = vectorLength(vectord);
+
+		return distance;
 
 	}
 
@@ -125,8 +140,8 @@ public class rkoch_assignment3_p3 {
 		double[][] midpoint = new double[point1.length][point1[0].length];
 
 		// for each row, for each column, find the midpoint
-		for (int row = 0; row < newMatrix.length; row++) {
-			for (int column = 0; column < newMatrix[0].length; column++) {
+		for (int row = 0; row < midpoint.length; row++) {
+			for (int column = 0; column < midpoint[0].length; column++) {
 				midpoint[row][column] = (point1[row][column] + point2[row][column])/2;
 			}
 		}
@@ -227,8 +242,8 @@ public class rkoch_assignment3_p3 {
 		return total;
 	}
 
-	// projects matrix1 onto matrix2
-	// only works if matrix2 is not zero
+	// projects matrix2 onto matrix1
+	// only works if matrix1 is not zero
 	public static double[][] matrixProjection(double[][] matrix1, double[][] matrix2) {
 		
 		// projection is the dot product divided by the length squared, multiplied by the vector
