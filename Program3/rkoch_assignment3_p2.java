@@ -2,8 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class rkoch_assignment3_p2 {
 	// this program depends on the matrices being these sizes
@@ -133,7 +133,7 @@ public class rkoch_assignment3_p2 {
 	public static void fillTheDiagnolMatrix() {
 
 		// if the second eigenvalue is greater than the first
-		// then it is the dominannt eigenvalue
+		// then it is the dominant eigenvalue
 		if (eigenValues[1][0] > eigenValues[0][0]) {
 			diagnolMatrix[0][0] = eigenValues[1][0];
 			diagnolMatrix[1][1] = eigenValues[0][0];

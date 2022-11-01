@@ -2,8 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class rkoch_assignment3_p3 {
 	public static int numLines = 0;
@@ -90,8 +90,7 @@ public class rkoch_assignment3_p3 {
 		Scanner readableFile = new Scanner(inputFile);
 
 		// take each double and put it into a matrix
-		// first two on each line fill matrix A 
-		// depends on the input matrix being a 2x3
+		// put each column vector into a point
 		for (int row = 0; row < numLines; row++) {
 			point1[row][0] = readableFile.nextDouble();
 			point2[row][0] = readableFile.nextDouble();
@@ -113,7 +112,7 @@ public class rkoch_assignment3_p3 {
 		double base = vectorLength(vectorv);
 		double height = vectorLength(vectorh);
 
-		// are of a triangle is 1/2 base times height
+		// area of a triangle is 1/2 base times height
 		double area = 0.5*base*height;
 		return area;
 	}
