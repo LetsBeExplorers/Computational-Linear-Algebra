@@ -39,7 +39,7 @@ public class rkoch_assignment3_p3 {
 		System.out.printf("Please enter the name of an output file: ");
 		resultsFile = new PrintWriter(new File(userInput.nextLine()));
 	}
-	
+
 	// counts the number of lines in a given input file by
 	// counting the number of doubles and diving by 3, depends
 	// on each line of the input matrix having 3 numeric values
@@ -74,6 +74,17 @@ public class rkoch_assignment3_p3 {
 			point2[row][0] = readableFile.nextDouble();
 			point3[row][0] = readableFile.nextDouble();
 		}
+	}
+
+	// rounds a double to a specified number of significant digits
+	public static double roundToSignificantDigits(double number, int digits) {
+		double roundedNum;
+
+		BigDecimal bigDecimal = new BigDecimal(number);
+		bigDecimal = bigDecimal.round(new MathContext(digits));
+		roundedNum = bigDecimal.doubleValue();
+
+		return roundedNum;
 	}
 
 }
