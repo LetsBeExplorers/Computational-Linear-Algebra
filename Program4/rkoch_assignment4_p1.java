@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class rkoch_assignment4_p1 {
 
 	public static File inputFile;
-
+	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
 
@@ -14,7 +14,8 @@ public class rkoch_assignment4_p1 {
 	String filename = null;
 	if(args.length > 0) filename = args[0];
 	setupTheInputFile(filename);
-	
+	if(args.length > 1) filename = args[1];
+	setupTheOutputFile(filename);
 
 
 	}
@@ -30,5 +31,17 @@ public class rkoch_assignment4_p1 {
 		}
 
 		inputFile = new File(filename);
+	}
+
+	// creates and sets up the output file for writing
+	public static void setupTheOutputFile(String filename) throws IOException {
+		
+		// if a filename was not entered, then prompt for one
+		if(filename == null) {
+			Scanner userInput = new Scanner(System.in);
+			System.out.printf("Please enter the name of an output file: ");
+			filename = userInput.nextLine();
+		}
+		resultsFile = new PrintWriter(new File(filename));
 	}
 }
