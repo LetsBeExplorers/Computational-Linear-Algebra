@@ -5,9 +5,11 @@ import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import Vector;
+import Plane;
 
 public class rkoch_assignment4_p1 {
 
+	public static Plane projPlane;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -49,26 +51,33 @@ public class rkoch_assignment4_p1 {
 		resultsFile = new PrintWriter(new File(filename));
 	}
 
-	// reads in a vector from a given file
-	protected static Vector readVectorFromFile(Scanner file) {
-		double x = file.nextDouble();
-		double y = file.nextDouble();
-		double z = file.nextDouble();
-		return new Vector(x, y, z);
-	}
+
 
 	public static void readVectorsFromFile() throws IOException {
 
 		// open the file for reading
 		Scanner file = new Scanner(inputFile);
 
-		// create plane vectors
-		Vector point = readVectorFromFile(file);
-		Vector normal = readVectorFromFile(file);
+		projPlane = readPlaneFromFile(file);
 
 		// create vector for parallel direction
 		Vector parallel = readVectorFromFile(file);
 
+	}
+
+	// reads in a vector from a given file
+	protected static Vector readVectorFromFile(Scanner file) throws IOException {
+		double x = file.nextDouble();
+		double y = file.nextDouble();
+		double z = file.nextDouble();
+		return new Vector(x, y, z);
+	}
+
+	// reads in a plane from a given file
+	public static void readPlaneFromFile(Scanner file) throws IOException {
+		Vector point = readVectorFromFile(file);
+		Vector normal = readVectorFromFile(file);
+		return new Plane(point, normal);
 	}
 
 	// rounds a double to a specified number of significant digits
