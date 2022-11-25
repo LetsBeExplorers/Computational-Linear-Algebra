@@ -82,13 +82,4 @@ public class rkoch_assignment4_p1 {
 		return roundedNum;
 	}
 
-	// prints a matrix to a given file
-	public static void printMatrixToFile(double[][] matrix) throws IOException {
-		for (int row = 0; row < matrix.length; row++) {
-			for (int column = 0; column < matrix[row].length; column++) {
-				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix[row][column], 4));
-			}
-			resultsFile.println();
-		}
-	}
 }
