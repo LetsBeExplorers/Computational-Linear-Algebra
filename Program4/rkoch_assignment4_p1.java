@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import Vector;
 
 public class rkoch_assignment4_p1 {
 
@@ -18,6 +19,7 @@ public class rkoch_assignment4_p1 {
 	setupTheInputFile(filename);
 	if(args.length > 1) filename = args[1];
 	setupTheOutputFile(filename);
+
 
 
 	}
@@ -45,6 +47,28 @@ public class rkoch_assignment4_p1 {
 			filename = userInput.nextLine();
 		}
 		resultsFile = new PrintWriter(new File(filename));
+	}
+
+	// reads in a vector from a given file
+	protected static Vector readVectorFromFile(Scanner file) {
+		double x = file.nextDouble();
+		double y = file.nextDouble();
+		double z = file.nextDouble();
+		return new Vector(x, y, z);
+	}
+
+	public static void readVectorsFromFile() throws IOException {
+
+		// open the file for reading
+		Scanner file = new Scanner(inputFile);
+
+		// create plane vectors
+		Vector point = readVectorFromFile(file);
+		Vector normal = readVectorFromFile(file);
+
+		// create vector for parallel direction
+		Vector parallel = readVectorFromFile(file);
+
 	}
 
 	// rounds a double to a specified number of significant digits
