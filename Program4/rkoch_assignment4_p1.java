@@ -90,6 +90,7 @@ public class rkoch_assignment4_p1 {
 	public static Plane readPlaneFromFile(Scanner file) throws IOException {
 		Vector point = readVectorFromFile(file);
 		Vector normal = readVectorFromFile(file);
+		printVectorToFile(point.subtract(normal));
 		if (normal.normsq() < 0.000001) {
 			resultsFile.println("Not valid input.");
 			resultsFile.close();
@@ -112,7 +113,7 @@ public class rkoch_assignment4_p1 {
 	// prints a matrix to a given file
 	public static void printVectorToFile(Vector vector) throws IOException {
 		for (int i = 0; i < 3; i++) {
-			resultsFile.printf("%-8.4g", roundToSignificantDigits(vector.coords[i], 4));
+			resultsFile.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
 		}
 	}
 
