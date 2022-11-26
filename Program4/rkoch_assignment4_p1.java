@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -9,20 +10,21 @@ public class rkoch_assignment4_p1 {
 
 	public static Plane projPlane;
 	public static Vector parallel;
+	public static ArrayList<Vector> inputs;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
 	public static void main(String[] args) throws IOException {
 
-	// setup the input and output files
-	String filename = null;
-	if(args.length > 0) filename = args[0];
-	setupTheInputFile(filename);
-	if(args.length > 1) filename = args[1];
-	setupTheOutputFile(filename);
+		// setup the input and output files
+		String filename = null;
+		if(args.length > 0) filename = args[0];
+		setupTheInputFile(filename);
+		if(args.length > 1) filename = args[1];
+		setupTheOutputFile(filename);
 
 
-
+		resultsFile.close();
 	}
 
 	// prompts the user for an input file and returns it
@@ -62,6 +64,10 @@ public class rkoch_assignment4_p1 {
 		// create vector for parallel direction
 		parallel = readVectorFromFile(file);
 
+		while(file.hasNextDouble()) {
+			inputs.add(readVectorFromFile(file));
+		}
+
 	}
 
 	// reads in a vector from a given file
@@ -92,8 +98,8 @@ public class rkoch_assignment4_p1 {
 
 	// prints a matrix to a given file
 	public static void printVectorToFile(Vector vector) throws IOException {
-		for (int i = 0; i < vector.length; i++) {
-			resultsFile.printf("%-8.4g", roundToSignificantDigits(vector[i], 4));
+		for (int i = 0; i < 3; i++) {
+			resultsFile.printf("%-8.4g", roundToSignificantDigits(vector.coords[i], 4));
 		}
 	}
 
