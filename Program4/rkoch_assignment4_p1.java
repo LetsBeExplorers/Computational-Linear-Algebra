@@ -73,6 +73,7 @@ public class rkoch_assignment4_p1 {
 		}
 		catch(NoSuchElementException e) {
 			resultsFile.println("Not valid input.");
+			System.err.println("Not valid input.");
 			resultsFile.close();
 			System.exit(1);
 		}
@@ -90,6 +91,12 @@ public class rkoch_assignment4_p1 {
 	public static Plane readPlaneFromFile(Scanner file) throws IOException {
 		Vector point = readVectorFromFile(file);
 		Vector normal = readVectorFromFile(file);
+		if (normal.normsq() < 0.000001) {
+			resultsFile.println("Not valid input.");
+			System.err.println("Not valid input.");
+			resultsFile.close();
+			System.exit(1);
+		}
 		return new Plane(point, normal);
 	}
 
