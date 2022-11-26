@@ -4,8 +4,6 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import Vector;
-import Plane;
 
 public class rkoch_assignment4_p1 {
 
@@ -51,13 +49,13 @@ public class rkoch_assignment4_p1 {
 		resultsFile = new PrintWriter(new File(filename));
 	}
 
-
-
-	public static void readVectorsFromFile() throws IOException {
+	// handles the input being routed to the correct functions
+	public static void inputHandler() throws IOException {
 
 		// open the file for reading
 		Scanner file = new Scanner(inputFile);
 
+		// create the plane
 		projPlane = readPlaneFromFile(file);
 
 		// create vector for parallel direction
@@ -74,7 +72,7 @@ public class rkoch_assignment4_p1 {
 	}
 
 	// reads in a plane from a given file
-	public static void readPlaneFromFile(Scanner file) throws IOException {
+	public static Plane readPlaneFromFile(Scanner file) throws IOException {
 		Vector point = readVectorFromFile(file);
 		Vector normal = readVectorFromFile(file);
 		return new Plane(point, normal);
