@@ -8,6 +8,7 @@ import java.math.MathContext;
 public class rkoch_assignment4_p1 {
 
 	public static Plane projPlane;
+	public static Vector parallel;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -59,7 +60,7 @@ public class rkoch_assignment4_p1 {
 		projPlane = readPlaneFromFile(file);
 
 		// create vector for parallel direction
-		Vector parallel = readVectorFromFile(file);
+		parallel = readVectorFromFile(file);
 
 	}
 
