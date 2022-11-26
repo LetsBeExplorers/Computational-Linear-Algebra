@@ -64,6 +64,7 @@ public class rkoch_assignment4_p1 {
 		// create vector for parallel direction
 		parallel = readVectorFromFile(file);
 
+		// fill array list with additional points
 		while(file.hasNextDouble()) {
 			inputs.add(readVectorFromFile(file));
 		}
