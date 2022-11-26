@@ -5,12 +5,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.NoSuchElementException;
 
 public class rkoch_assignment4_p1 {
 
 	public static Plane projPlane;
 	public static Vector parallel;
-	public static ArrayList<Vector> inputs;
+	public static ArrayList<Vector> inputs = new ArrayList<Vector>();
 	public static File inputFile;
 	public static PrintWriter resultsFile;
 
@@ -23,7 +24,7 @@ public class rkoch_assignment4_p1 {
 		if(args.length > 1) filename = args[1];
 		setupTheOutputFile(filename);
 
-
+		inputHandler();
 		resultsFile.close();
 	}
 
@@ -55,20 +56,26 @@ public class rkoch_assignment4_p1 {
 	// handles the input being routed to the correct functions
 	public static void inputHandler() throws IOException {
 
-		// open the file for reading
-		Scanner file = new Scanner(inputFile);
+		try {
+			// open the file for reading
+			Scanner file = new Scanner(inputFile);
 
-		// create the plane
-		projPlane = readPlaneFromFile(file);
+			// create the plane
+			projPlane = readPlaneFromFile(file);
 
-		// create vector for parallel direction
-		parallel = readVectorFromFile(file);
+			// create vector for parallel direction
+			parallel = readVectorFromFile(file);
 
-		// fill array list with additional points
-		while(file.hasNextDouble()) {
-			inputs.add(readVectorFromFile(file));
+			// fill array list with additional points
+			while(file.hasNextDouble()) {
+				inputs.add(readVectorFromFile(file));
+			}
 		}
-
+		catch(NoSuchElementException e) {
+			resultsFile.println("Not valid input.");
+			resultsFile.close();
+			System.exit(1);
+		}
 	}
 
 	// reads in a vector from a given file
