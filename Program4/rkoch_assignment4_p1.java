@@ -90,4 +90,11 @@ public class rkoch_assignment4_p1 {
 		return roundedNum;
 	}
 
+	// prints a matrix to a given file
+	public static void printVectorToFile(Vector vector) throws IOException {
+		for (int i = 0; i < vector.length; i++) {
+			resultsFile.printf("%-8.4g", roundToSignificantDigits(vector[i], 4));
+		}
+	}
+
 }
