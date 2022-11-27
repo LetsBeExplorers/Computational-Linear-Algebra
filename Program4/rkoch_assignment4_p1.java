@@ -156,6 +156,7 @@ public class rkoch_assignment4_p1 {
 		return roundedNum;
 	}
 
+	// causes the program to print a failure message and exit
 	public static void failFast() {
 		resultsFile1.println("Not valid input.");
 		resultsFile1.close();
@@ -168,6 +169,98 @@ public class rkoch_assignment4_p1 {
 	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
 		for (int i = 0; i < 3; i++) {
 			file.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
+		}
+	}
+
+	// vector has coordinates and a zero vector
+	public static class Vector {
+		public final double[] coords;
+		public static final Vector zero = new Vector(0,0,0);
+	
+		public Vector(double x, double y, double z) { 
+			coords = new double[3];
+			coords[0] = x;
+			coords[1] = y;
+			coords[2] = z;
+		}
+	
+		public double normsq() {
+			double sum = 0.0;
+			for(int i = 0; i < coords.length; i++) { sum += coords[i]*coords[i]; }
+			return sum;
+		}
+	
+		public double norm() { return Math.sqrt(this.normsq()); }
+	
+		// finds the inner product between two vectors
+		public double innerProduct(Vector that) {
+			double total = 0;
+			for (int i = 0; i < this.coords.length; i++) {
+				total += this.coords[i]*that.coords[i];
+			}
+			return total;
+		}
+	
+		// adds one vector to another
+		public Vector add(Vector that) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] + that.coords[i];
+			}
+			return newVector;
+		}
+	
+		// subtracts one vector from another
+		public Vector subtract(Vector that) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] - that.coords[i];
+			}
+			return newVector;
+		}
+	
+		// multiplies a vector with scalar
+		public Vector scalarMultiply(double scalar) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = scalar * this.coords[i];
+			}
+			return newVector;
+		}
+	
+		// computes the unit vector of a given vector
+		public Vector unit() {
+			return scalarMultiply(1/norm());
+		}
+
+	}
+
+	// plane has a point and normal vector
+	public static class Plane {
+		public final Vector point;
+		public final Vector normal;
+
+		public Plane(Vector point, Vector normal) { 
+			this.point = point;
+			this.normal = normal;
+		}
+	}
+
+	// line has a point and parallel vector
+	public static class Line {
+		public final Vector point;
+		public final Vector parallel;
+
+		public Line(Vector point, Vector parallel) { 
+			this.point = point;
+			this.parallel = parallel;
+		}
+
+		// finds the intersection point of a line and plane
+		public Vector intersection(Plane that) {
+			double numerator = that.point.subtract(this.point).innerProduct(that.normal);
+			double denominator = this.parallel.innerProduct(that.normal);
+			return this.point.add(this.parallel.scalarMultiply(numerator/denominator));
 		}
 	}
 
