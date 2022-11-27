@@ -52,4 +52,51 @@ public class rkoch_assignment4_p2 {
 			resultsFile2 = new PrintWriter(new File(filename1));
 		} else { resultsFile2 = new PrintWriter(new File(filename1)); }
 	}
+
+	// reads in a vector from a given file
+	protected static Vector readVectorFromFile(Scanner file) throws IOException {
+		double x = file.nextDouble();
+		double y = file.nextDouble();
+		double z = file.nextDouble();
+		return new Vector(x, y, z);
+	}
+
+	// reads in a plane from a given file
+	public static Plane readPlaneFromFile(Scanner file) throws IOException {
+		Vector point = readVectorFromFile(file);
+		Vector normal = readVectorFromFile(file);
+
+		// prints an error message if the normal vector is the zero vector
+		if (normal.normsq() < tolerance) {
+			failFast();
+		}
+		return new Plane(point, normal);
+	}
+
+	// rounds a double to a specified number of significant digits
+	public static double roundToSignificantDigits(double number, int digits) {
+		double roundedNum;
+
+		BigDecimal bigDecimal = new BigDecimal(number);
+		bigDecimal = bigDecimal.round(new MathContext(digits));
+		roundedNum = bigDecimal.doubleValue();
+
+		return roundedNum;
+	}
+
+	// causes the program to print a failure message and exit
+	public static void failFast() {
+		resultsFile1.println("Not valid input.");
+		resultsFile1.close();
+		resultsFile2.println("Not valid input.");
+		resultsFile2.close();
+		System.exit(1);
+	}
+
+	// prints a matrix to a given file
+	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
+		for (int i = 0; i < 3; i++) {
+			file.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
+		}
+	}
 }
