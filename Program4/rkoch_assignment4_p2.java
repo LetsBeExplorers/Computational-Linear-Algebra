@@ -9,8 +9,9 @@ import java.util.NoSuchElementException;
 
 public class rkoch_assignment4_p2 {
 
+	public static final double tolerance = .000001;
 	public static ArrayList<Vector> points = new ArrayList<Vector>();
-	public static ArrayList<Vector> planes = new ArrayList<Vector>();
+	public static ArrayList<Plane> planes = new ArrayList<Plane>();
 	public static File inputFile;
 	public static PrintWriter resultsFile1;
 	public static PrintWriter resultsFile2;
@@ -28,6 +29,12 @@ public class rkoch_assignment4_p2 {
 
 		inputHandler();
 
+		for (int i = 0; i < planes.size(); i++) {
+			resultsFile1.printf("%-8.4g\n", roundToSignificantDigits(planes.get(i).distanceTo(points.get(0)), 4));
+		}
+
+		resultsFile1.close();
+		resultsFile2.close();
 	}
 
 	// prompts the user for an input file and returns it
