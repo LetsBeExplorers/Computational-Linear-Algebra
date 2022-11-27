@@ -30,7 +30,7 @@ public class rkoch_assignment4_p2 {
 		inputHandler();
 
 		for (int i = 0; i < planes.size(); i++) {
-			resultsFile1.printf("%-8.4g\n", roundToSignificantDigits(planes.get(i).distanceTo(points.get(0)), 4));
+			printNumberToFile(planes.get(i).distanceTo(points.get(0)), resultsFile1);
 		}
 
 		resultsFile1.close();
@@ -129,10 +129,15 @@ public class rkoch_assignment4_p2 {
 		System.exit(1);
 	}
 
-	// prints a matrix to a given file
+	// prints a vector to a given file
 	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
 		for (int i = 0; i < 3; i++) {
 			file.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
 		}
+	}
+
+	// prints a number to a given file
+	public static void printNumberToFile(Double num, PrintWriter file) throws IOException {
+		file.printf("%-8.4g\n", roundToSignificantDigits(num, 4));
 	}
 }
