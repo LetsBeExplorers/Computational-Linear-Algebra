@@ -45,6 +45,20 @@ public class rkoch_assignment4_p1 {
 			}
 		}
 
+		// creates a line from each point and negative x for part 2
+		// then finds the intersection of that line with the plane and prints it
+		count = 0;
+		for (int i = 0; i < inputs.size(); i++) {
+			Line line = new Line(inputs.get(i), Vector.zero.subtract(inputs.get(i)));
+			printVectorToFile(line.intersection(projPlane), resultsFile2);
+
+			// handles printing a new line after each 3 points
+			count += 1;
+			if (count % 3 == 0) {
+				resultsFile2.println();
+			}
+		}
+
 		resultsFile1.close();
 		resultsFile2.close();
 	}
