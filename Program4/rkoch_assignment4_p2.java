@@ -27,8 +27,10 @@ public class rkoch_assignment4_p2 {
 		if(args.length > 2) filename1 = args[2];
 		setupTheOutputFile(filename, filename1);
 
+		// handle the input routing to create planes and points
 		inputHandler();
 
+		// for each point and plane, calculate the distance and print it for part 1
 		for (int i = 0; i < planes.size(); i++) {
 			printNumberToFile(planes.get(i).distanceTo(points.get(0)), resultsFile1);
 		}
