@@ -9,10 +9,12 @@ import java.util.NoSuchElementException;
 
 public class rkoch_assignment4_p2 {
 
+	public static ArrayList<Vector> points = new ArrayList<Vector>();
+	public static ArrayList<Vector> planes = new ArrayList<Vector>();
 	public static File inputFile;
 	public static PrintWriter resultsFile1;
 	public static PrintWriter resultsFile2;
-	
+
 	public static void main(String[] args) throws IOException {
 		
 		// setup the input and output files
@@ -23,6 +25,8 @@ public class rkoch_assignment4_p2 {
 		if(args.length > 1) filename = args[1];
 		if(args.length > 2) filename1 = args[2];
 		setupTheOutputFile(filename, filename1);
+
+		inputHandler();
 
 	}
 
@@ -56,6 +60,26 @@ public class rkoch_assignment4_p2 {
 			filename1 = userInput.nextLine();
 			resultsFile2 = new PrintWriter(new File(filename1));
 		} else { resultsFile2 = new PrintWriter(new File(filename1)); }
+	}
+
+	// handles the input being routed to the correct functions
+	public static void inputHandler() throws IOException {
+
+		try {
+			// open the file for reading
+			Scanner file = new Scanner(inputFile);
+
+			// fill array lists with planes and points
+			while(file.hasNextDouble()) {
+				planes.add(readPlaneFromFile(file));
+				points.add(readVectorFromFile(file));
+			}
+		}
+
+		// prints an error message if the input is not in the correct format
+		catch(NoSuchElementException e) {
+			failFast();
+		}
 	}
 
 	// reads in a vector from a given file
