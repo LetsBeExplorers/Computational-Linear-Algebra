@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 
 public class rkoch_assignment4_p1 {
 
+	public static final double tolerance = .000001;
 	public static Plane projPlane;
 	public static Vector parallel;
 	public static ArrayList<Vector> inputs = new ArrayList<Vector>();
@@ -61,7 +62,7 @@ public class rkoch_assignment4_p1 {
 		inputFile = new File(filename);
 	}
 
-	// creates and sets up the output file for writing
+	// creates and sets up the output files for writing
 	public static void setupTheOutputFile(String filename, String filename1) throws IOException {
 		
 		// if filenames were not entered on the command line, then prompt for them
@@ -93,6 +94,10 @@ public class rkoch_assignment4_p1 {
 			// create vector for parallel direction
 			parallel = readVectorFromFile(file);
 
+			if (parallel.innerProduct(projPlane.normal) < tolerance) {
+				failFast();
+			}
+
 			// fill array list with additional points
 			while(file.hasNextDouble()) {
 				inputs.add(readVectorFromFile(file));
@@ -101,11 +106,7 @@ public class rkoch_assignment4_p1 {
 
 		// prints an error message if the input is not in the correct format
 		catch(NoSuchElementException e) {
-			resultsFile1.println("Not valid input.");
-			resultsFile1.close();
-			resultsFile2.println("Not valid input.");
-			resultsFile2.close();
-			System.exit(1);
+			failFast();
 		}
 	}
 
@@ -123,12 +124,8 @@ public class rkoch_assignment4_p1 {
 		Vector normal = readVectorFromFile(file);
 
 		// prints an error message if the normal vector is the zero vector
-		if (normal.normsq() < 0.000001) {
-			resultsFile1.println("Not valid input.");
-			resultsFile1.close();
-			resultsFile2.println("Not valid input.");
-			resultsFile2.close();
-			System.exit(1);
+		if (normal.normsq() < tolerance) {
+			failFast();
 		}
 		return new Plane(point, normal);
 	}
@@ -142,6 +139,14 @@ public class rkoch_assignment4_p1 {
 		roundedNum = bigDecimal.doubleValue();
 
 		return roundedNum;
+	}
+
+	public static void failFast() {
+		resultsFile1.println("Not valid input.");
+		resultsFile1.close();
+		resultsFile2.println("Not valid input.");
+		resultsFile2.close();
+		System.exit(1);
 	}
 
 	// prints a matrix to a given file
