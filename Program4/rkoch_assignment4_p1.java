@@ -24,7 +24,23 @@ public class rkoch_assignment4_p1 {
 		if(args.length > 1) filename = args[1];
 		setupTheOutputFile(filename);
 
+		// processes the input
 		inputHandler();
+
+		// creates a line from each point and the parallel vector
+		// then finds the intersection of that line with the plane and prints it
+		int count = 0;
+		for (int i = 0; i < inputs.size(); i++) {
+			Line line = new Line(inputs.get(i), parallel);
+			printVectorToFile(line.intersection(projPlane));
+
+			// handles printing a new line after each 3 points
+			count += 1;
+			if (count % 3 == 0) {
+				resultsFile.println();
+			}
+		}
+
 		resultsFile.close();
 	}
 
@@ -71,6 +87,8 @@ public class rkoch_assignment4_p1 {
 				inputs.add(readVectorFromFile(file));
 			}
 		}
+
+		// prints an error message if the input is not in the correct format
 		catch(NoSuchElementException e) {
 			resultsFile.println("Not valid input.");
 			resultsFile.close();
@@ -90,7 +108,8 @@ public class rkoch_assignment4_p1 {
 	public static Plane readPlaneFromFile(Scanner file) throws IOException {
 		Vector point = readVectorFromFile(file);
 		Vector normal = readVectorFromFile(file);
-		printVectorToFile(point.subtract(normal));
+
+		// prints an error message if the normal vector is the zero vector
 		if (normal.normsq() < 0.000001) {
 			resultsFile.println("Not valid input.");
 			resultsFile.close();
