@@ -94,6 +94,7 @@ public class rkoch_assignment4_p1 {
 			// create vector for parallel direction
 			parallel = readVectorFromFile(file);
 
+			// check that the parallel vector is not parallel to the plane
 			if (parallel.innerProduct(projPlane.normal) < tolerance) {
 				failFast();
 			}
