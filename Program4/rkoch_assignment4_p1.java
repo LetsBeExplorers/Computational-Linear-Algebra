@@ -30,7 +30,7 @@ public class rkoch_assignment4_p1 {
 		// processes the input
 		inputHandler();
 
-		// creates a line from each point and the parallel vector
+		// creates a line from each point and the parallel vector for part 1
 		// then finds the intersection of that line with the plane and prints it
 		int count = 0;
 		for (int i = 0; i < inputs.size(); i++) {
@@ -45,6 +45,7 @@ public class rkoch_assignment4_p1 {
 		}
 
 		resultsFile1.close();
+		resultsFile2.close();
 	}
 
 	// prompts the user for an input file and returns it
