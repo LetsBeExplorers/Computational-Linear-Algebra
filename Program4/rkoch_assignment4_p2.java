@@ -8,6 +8,11 @@ import java.math.MathContext;
 import java.util.NoSuchElementException;
 
 public class rkoch_assignment4_p2 {
+
+	public static File inputFile;
+	public static PrintWriter resultsFile1;
+	public static PrintWriter resultsFile2;
+	
 	public static void main(String[] args) throws IOException {
 		
 		// setup the input and output files
