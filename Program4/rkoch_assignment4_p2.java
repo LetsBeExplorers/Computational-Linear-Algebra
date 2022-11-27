@@ -28,7 +28,7 @@ public class rkoch_assignment4_p2 {
 		setupTheOutputFile(filename, filename1);
 
 		// handle the input routing to create planes and points
-		inputHandler();
+		part1InputHandler();
 
 		// for each point and plane, calculate the distance and print it for part 1
 		for (int i = 0; i < planes.size(); i++) {
@@ -72,7 +72,7 @@ public class rkoch_assignment4_p2 {
 	}
 
 	// handles the input being routed to the correct functions
-	public static void inputHandler() throws IOException {
+	public static void part1InputHandler() throws IOException {
 
 		try {
 			// open the file for reading
