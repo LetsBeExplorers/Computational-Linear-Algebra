@@ -13,16 +13,19 @@ public class rkoch_assignment4_p1 {
 	public static Vector parallel;
 	public static ArrayList<Vector> inputs = new ArrayList<Vector>();
 	public static File inputFile;
-	public static PrintWriter resultsFile;
+	public static PrintWriter resultsFile1;
+	public static PrintWriter resultsFile2;
 
 	public static void main(String[] args) throws IOException {
 
 		// setup the input and output files
 		String filename = null;
+		String filename1 = null;
 		if(args.length > 0) filename = args[0];
 		setupTheInputFile(filename);
 		if(args.length > 1) filename = args[1];
-		setupTheOutputFile(filename);
+		if(args.length > 2) filename1 = args[2];
+		setupTheOutputFile(filename, filename1);
 
 		// processes the input
 		inputHandler();
@@ -32,16 +35,16 @@ public class rkoch_assignment4_p1 {
 		int count = 0;
 		for (int i = 0; i < inputs.size(); i++) {
 			Line line = new Line(inputs.get(i), parallel);
-			printVectorToFile(line.intersection(projPlane));
+			printVectorToFile(line.intersection(projPlane), resultsFile1);
 
 			// handles printing a new line after each 3 points
 			count += 1;
 			if (count % 3 == 0) {
-				resultsFile.println();
+				resultsFile1.println();
 			}
 		}
 
-		resultsFile.close();
+		resultsFile1.close();
 	}
 
 	// prompts the user for an input file and returns it
@@ -58,15 +61,22 @@ public class rkoch_assignment4_p1 {
 	}
 
 	// creates and sets up the output file for writing
-	public static void setupTheOutputFile(String filename) throws IOException {
+	public static void setupTheOutputFile(String filename, String filename1) throws IOException {
 		
-		// if a filename was not entered, then prompt for one
+		// if filenames were not entered on the command line, then prompt for them
 		if(filename == null) {
 			Scanner userInput = new Scanner(System.in);
-			System.out.printf("Please enter the name of an output file: ");
+			System.out.printf("Please enter the name of an output file for part 1: ");
 			filename = userInput.nextLine();
-		}
-		resultsFile = new PrintWriter(new File(filename));
+			resultsFile1 = new PrintWriter(new File(filename));
+		} else { resultsFile1 = new PrintWriter(new File(filename)); }
+
+		if(filename1 == null) {
+			Scanner userInput = new Scanner(System.in);
+			System.out.printf("Please enter the name of an output file for part 2: ");
+			filename1 = userInput.nextLine();
+			resultsFile2 = new PrintWriter(new File(filename1));
+		} else { resultsFile2 = new PrintWriter(new File(filename1)); }
 	}
 
 	// handles the input being routed to the correct functions
@@ -90,8 +100,10 @@ public class rkoch_assignment4_p1 {
 
 		// prints an error message if the input is not in the correct format
 		catch(NoSuchElementException e) {
-			resultsFile.println("Not valid input.");
-			resultsFile.close();
+			resultsFile1.println("Not valid input.");
+			resultsFile1.close();
+			resultsFile2.println("Not valid input.");
+			resultsFile2.close();
 			System.exit(1);
 		}
 	}
@@ -111,8 +123,10 @@ public class rkoch_assignment4_p1 {
 
 		// prints an error message if the normal vector is the zero vector
 		if (normal.normsq() < 0.000001) {
-			resultsFile.println("Not valid input.");
-			resultsFile.close();
+			resultsFile1.println("Not valid input.");
+			resultsFile1.close();
+			resultsFile2.println("Not valid input.");
+			resultsFile2.close();
 			System.exit(1);
 		}
 		return new Plane(point, normal);
@@ -130,9 +144,9 @@ public class rkoch_assignment4_p1 {
 	}
 
 	// prints a matrix to a given file
-	public static void printVectorToFile(Vector vector) throws IOException {
+	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
 		for (int i = 0; i < 3; i++) {
-			resultsFile.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
+			file.printf("%-6.4g", roundToSignificantDigits(vector.coords[i], 4));
 		}
 	}
 
