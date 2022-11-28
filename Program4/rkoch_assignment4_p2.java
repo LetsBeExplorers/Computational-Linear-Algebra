@@ -224,6 +224,15 @@ public class rkoch_assignment4_p2 {
 			return total;
 		}
 
+		// adds one vector to another
+		public Vector add(Vector that) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] + that.coords[i];
+			}
+			return newVector;
+		}
+
 		// subtracts one vector from another
 		public Vector subtract(Vector that) {
 			Vector newVector = new Vector(0, 0, 0);
@@ -240,6 +249,11 @@ public class rkoch_assignment4_p2 {
 				newVector.coords[i] = scalar * this.coords[i];
 			}
 			return newVector;
+		}
+
+		// computes the unit vector of a given vector
+		public Vector unit() {
+			return scalarMultiply(1/norm());
 		}
 
 		// projects the argument vector onto this vector
@@ -284,6 +298,11 @@ public class rkoch_assignment4_p2 {
 		public Plane(Vector point, Vector normal) { 
 			this.point = point;
 			this.normal = normal;
+		}
+
+		// finds the distance between a point and a plane
+		public double distanceTo(Vector that) {
+			return that.subtract(this.point).innerProduct(normal.unit());
 		}
 	}
 
@@ -333,7 +352,7 @@ public class rkoch_assignment4_p2 {
 			// if the dot products are negative then the projections are going in opposite directions 
 			// which means the point is in between the endpoints of the triangle side
 			// check all three sides
-			if(dot_ab < 0 && dot_bc < 0 && dot_ca < 0) {rkoch_output_1_B2.txt
+			if(dot_ab < 0 && dot_bc < 0 && dot_ca < 0) {
 				return p;
 			} else { return null; }
 		}
