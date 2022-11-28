@@ -42,6 +42,11 @@ public class rkoch_assignment4_p2 {
 
 		// for each triangle, compute the intersection point with the line
 		for (int i = 0; i < triangles.size(); i++) {
+			Vector p = triangles.get(i).intersect(line);
+			
+			if (p != null) {
+				printVectorToFile(p, resultsFile2);
+			} else { resultsFile2.println("Does not intersect."); }
 
 		}
 
@@ -109,12 +114,12 @@ public class rkoch_assignment4_p2 {
 			Scanner file = new Scanner(inputFile);
 
 			// create a line from the given points 
-			Vector point1 = readVectorFromFile(inputFile);
-			Vector point2 = readVectorFromFile(inputFile);
+			Vector point1 = readVectorFromFile(file);
+			Vector point2 = readVectorFromFile(file);
 			line = new Line(point1, point2.subtract(point1));
 
 			// throwaway the next 3 numbers by moving to the next line
-			file.NextLine();
+			file.nextLine();
 
 			// fill array lists with planes and points
 			while(file.hasNextDouble()) {
@@ -174,6 +179,14 @@ public class rkoch_assignment4_p2 {
 		resultsFile2.println("Not valid input.");
 		resultsFile2.close();
 		System.exit(1);
+	}
+
+	// prints a matrix to a given file
+	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
+		for (int i = 0; i < 3; i++) {
+			file.printf("%-8.4g", roundToSignificantDigits(vector.coords[i], 4));
+		}
+		file.println();
 	}
 
 	// prints a number to a given file
