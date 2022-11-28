@@ -43,7 +43,7 @@ public class rkoch_assignment4_p2 {
 		// for each triangle, compute the intersection point with the line
 		for (int i = 0; i < triangles.size(); i++) {
 			Vector p = triangles.get(i).intersect(line);
-			
+
 			if (p != null) {
 				printVectorToFile(p, resultsFile2);
 			} else { resultsFile2.println("Does not intersect."); }
@@ -192,5 +192,150 @@ public class rkoch_assignment4_p2 {
 	// prints a number to a given file
 	public static void printNumberToFile(Double num, PrintWriter file) throws IOException {
 		file.printf("%-8.4g\n", roundToSignificantDigits(num, 4));
+	}
+
+	public static class Vector {
+		public final double[] coords;
+		public static final Vector zero = new Vector(0,0,0);
+
+		// vector takes three coordinates
+		public Vector(double x, double y, double z) { 
+			coords = new double[3];
+			coords[0] = x;
+			coords[1] = y;
+			coords[2] = z;
+		}
+
+		public double normsq() {
+			double sum = 0.0;
+			for(int i = 0; i < coords.length; i++) { sum += coords[i]*coords[i]; }
+			return sum;
+		}
+
+		// magnitude of the vector
+		public double norm() { return Math.sqrt(this.normsq()); }
+
+		// finds the inner product between two vectors
+		public double innerProduct(Vector that) {
+			double total = 0;
+			for (int i = 0; i < this.coords.length; i++) {
+				total += this.coords[i]*that.coords[i];
+			}
+			return total;
+		}
+
+		// subtracts one vector from another
+		public Vector subtract(Vector that) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] - that.coords[i];
+			}
+			return newVector;
+		}
+
+		// multiplies a vector with scalar
+		public Vector scalarMultiply(double scalar) {
+			Vector newVector = new Vector(0, 0, 0);
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = scalar * this.coords[i];
+			}
+			return newVector;
+		}
+
+		// projects the argument vector onto this vector
+		// only works if this vector is not zero
+		public Vector vectorProjection(Vector that) {
+			double scalar = innerProduct(that)/(norm()*norm());
+			return scalarMultiply(scalar);
+		}
+
+		// computes the cross product of 2 vectors
+		public Vector crossProduct(Vector that) {
+			double i = this.coords[1]*that.coords[2]-this.coords[2]*that.coords[1];
+			double j = this.coords[0]*that.coords[2]-this.coords[2]*that.coords[0];
+			double k = this.coords[0]*that.coords[1]-this.coords[1]*that.coords[0];
+			return new Vector(i, -j, k);
+		}
+	}
+
+	public static class Line {
+		public final Vector point;
+		public final Vector parallel;
+
+		// line needs a point and a parallel vector
+		public Line(Vector point, Vector parallel) { 
+			this.point = point;
+			this.parallel = parallel;
+		}
+
+		// finds the intersection point of a line and plane
+		public Vector intersection(Plane that) {
+			double numerator = that.point.subtract(this.point).innerProduct(that.normal);
+			double denominator = this.parallel.innerProduct(that.normal);
+			return this.point.add(this.parallel.scalarMultiply(numerator/denominator));
+		}
+	}
+
+	public static class Plane {
+		public final Vector point;
+		public final Vector normal;
+
+		// plane needs a point and a normal vector
+		public Plane(Vector point, Vector normal) { 
+			this.point = point;
+			this.normal = normal;
+		}
+	}
+
+	public static class Triangle {
+		public final Vector vertex1;
+		public final Vector vertex2;
+		public final Vector vertex3;
+		public final Plane plane;
+
+		// triangle needs 3 vertices and forms a plane
+		public Triangle(Vector vertex1, Vector vertex2, Vector vertex3) { 
+			this.vertex1 = vertex1;
+			this.vertex2 = vertex2;
+			this.vertex3 = vertex3;
+			this.plane = new Plane(vertex1, vertex1.subtract(vertex2).crossProduct(vertex3.subtract(vertex2)));
+		}
+
+		// checks if a line intersects a bounded triangle plane
+		public Vector intersect(Line line) {
+
+			// find intersection of the line and the plane containing the triangle
+			Vector p = line.intersection(plane);
+
+			// create vectors between each of the 3 vertices
+			Vector ab = vertex2.subtract(vertex1);
+			Vector bc = vertex3.subtract(vertex2);
+			Vector ca = vertex1.subtract(vertex3);
+
+			// create vectors between the intersection point and the vertices
+			Vector pa = vertex1.subtract(p);
+			Vector pb = vertex2.subtract(p);
+			Vector pc = vertex3.subtract(p);
+
+			// project the vectors from the intersection point and the endpoints onto the triangle sides
+			Vector proj_pa_ab = ab.vectorProjection(pa);
+			Vector proj_pb_ab = ab.vectorProjection(pb);
+			Vector proj_pb_bc = bc.vectorProjection(pb);
+			Vector proj_pc_bc = bc.vectorProjection(pc);
+			Vector proj_pc_ca = ca.vectorProjection(pc);
+			Vector proj_pa_ca = ca.vectorProjection(pa);
+
+			// dot products between the projections on each triangle side
+			double dot_ab = proj_pa_ab.innerProduct(proj_pb_ab);
+			double dot_bc = proj_pb_bc.innerProduct(proj_pc_bc);
+			double dot_ca = proj_pc_ca.innerProduct(proj_pa_ca);
+
+			// if the dot products are negative then the projections are going in opposite directions 
+			// which means the point is in between the endpoints of the triangle side
+			// check all three sides
+			if(dot_ab < 0 && dot_bc < 0 && dot_ca < 0) {rkoch_output_1_B2.txt
+				return p;
+			} else { return null; }
+		}
 	}
 }
