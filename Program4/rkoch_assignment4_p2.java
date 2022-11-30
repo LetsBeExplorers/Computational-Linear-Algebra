@@ -34,7 +34,7 @@ public class rkoch_assignment4_p2 {
 
 		// for each point and plane, calculate the distance and print it for part 1
 		for (int i = 0; i < planes.size(); i++) {
-			printNumberToFile(planes.get(i).distanceTo(points.get(0)), resultsFile1);
+			printNumberToFile(Math.abs(planes.get(i).distanceTo(points.get(0))), resultsFile1);
 		}
 
 		// handle the input routing to create a line and triangles for part 2
