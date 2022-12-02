@@ -11,7 +11,6 @@ public class rkoch_assignment4_p3 {
 	public static final double tolerance = .0005;
 	public static final int maxIterations = 20;
 	public static Vector eigenVector;
-	public static Vector pageRank;
 	public static Matrix webPages;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
@@ -27,6 +26,7 @@ public class rkoch_assignment4_p3 {
 
 		readMatrixFromFile();
 		printVectorToFile(findEigenVector());
+		printVectorToFile(organizeRank());
 
 		resultsFile.close();
 	}
@@ -126,6 +126,27 @@ public class rkoch_assignment4_p3 {
 
 		eigenVector = r_list.get(maxIterations);
 		return eigenVector;
+	}
+
+	public static Vector organizeRank() {
+		int j = 0;
+		Vector pageRank = new Vector(eigenVector.getSize());
+		while( j < eigenVector.getSize()) {
+			double maxValue = 0;
+			int page = 0;
+			for (int i = 0; i < eigenVector.getSize(); i++) {
+
+				if (eigenVector.coords[i] > maxValue) {
+					maxValue = eigenVector.coords[i];
+					page = i+1;
+				}
+			}
+			pageRank.coords[j] = page;
+			eigenVector.coords[page-1] = 0;
+			j++;
+		}
+
+		return pageRank;
 	}
 
 
