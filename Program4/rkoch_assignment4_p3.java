@@ -155,4 +155,193 @@ public class rkoch_assignment4_p3 {
 
 		System.exit(1);
 	}
+
+	public static class Matrix {
+		public final double[][] matrix;
+		public final int rows;
+		public final int columns;
+
+		// a matrix needs a number of rows and columns
+		public Matrix(int rows, int columns) { 
+			this.matrix = new double[rows][columns];
+			this.rows = rows;
+			this.columns = columns;
+		}
+
+		// sets a value of the matrix
+		public void setValue(int row, int column, double value) {
+			this.matrix[row][column] = value;
+		}
+
+		// gets a value from a matrix
+		public double getValue(int row, int column) {
+			return this.matrix[row][column];
+		}
+
+		// subtracts one matrix from another
+		// depends on the matrices being the same size
+		public Matrix subtract(Matrix that) {
+			Matrix newMatrix = new Matrix(rows, columns);
+
+			// for each row, for each column, subtract the right from the left
+			for (int row = 0; row < newMatrix.rows; row++) {
+				for (int column = 0; column < newMatrix.columns; column++) {
+					newMatrix.setValue(row, column, (getValue(row, column) - that.getValue(row, column)));
+				}
+			}
+			return newMatrix;
+		}
+
+		// adds one matrix to another
+		public Matrix add(Matrix that) {
+			Matrix newMatrix = new Matrix(rows, columns);
+
+			// for each row, for each column, subtract the right from the left
+			for (int row = 0; row < newMatrix.rows; row++) {
+				for (int column = 0; column < newMatrix.columns; column++) {
+					newMatrix.setValue(row, column, (getValue(row, column) + that.getValue(row, column)));
+				}
+			}
+			return newMatrix;
+		}
+
+		// multiplies a matrix by a scalar value
+		public Matrix scalarMultiply(double scalar) {
+			Matrix scaledMatrix = new Matrix(rows, columns);
+
+			// for each row, for each column, subtract the right from the left
+			for (int row = 0; row < scaledMatrix.rows; row++) {
+				for (int column = 0; column < scaledMatrix.columns; column++) {
+					scaledMatrix.setValue(row, column, (getValue(row, column)*scalar));
+				}
+			}
+			return scaledMatrix;
+		}
+
+		// transposes a given matrix
+		public Matrix transpose() {
+			Matrix transposedMatrix = new Matrix(rows, columns);
+
+			// for each row, for each column, transpose the row and columns
+			for (int column = 0; column < transposedMatrix.columns; column++) {
+				for (int row = 0; row < transposedMatrix.rows; row++) {
+					transposedMatrix.setValue(row, column, getValue(column, row));
+				}
+			}
+			return transposedMatrix;
+		}
+
+		// multiplies a matrix by another matrix and fills a new matrix with the result
+		// user must ensure the matrices being multiplied are compatible
+		public Matrix multiply(Matrix that) {
+			Matrix newMatrix = new Matrix(rows, that.columns);
+
+			for (int row = 0; row < newMatrix.rows; row++) {
+				for (int column = 0; column < newMatrix.columns; column++) {
+					double total = 0;
+
+					for (int i = 0; i < columns; i++) {
+						total += getValue(row, i)*that.getValue(i, column);
+					}
+
+					newMatrix.setValue(row, column, total);
+				}
+			}
+			return newMatrix;
+		}
+
+		// multiplies a matrix by a vector
+		public Vector multiplyWithVector(Vector that) {
+			Vector newVector = new Vector(rows);
+
+			for (int row = 0; row < newVector.getSize(); row++) {
+				double total = 0;
+
+				for (int i = 0; i < columns; i++) {
+					total += getValue(row, i)*that.coords[i];
+				}
+				newVector.setValue(row, total);
+			}
+			return newVector;
+		}
+
+	}
+
+	public static class Vector {
+		public final double[] coords;
+		public static int size;
+
+		// vector takes a size
+		public Vector(int size) { 
+			this.size = size;
+			coords = new double[size];
+		}
+
+		// set a given value of the vector
+		public void setValue(int index, double value) {
+			coords[index] = value;
+		}
+
+		// returns the vector size
+		public int getSize() {
+			return size;
+		}
+
+		public double normsq() {
+			double sum = 0.0;
+			for(int i = 0; i < coords.length; i++) { sum += coords[i]*coords[i]; }
+			return sum;
+		}
+
+		// magnitude of the vector
+		public double norm() { return Math.sqrt(this.normsq()); }
+
+		// finds the inner product between two vectors
+		public double innerProduct(Vector that) {
+			double total = 0;
+			for (int i = 0; i < this.coords.length; i++) {
+				total += this.coords[i]*that.coords[i];
+			}
+			return total;
+		}
+
+		// adds one vector to another
+		public Vector add(Vector that) {
+			Vector newVector = new Vector(getSize());
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] + that.coords[i];
+			}
+			return newVector;
+		}
+
+		// subtracts one vector from another
+		public Vector subtract(Vector that) {
+			Vector newVector = new Vector(getSize());
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = this.coords[i] - that.coords[i];
+			}
+			return newVector;
+		}
+
+		// multiplies a vector with scalar
+		public Vector scalarMultiply(double scalar) {
+			Vector newVector = new Vector(getSize());
+			for (int i = 0; i < this.coords.length; i++) {
+				newVector.coords[i] = scalar * this.coords[i];
+			}
+			return newVector;
+		}
+
+		// computes the unit vector of a given vector
+		public Vector unit() {
+			return scalarMultiply(1/norm());
+		}
+
+		// projects the argument vector onto this vector
+		// only works if this vector is not zero
+		public Vector vectorProjection(Vector that) {
+			double scalar = innerProduct(that)/(norm()*norm());
+			return scalarMultiply(scalar);
+		}
+	}
 }
