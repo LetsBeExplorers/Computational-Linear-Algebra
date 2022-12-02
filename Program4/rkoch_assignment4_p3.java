@@ -8,6 +8,9 @@ import java.math.MathContext;
 
 public class rkoch_assignment4_p3 {
 
+	public static final double tolerance = .0005;
+	public static final int maxIterations = 20;
+	public static Vector eigenVector;
 	public static Matrix webPages;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
@@ -22,6 +25,7 @@ public class rkoch_assignment4_p3 {
 		setupTheOutputFile(filename);
 
 		readMatrixFromFile();
+		printVectorToFile(findEigenVector());
 
 		resultsFile.close();
 	}
@@ -52,7 +56,7 @@ public class rkoch_assignment4_p3 {
 		resultsFile = new PrintWriter(new File(filename));
 	}
 
-	// count the number of lines in the input file
+	// counts the number of lines in the input file
 	public static int determineMatrixSize() throws IOException {
 		Scanner scanLines = new Scanner(inputFile);
 
@@ -77,8 +81,52 @@ public class rkoch_assignment4_p3 {
 				webPages.setValue(row, column, file.nextDouble());
 			}
 		}
-
 	}
+
+	// uses the power method to find the dominant eigenvector
+	public static Vector findEigenVector() throws IOException {
+		ArrayList<Vector> r_list = new ArrayList<Vector>();
+		ArrayList<Double> λ_list = new ArrayList<Double>();
+
+		Vector r = new Vector(webPages.rows);
+
+		// initialize first vector r to all 1s and add to list
+		for (int i = 0; i < r.getSize(); i++) {
+			r.setValue(i, 1);
+		}
+		r_list.add(r);
+
+		// initialize lambda and add to the list
+		Double λ = 0.00;
+		λ_list.add(λ);
+
+		// start computation loop
+		for (int k = 1; k < maxIterations; k++) {
+			Vector y = webPages.multiplyWithVector(r_list.get(k-1));
+
+			// find the infinity norm of y
+			double y_infinitynorm = 0;
+			for (int i = 0; i < y.getSize(); i++) {
+				if (y.coords[i] > y_infinitynorm) {
+					y_infinitynorm = y.coords[i];
+				}
+			}
+
+			// add both values to the lists
+			λ_list.add(y_infinitynorm);
+			r_list.add(y.scalarMultiply(1/y_infinitynorm));
+
+			// check if we found the dominant eigenvector by comparing eigenvalues
+			if (Math.abs(λ_list.get(k) - λ_list.get(k-1)) < tolerance) {
+				eigenVector = r_list.get(k);
+				return eigenVector;
+			}
+		}
+
+		eigenVector = r_list.get(maxIterations);
+		return eigenVector;
+	}
+
 
 	// rounds a double to a specified number of significant digits
 	public static double roundToSignificantDigits(double number, int digits) {
@@ -93,7 +141,7 @@ public class rkoch_assignment4_p3 {
 
 	// prints a matrix to a given file
 	public static void printVectorToFile(Vector vector) throws IOException {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < vector.getSize(); i++) {
 			resultsFile.printf("%-8.4g", roundToSignificantDigits(vector.coords[i], 4));
 		}
 		resultsFile.println();
