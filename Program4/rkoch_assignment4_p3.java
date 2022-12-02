@@ -46,6 +46,17 @@ public class rkoch_assignment4_p3 {
 		} else { resultsFile1 = new PrintWriter(new File(filename)); }
 	}
 
+	// rounds a double to a specified number of significant digits
+	public static double roundToSignificantDigits(double number, int digits) {
+		double roundedNum;
+
+		BigDecimal bigDecimal = new BigDecimal(number);
+		bigDecimal = bigDecimal.round(new MathContext(digits));
+		roundedNum = bigDecimal.doubleValue();
+
+		return roundedNum;
+	}
+
 	// prints a matrix to a given file
 	public static void printVectorToFile(Vector vector, PrintWriter file) throws IOException {
 		for (int i = 0; i < 3; i++) {
