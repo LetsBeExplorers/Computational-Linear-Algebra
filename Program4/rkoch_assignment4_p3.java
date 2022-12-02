@@ -11,6 +11,7 @@ public class rkoch_assignment4_p3 {
 	public static final double tolerance = .0005;
 	public static final int maxIterations = 20;
 	public static Vector eigenVector;
+	public static Vector pageRank;
 	public static Matrix webPages;
 	public static File inputFile;
 	public static PrintWriter resultsFile;
@@ -153,16 +154,5 @@ public class rkoch_assignment4_p3 {
 		resultsFile.close();
 
 		System.exit(1);
-	}
-
-
-	// prints a matrix to a given file
-	public static void printMatrix(Matrix matrix) {
-		for (int row = 0; row < matrix.rows; row++) {
-			for (int column = 0; column < matrix.columns; column++) {
-				resultsFile.printf("%-8.4g", roundToSignificantDigits(matrix.getValue(row, column), 4));
-			}
-			resultsFile.println();
-		}
 	}
 }
